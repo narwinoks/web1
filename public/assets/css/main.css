@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+    --backgroud: rgba(245, 245, 245);
+    --white: rgb(255, 255, 255);
+    --black: rgb(51, 63, 72);
+    --orange: rgb(245, 112, 104);
+    --border: rgb(230, 230, 230);
+    --danger: rgb(230, 41, 100);
+    --dark: rgb(40, 50, 82);
+    --info: rgb(3, 152, 226);
+    --link: rgb(72, 95, 199);
+    --primary: rgb(65, 185, 131);
+    --success: rgb(6, 214, 158);
+    --warning: rgb(250, 173, 66);
+    --white: rgb(255, 255, 255);
+    --nonaktif: rgb(179, 179, 179);
+    --secondary: rgb(234, 237, 239);
+    --transaparant: rgb(249, 249, 249);
+    --purple: rgb(148, 84, 212);
+    --abu: rgb(234, 237, 239);
+}
+body {
+    color: var(--black);
+    background: var(--backgroud);
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    background: var(--abu);
+}
+.header .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar-light .navbar-toggler {
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0;
+    padding: 13px 18px;
+}
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .nav-link:hover {
+    background: var(--abu);
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.photo-nav {
+    align-items: center;
+    display: flex;
+}
+.dropdown-toggle::after {
+    font-family: "FontAwesome" !important;
+    content: "\f107" !important;
+    border: none !important;
+    font-size: 20px !important;
+    margin-left: 5px !important;
+}
+.footer {
+    padding-top: 20px;
+    background: var(--black);
+    color: var(--white);
+}
+footer ul {
+    text-transform: capitalize;
+}
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer a {
+    color: var(--nonaktif);
+    text-decoration: none;
+}
+
+footer a:hover,
+footer a:active {
+    color: white;
+}
+.footer .item .col-md-3 h5 {
+    font-weight: 700;
+    font-size: 16px !important;
+}
+footer .social {
+    display: flex;
+    align-items: center;
+    gap: 15px !important;
+}
+.footer .partner {
+    height: auto;
+    width: auto;
+    max-width: 50px;
+    max-height: 50px;
+}
+.footer h6 {
+    font-weight: 400;
+    font-size: 14px !important;
+}

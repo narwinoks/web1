@@ -1,0 +1,6 @@
+.btn-black {
+    font-weight: 400;
+    color: var(--white) !important;
+    background-color: var(--black);
+    border-color: var(--black);
+}
