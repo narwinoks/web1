@@ -11,4 +11,8 @@ class MainController extends Controller
     {
         return view('features.public.index');
     }
+    public function blog(Request $request)
+    {
+        return view('features.public.blog');
+    }
 }
