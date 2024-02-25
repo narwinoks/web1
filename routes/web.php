@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index']);
 Route::get('/blog', [MainController::class, 'blog']);
+Route::get('/studio', [MainController::class, 'studio']);

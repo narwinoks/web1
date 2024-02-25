@@ -15,4 +15,9 @@ class MainController extends Controller
     {
         return view('features.public.blog');
     }
+
+    public function studio(Request $request)
+    {
+        return view('features.public.studio');
+    }
 }
