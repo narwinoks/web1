@@ -632,7 +632,7 @@ section {
 }
 
 .pricing-item:hover .pricing {
-    color: black;
+    color: var(--black);
     transition: 0.4s linear;
 }
 
@@ -701,7 +701,25 @@ label {
     color: rgba(0, 0, 0, 0.55);
 }
 .btn-purple {
-    color: #fff;
+    /* color: #fff;
     background-color: var(--purple);
-    border-color: var(--purple);
+    border-color: var(--purple); */
+    font-weight: 400;
+    color: var(--white) !important;
+    background-color: var(--black);
+    border-color: var(--black);
+}
+
+/* pl */
+.form-pricelist {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+.form-pricelist .container-fluid {
+    background: var(--abu);
+    height: auto;
+    min-height: 100px;
+}
+.is-rounded {
+    border-radius: 8px;
 }

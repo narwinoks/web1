@@ -22,3 +22,4 @@ Route::get('/prewedding', [MainController::class, 'prewedding']);
 Route::get('/engagement', [MainController::class, 'engagement']);
 Route::get('/pengajian', [MainController::class, 'pengajian']);
 Route::get('/kin', [MainController::class, 'kin']);
+Route::get('/pl', [MainController::class, 'pl']);

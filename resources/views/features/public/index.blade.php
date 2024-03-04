@@ -170,6 +170,43 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="review">
+                                        <div class="user-profile">
+                                            <img src="{{ asset('assets/img/600x400.png') }}" alt="user-profile">
+                                        </div>
+                                        <div class="content">
+                                            <div class="stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-half"></i>
+                                            </div>
+                                            <div class="name">
+                                                John Doe
+                                            </div>
+                                            <div class="text">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                                                metus quis metus fermentum congue.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                                                metus quis metus fermentum congue.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                                                metus quis metus fermentum congue.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                                                metus quis metus fermentum congue.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                                                metus quis metus fermentum congue.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                                                metus quis metus fermentum congue.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
+                                                metus quis metus fermentum congue.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <img src="{{ asset('assets/img/background-review.png') }}" alt="background-review"
                             class="background-image">
@@ -220,7 +257,7 @@
             dots: false,
             autoHeight: true,
             autoplay: true,
-            autoplayTimeout: 2000,
+            autoplayTimeout: 1000,
             autoplayHoverPause: true,
             responsive: {
                 0: {
