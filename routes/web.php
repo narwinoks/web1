@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index']);
 Route::get('/blog', [MainController::class, 'blog']);
 Route::get('/studio', [MainController::class, 'studio']);
+Route::get('/wedding', [MainController::class, 'wedding']);
+Route::get('/prewedding', [MainController::class, 'prewedding']);
+Route::get('/engagement', [MainController::class, 'engagement']);
+Route::get('/pengajian', [MainController::class, 'pengajian']);
+Route::get('/kin', [MainController::class, 'kin']);

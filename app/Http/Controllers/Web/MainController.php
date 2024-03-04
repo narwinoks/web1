@@ -20,4 +20,28 @@ class MainController extends Controller
     {
         return view('features.public.studio');
     }
+    public function wedding(Request $request)
+    {
+        return view('features.public.wedding');
+    }
+    public function prewedding(Request $request)
+    {
+        return view('features.public.prewedding');
+    }
+    public function engagement(Request $request)
+    {
+        return view('features.public.engagement');
+    }
+    public function pengajian(Request $request)
+    {
+        return view('features.public.pengajian');
+    }
+    public function kin(Request $request)
+    {
+        return view('features.public.kin');
+    }
+    public function pl(Request $request)
+    {
+        return view('features.public.pl');
+    }
 }
