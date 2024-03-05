@@ -723,3 +723,110 @@ label {
 .is-rounded {
     border-radius: 8px;
 }
+/* review */
+.card-review {
+    background: var(--white) !important;
+    padding: 20px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.card-review .header {
+    background: var(--white) !important;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+}
+.card-review .header h4 {
+    margin-left: 15px !important;
+}
+
+.card-review .header img {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+}
+.card-review .content p {
+    font-size: 13px !important;
+}
+/* faq */
+.faq {
+    flex: 0 0 0;
+    min-height: 100vh;
+    overflow-x: visible;
+    overflow-y: visible;
+    background: #31373d;
+    color: var(--white);
+}
+.faq .hero {
+    padding: 40px 50px;
+}
+
+.card-question-header:not([class*="bg-"]):not([class*="alpha-"]) {
+    background-color: transparent;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom-width: 0;
+}
+
+.card-question-header .card-question-title {
+    margin-bottom: 0;
+}
+.card-question-header {
+    padding: 0.5rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+.card-question {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.1875rem;
+}
+.card-question-body p {
+    color: var(--black);
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+}
+/* contact us */
+.maps {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+.map {
+    width: 100%;
+    height: 100vh;
+    border: 0;
+}
+.contact-us {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.image-contact {
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 75%;
+}
+.about-us .content p {
+    font-weight: normal;
+    font-size: 14px;
+}
+.paragraph-about-us {
+    line-height: 1.9;
+    margin-bottom: 5px;
+}

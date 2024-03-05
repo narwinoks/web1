@@ -44,4 +44,16 @@ class MainController extends Controller
     {
         return view('features.public.pl');
     }
+    public function review(Request $request)
+    {
+        return view('features.public.review');
+    }
+    public function faq(Request $request)
+    {
+        return view('features.public.faq');
+    }
+    public function aboutUs(Request $request)
+    {
+        return view('features.public.about-us');
+    }
 }

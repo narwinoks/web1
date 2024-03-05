@@ -4,3 +4,11 @@
     background-color: var(--black);
     border-color: var(--black);
 }
+.btn-show {
+    border: 0.8px solid var(--black);
+    color: var(--black);
+    padding: 4px 10px !important;
+    border-radius: 4px;
+    font-size: 14px !important;
+    font-weight: 400;
+}
