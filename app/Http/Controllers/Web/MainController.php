@@ -56,4 +56,13 @@ class MainController extends Controller
     {
         return view('features.public.about-us');
     }
+    public function gallery(Request $request)
+    {
+        $title = "Gallery Title";
+        return view('features.public.gallery', compact('title'));
+    }
+    public function form(Request $request)
+    {
+        return view('features.public.form');
+    }
 }

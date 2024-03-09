@@ -26,3 +26,5 @@ Route::get('/pl', [MainController::class, 'pl']);
 Route::get('/review', [MainController::class, 'review']);
 Route::get('/faq', [MainController::class, 'faq']);
 Route::get('/about-us', [MainController::class, 'aboutUs']);
+Route::get('/gallery', [MainController::class, 'gallery']);
+Route::get('/form', [MainController::class, 'form']);
