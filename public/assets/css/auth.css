@@ -1,0 +1,26 @@
+.card-login {
+    background-color: var(--white);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: auto; /* Ganti dengan height auto untuk memenuhi konten */
+}
+
+.card-login img {
+    width: 100%;
+    height: 100%; /* Ganti dengan height 100% */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-login .form-container {
+    margin: auto;
+}
+
+.card-login .col-md-5 {
+    padding: 20px;
+}

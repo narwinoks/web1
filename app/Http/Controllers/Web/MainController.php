@@ -65,4 +65,12 @@ class MainController extends Controller
     {
         return view('features.public.form');
     }
+    public function login(Request $request)
+    {
+        return view('features.public.login');
+    }
+    public function register(Request $request)
+    {
+        return view('features.public.register');
+    }
 }
