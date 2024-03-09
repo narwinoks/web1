@@ -9,7 +9,12 @@
               </div>
           </div>
           <div>
-              <button class="btn btn-black">Login</button>
+              <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
+                  class="btn btn-black">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
+              <form action="{{ route('account.logout') }}" method="post" id="{{ Auth()->user() ? 'form-logout' : '' }}"
+                  class="d-none">
+                  @csrf
+              </form>
           </div>
       </div>
   </header>

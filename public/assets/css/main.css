@@ -857,3 +857,15 @@ label {
     padding: 10px 20px;
     border-radius: 8px;
 }
+.span {
+    font-weight: 600;
+    font-size: 12px;
+}
+.btn-normal {
+    border: 0.8px solid var(--black);
+    color: var(--black);
+    padding: 4px 10px !important;
+    border-radius: 4px;
+    font-size: 14px !important;
+    font-weight: 400;
+}
