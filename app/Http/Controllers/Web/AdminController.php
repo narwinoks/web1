@@ -9,5 +9,6 @@ class AdminController extends Controller
 {
     public function home(Request $request)
     {
+        return view('features.admin.dashboard');
     }
 }
