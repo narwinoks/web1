@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\MainController;
 use Illuminate\Support\Facades\Route;
 

@@ -9,7 +9,7 @@
                         <div class="row align-items-center">
                             <div class="col-md-3">
                                 <div class="text-center border-end">
-                                    <img src="{{ asset('assets/img/' . auth()->user()->profile ?? 'avatar.png') }}"
+                                    <img src="{{ asset('assets/img/' . (auth()->user()->profile == null ? 'avatar.png' : auth()->user()->profile)) }}"
                                         class="img-fluid avatar-xxl rounded-circle" alt="image-user">
                                     <h4 class="text-secondary h5 fw-normal  mt-3 mb-1">{{ auth()->user()->name }}</h4>
                                     <span class="text-muted span mb-0">User</span>
