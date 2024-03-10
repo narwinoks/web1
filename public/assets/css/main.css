@@ -56,6 +56,16 @@ body {
     align-items: center;
     justify-content: center;
 }
+.header .reservasi {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+}
+.header .reservasi a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 400;
+}
 .navbar-light .navbar-toggler {
     border: none;
     position: absolute;

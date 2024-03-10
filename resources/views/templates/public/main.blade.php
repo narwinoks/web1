@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+    $profile = json_decode(request()->cookie('profile'), true);
+@endphp
 @include('templates.public.head')
 
 <body>

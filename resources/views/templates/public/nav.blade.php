@@ -2,19 +2,24 @@
       <div class="container-lg item d-flex justify-content-between">
           <div class="row justify-content-start">
               <div class="col-auto">
-                  <span><i class="fa fa-whatsapp" aria-hidden="true"></i> 08565-900-4317</span>
+                  <span><i class="fa fa-whatsapp" aria-hidden="true"></i>  {{ $profile['whatsapp'] }}</span>
               </div>
               <div class="col-auto">
-                  <span><i class="fa fa-envelope-o" aria-hidden="true"></i> hello@hierosphoto.com</span>
+                  <span><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $profile['email1'] }}</span>
               </div>
           </div>
-          <div>
-              <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
-                  class="btn btn-black">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
-              <form action="{{ route('account.logout') }}" method="post" id="{{ Auth()->user() ? 'form-logout' : '' }}"
-                  class="d-none">
-                  @csrf
-              </form>
+          <div class="row reservasi justify-content-end align-items-center d-none">
+              <div class="col-auto">
+                  <a href="{{ route('form') }}" class="mb-0 d-sm-block d-none">Reservasi</a>
+              </div>
+              <div class="col-auto">
+                  <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
+                      class="btn btn-black">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
+                  <form action="{{ route('account.logout') }}" method="post"
+                      id="{{ Auth()->user() ? 'form-logout' : '' }}" class="d-none">
+                      @csrf
+                  </form>
+              </div>
           </div>
       </div>
   </header>
@@ -63,6 +68,9 @@
                   </li>
                   <li class="nav-item ">
                       <a class="nav-link" href="/">About Us</a>
+                  </li>
+                  <li class="nav-item d-block d-sm-none">
+                      <a class="nav-link" href="{{ route('form') }}">Reservasi</a>
                   </li>
               </ul>
           </div>

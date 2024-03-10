@@ -29,7 +29,7 @@ Route::get('/review', [MainController::class, 'review']);
 Route::get('/faq', [MainController::class, 'faq']);
 Route::get('/about-us', [MainController::class, 'aboutUs']);
 Route::get('/gallery', [MainController::class, 'gallery']);
-Route::get('/form', [MainController::class, 'form']);
+Route::get('/form', [MainController::class, 'form'])->name('form');
 Route::get('/login', [MainController::class, 'login'])->name('login');
 Route::get('/register', [MainController::class, 'register']);
 

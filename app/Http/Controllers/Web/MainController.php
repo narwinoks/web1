@@ -63,7 +63,8 @@ class MainController extends Controller
     }
     public function form(Request $request)
     {
-        return view('features.public.form');
+        $profile = json_decode($request->cookie('profile'), true);
+        return view('features.public.form', compact('profile'));
     }
     public function login(Request $request)
     {

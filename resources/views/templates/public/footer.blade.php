@@ -26,13 +26,13 @@
                     <div class="col-md-2 col-6">
                         <h5 class="h6">Sosial Media</h5>
                         <div class="social">
-                            <a href="#">
+                            <a href="{{ $profile['instagram'] }}" target="_blank">
                                 <span><i class="fa fa-instagram"></i></span>
                             </a>
-                            <a href="#">
+                            <a href="{{ $profile['youtube'] }}" target="_blank">
                                 <span><i class="fa fa-youtube"></i></span>
                             </a>
-                            <a href="#">
+                            <a href="{{ $profile['facebook'] }}" target="_blank">
                                 <span><i class="fa fa-facebook"></i></span>
                             </a>
                         </div>
@@ -40,7 +40,8 @@
                     <div class="col-md-2 col-4">
                         <h5 class="h6">Partners</h5>
                         <div class="partner">
-                            <img src="{{ asset('assets/img/partners.png') }}" alt="partner" class="img-fluid">
+                            <img src="{{ asset('assets/img/' . $profile['partner1']) }}" alt="partner"
+                                class="img-fluid">
                         </div>
                     </div>
                     <div class="col-md-5 col-8">
@@ -50,7 +51,7 @@
                                 <a href="/">
                                     <span>
                                         <i class="fa fa-whatsapp"></i>
-                                        08565-900-4317
+                                        {{ $profile['whatsapp'] }}
                                     </span>
                                 </a>
                             </li>
@@ -58,7 +59,7 @@
                                 <a href="/">
                                     <span>
                                         <i class="fa fa-envelope-o"></i>
-                                        hello@hierosphoto.com
+                                        {{ $profile['email1'] }}
                                     </span>
                                 </a>
                             </li>
@@ -66,8 +67,7 @@
                                 <a href="/">
                                     <span>
                                         <i class="fa fa-map-marker"></i>
-                                        Wedding photographers based in Bandung, Komplek Mulya Golf Residence A7-
-                                        Pakemitan, Cinambo, Bandung.
+                                        {{ $profile['address'] }}
                                     </span>
                                 </a>
                             </li>
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-12 text-center">
-                <h6>@ {{ date('Y') }} PT Hieros Photography Indonesia</h6>
+                <h6>@ {{ date('Y') }} {{ $profile['name'] }}</h6>
             </div>
         </div>
     </div>
