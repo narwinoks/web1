@@ -110,7 +110,8 @@ class UserController extends Controller
         if ($request->key == "loadPassword") {
             return view('features.public.user.password');
         } else if ($request->key == "loadProfile") {
-            return view('features.public.user.profile');
+            $user = Auth::user();
+            return view('features.public.user.profile', compact('user'));
         }
     }
     public function update(Request $request)
@@ -120,9 +121,11 @@ class UserController extends Controller
                 'password' => 'required',
                 'confirmationPassword' => 'required'
             ];
+            $request->merge(['password' => Hash::make($request->password)]);
         } else if ($request->key == "profile") {
             $validation = [
-                'name' => 'required'
+                'name' => 'required',
+                'profile' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:20480'
             ];
         }
         $validator = Validator::make($request->all(), $validation);
@@ -132,9 +135,14 @@ class UserController extends Controller
             ];
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
-        DB::transaction();
+        if ($request->file('image')) {
+            $file      = 'image' . '-' . time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/img'), $file);
+            $request->merge(['profile' => $file]);
+        }
         try {
-            $user = User::where('id', Auth::user()->id)->fisrt()->update($request->all());
+            $user = User::where('id', Auth::user()->id)->first();
+            $result = $user->update($request->all());
             $result = [
                 'message' => 'Profile Berhasil Diubah' . '   ' . $user->name,
                 'data' => $user,
@@ -145,7 +153,7 @@ class UserController extends Controller
             $result = [
                 'message' => $e->getMessage(),
                 'data' => [],
-                'code' => $e->getCode() ?? 500,
+                'code' => 500,
                 'errors' => [
                     'line' => $e->getLine(),
                     'message' => $e->getMessage()

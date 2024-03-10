@@ -33,8 +33,8 @@
                                                 </p>
                                                 <p>
                                                 <div class="mt-4">
-                                                    <button class="button btn-normal" data-toggle="modal"
-                                                        data-target="#updateProfileModal">Update Profile</button>
+                                                    <button class="button btn-normal" id="open-modal">Update
+                                                        Profile</button>
                                                 </div>
                                                 </p>
                                             </div>
@@ -107,8 +107,6 @@
         var hash = window.location.hash.substr(1);
         var href = window.location.href;
 
-        defaultPage();
-
         function defaultPage() {
             if (hash == undefined || hash == "") {
                 hash = "profile";
@@ -163,9 +161,7 @@
                 contentType: false,
                 success: function(response) {
                     showAlert(response.message, 'success')
-                    setTimeout(() => {
-                        window.location.href = response.data.redirect;
-                    }, 2000);
+                    $("#updateProfileModal").modal("hide");
                 },
                 error: function(error) {
                     if (error.status == 400 || error.status == 422) {
@@ -175,6 +171,36 @@
                     }
                 }
             });
+        });
+        $("body").on("submit", "#form-update-profile", function(event) {
+            event.preventDefault();
+            var form = document.getElementById('form-update-profile');
+            var formData = new FormData(form);
+            $.ajax({
+                url: '{{ route('account.update') }}',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    showAlert(response.message, 'success')
+                    $("#updateProfileModal").modal("hide");
+                },
+                error: function(error) {
+                    if (error.status == 400 || error.status == 422) {
+                        printErrorMsg(error);
+                    } else {
+                        showAlert(error.responseJSON.message || 'Error', 'danger')
+                    }
+                }
+            });
+        });
+
+        $("body").on("click", "#open-modal", function(event) {
+            event.preventDefault();
+            console.log("Success");
+            $("#updateProfileModal").modal("show");
+            defaultPage();
         });
     </script>
 @endpush
