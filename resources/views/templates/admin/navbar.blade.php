@@ -26,6 +26,10 @@
                         <li><a href="#">Horizontal</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.booking') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-calendar"></i></span><span class="pcoded-mtext">Booking</span></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -38,7 +42,7 @@
             <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
             <a href="#!" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="{{ asset('assets/img/logo.png') }}" height="30" alt="logo-admin" class="logo">
+                <img src="{{ asset('assets/img/logo-admin.png') }}" height="30" alt="logo-admin" class="logo">
                 <img src="{{ asset('assets/templates/images/logo-icon.png') }}" alt="" class="logo-thumb">
             </a>
             <a href="#!" class="mob-toggler">

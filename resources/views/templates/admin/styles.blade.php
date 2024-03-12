@@ -4,4 +4,5 @@
   <link rel="stylesheet" href="{{ asset('assets/templates/plugins/prism-coy.css') }}">
   <!-- vendor css -->
   <link rel="stylesheet" href="{{ asset('assets/templates/css/admin.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/custome.css') }}">
   @stack('styles')

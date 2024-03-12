@@ -1,4 +1,5 @@
   <!-- Required Js -->
+  <script src="{{ asset('assets/plugin/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('assets/templates/js/vendor-all.min.js') }}"></script>
   <script src="{{ asset('assets/templates/js/plugins/bootstrap.min.js') }}"></script>
   <script src="{{ asset('assets/templates/js/ripple.js') }}"></script>
@@ -44,4 +45,5 @@
       });
   </script>
   <script src="{{ asset('assets/templates/js/analytics.js') }}"></script>
+  <script src="{{ asset('assets/plugin/bs-notify/bs-notify.min.js') }}"></script>
   @stack('scripts')

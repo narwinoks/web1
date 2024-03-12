@@ -1,8 +1,37 @@
+:root {
+    --backgroud: rgba(245, 245, 245);
+    --white: rgb(255, 255, 255);
+    --black: rgb(51, 63, 72);
+    --orange: rgb(245, 112, 104);
+    --border: rgb(230, 230, 230);
+    --danger: rgb(230, 41, 100);
+    --dark: rgb(40, 50, 82);
+    --info: rgb(3, 152, 226);
+    --link: rgb(72, 95, 199);
+    --primary: rgb(65, 185, 131);
+    --success: rgb(6, 214, 158);
+    --warning: rgb(250, 173, 66);
+    --white: rgb(255, 255, 255);
+    --nonaktif: rgb(179, 179, 179);
+    --secondary: rgb(234, 237, 239);
+    --transaparant: rgb(249, 249, 249);
+    --purple: rgb(148, 84, 212);
+    --abu: rgb(234, 237, 239);
+}
 .btn-black {
     font-weight: 400;
     color: var(--white) !important;
     background-color: var(--black);
     border-color: var(--black);
+}
+.btn-serach {
+    font-weight: 400;
+    background-color: var(--black);
+    border-color: var(--black);
+    color: var(--white);
+}
+.btn-rounded {
+    border-radius: 10px;
 }
 .btn-show {
     border: 0.8px solid var(--black);
@@ -11,4 +40,121 @@
     border-radius: 4px;
     font-size: 14px !important;
     font-weight: 400;
+}
+.input-custom {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+}
+
+.input-custom:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+/* booking */
+.bg-light-blue {
+    background-color: #e9f7fe !important;
+    color: #3184ae;
+    padding: 7px 18px;
+    border-radius: 4px;
+}
+
+.bg-light-green {
+    background-color: rgba(40, 167, 69, 0.2) !important;
+    padding: 7px 18px;
+    border-radius: 4px;
+    color: #28a745 !important;
+}
+
+.buttons-to-right {
+    position: absolute;
+    right: 0;
+    top: 40%;
+}
+
+.btn-gray {
+    color: #666;
+    background-color: #eee;
+    padding: 7px 18px;
+    border-radius: 4px;
+}
+
+.booking:hover .buttons-to-right .btn-gray {
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.buttons-to-right .btn-gray {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.btn-gray:hover {
+    background-color: #36a3f5;
+    color: #fff;
+}
+
+.booking {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+}
+
+.booking:last-child {
+    margin-bottom: 0px;
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+@media screen and (max-width: 575px) {
+    .buttons-to-right {
+        top: 10%;
+    }
+
+    .buttons-to-right a {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .buttons-to-right a:last-child {
+        margin-bottom: 0px;
+    }
+
+    .bg-light-blue,
+    .bg-light-green,
+    .btn-gray {
+        padding: 7px;
+    }
+}
+
+.card {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    box-shadow: none;
+    border: none;
+    padding: 25px;
+}
+
+.mb-5,
+.my-5 {
+    margin-bottom: 3rem !important;
+}
+
+.msg-img {
+    margin-right: 20px;
+}
+
+.msg-img img {
+    width: 60px;
+    border-radius: 50%;
+}
+
+.img-custom {
+    max-width: 100%;
+    height: auto;
 }

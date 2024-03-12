@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="" />
     <meta name="keywords" content="">
+    <link href="{{ asset('assets/img/icon.png') }}" rel="shortcut icon" type="image/png">
     <meta name="author" content="Phoenixcoded" />
     @include('templates.admin.styles')
 </head>

@@ -66,8 +66,8 @@
                                         <label for="option" class="form-label">Paket yang saya pilih</label>
                                         <select class="form-select form-select-sm" id="option"
                                             aria-label=".form-select-sm example" name="option">
-                                            <option value="prewedding" selected>Prewedding</option>
-                                            <option value="wedding">Wedding</option>
+                                            <option value="Prewedding" selected>Prewedding</option>
+                                            <option value="Wedding">Wedding</option>
                                             <option value="2 Days Bulding (Prewedding & Wedding)">2 Days Bundling
                                                 (Prewedding &
                                                 Wedding)</option>
@@ -96,7 +96,7 @@
                                     <div class="mb-1 prewedding-content">
                                         <label for="type" class="form-label">Prewedding Package </label>
                                         <select class="form-select form-select-sm" id="prewedding-package"
-                                            aria-label=".form-select-sm example" name="prewedding-package">
+                                            aria-label=".form-select-sm example" name="prewedding_package">
                                             <option value="Short Session (4 Hours)">Short Session (4 Hours)</option>
                                             <option value="Halftday Session (6 Hours)">Halftday Session (6 Hours)</option>
                                             <option value="Fullday Session (12 Hours)">Fullday Session (12 Hours)</option>
@@ -108,7 +108,7 @@
                                     <div class="mb-1 wedding-content" style="display: none">
                                         <label for="type" class="form-label">Wedding Package </label>
                                         <select class="form-select form-select-sm" id="wedding-package"
-                                            aria-label=".form-select-sm example" name="wedding-package">
+                                            aria-label=".form-select-sm example" name="wedding_package">
                                             <option value="Short Session (4 Hours)">Halfdat wedding (8 Hours)</option>
                                             <option value="Halftday Session (6 Hours)">Candid "Memorabilia" Package (8
                                                 Hours)
@@ -193,7 +193,12 @@
                                     </div>
                                     <hr class="hr" />
                                     <div class="mb-1 ">
-                                        <label for="other" class="form-label">Tanggal, jam & lokasi acara </label>
+                                        <label for="date" class="form-label">Tanggal & Jam</label>
+                                        <input type="datetime-local" class="form-control-sm form-control" id="date"
+                                            name="date" placeholder="tgl">
+                                    </div>
+                                    <div class="mb-1 ">
+                                        <label for="other" class="form-label">Lokasi acara </label>
                                         <textarea name="other" class="form-control-sm form-control" placeholder="Jl..." id="other" rows="2"></textarea>
                                         <span class="error-other text-danger d-none"></span>
                                     </div>
@@ -265,7 +270,7 @@
             $("#option").on('change', function() {
                 var option = $(this).val();
                 console.log(option);
-                if (option == 'wedding') {
+                if (option == 'Wedding') {
                     $('.etc').hide();
                     $('.wedding-content').show();
                     $('.prewedding-content').hide();
@@ -273,10 +278,14 @@
                     $('.wedding-content').hide();
                     $('.prewedding-content').hide();
                     $('.etc').show();
-                } else if (option == 'prewedding') {
+                } else if (option == 'Prewedding') {
                     $('.etc').hide();
                     $('.wedding-content').hide();
                     $('.prewedding-content').show();
+                }else{
+                    $('.etc').hide();
+                    $('.wedding-content').hide();
+                    $('.prewedding-content').hide();
                 }
             })
             $("#list").on('change', function() {

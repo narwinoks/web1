@@ -51,5 +51,8 @@ Route::controller(UserController::class)->name('account.')->prefix('account')->g
 });
 Route::controller(AdminController::class)->name('admin.')->middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', 'home')->name('home');
+    Route::get('/booking', 'booking')->name('booking');
+    Route::get('/content', 'content')->name('content');
 
+    Route::post('/update-content', 'updateContent')->name('updateContent');
 });

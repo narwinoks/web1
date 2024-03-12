@@ -111,9 +111,21 @@ class MainController extends Controller
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
         $data['name'] = $request->name;
+        $detail = "";
+        if ($request->option == "Prewedding") {
+            $detail = $request->prewedding_package;
+        } else if ($request->option == "Wedding") {
+            $detail = $request->wedding_package;
+        } else if ($request->option == "Custome Page") {
+            $detail = $request->etc;
+        } else {
+            $detail = $request->option;
+        }
+        $request->merge(['detail' => $detail]);
         $data['content'] = json_encode($request->all(), true);
         $category = $this->getFix('booking-category');
         $data['category'] = $category;
+        $data['status'] = 'Pending';
         DB::beginTransaction();
         try {
             $db = Content::create($data);
