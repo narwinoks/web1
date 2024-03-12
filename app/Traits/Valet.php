@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\DataFix;
 use Illuminate\Http\JsonResponse;
 
 trait Valet
@@ -18,5 +19,11 @@ trait Valet
     protected function respond($data, $statusCode): JsonResponse
     {
         return response()->json($data, $statusCode);
+    }
+
+    protected function getFix($name)
+    {
+        $data = DataFix::where('name', $name)->where('statusenable', true)->first();
+        return $data->value;
     }
 }

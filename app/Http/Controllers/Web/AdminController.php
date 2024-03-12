@@ -11,4 +11,8 @@ class AdminController extends Controller
     {
         return view('features.admin.dashboard');
     }
+    public function booking(Request $request)
+    {
+        return view('features.admin.booking');
+    }
 }

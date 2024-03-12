@@ -35,6 +35,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-5 col-sm-12 col-5">
                             <form id="form-booking">
+                                @csrf
                                 <div class="form mt-5">
                                     <div class="mb-1">
                                         <label for="type" class="form-label">Saya yang mengisi form ini </label>
@@ -125,39 +126,46 @@
                                             rows="2"></textarea>
                                     </div>
                                     <hr class="hr" />
-                                    <div class="mb-1 etc">
+                                    <div class="mb-1">
                                         <label for="name" class="form-label">Nama lengkap CPW </label>
                                         <input type="text" class="form-control-sm form-control" id="name"
                                             name="name" placeholder="Dimas Setiawan ">
+                                        <span class="error-name text-danger d-none"></span>
                                     </div>
-                                    <div class="mb-1 etc">
+                                    <div class="mb-1">
                                         <label for="instagram" class="form-label">Instagram (opsional) </label>
                                         <input type="text" class="form-control-sm form-control" id="instagram"
                                             name="instagram" placeholder="@...">
+                                        <span class="error-instagram text-danger d-none"></span>
                                     </div>
-                                    <div class="mb-1 etc">
+                                    <div class="mb-1">
                                         <label for="namecpp" class="form-label">Nama lengkap CPP </label>
                                         <input type="text" class="form-control-sm form-control" id="namecpp"
                                             name="namecpp" placeholder="Dina Febria">
+                                        <span class="error-namecpp text-danger d-none"></span>
                                     </div>
-                                    <div class="mb-1 etc">
+                                    <div class="mb-1">
                                         <label for="instaramcp" class="form-label">Instagram (opsional)</label>
                                         <input type="text" class="form-control-sm form-control" id="instaramcp"
                                             name="instaramcp" placeholder="Dina Febria">
+                                        <span class="error-instaramcp text-danger d-none"></span>
                                     </div>
-                                    <div class="mb-1 etc">
+                                    <div class="mb-1">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="text" class="form-control-sm form-control" id="email"
                                             name="email" placeholder="@">
+                                        <span class="error-email text-danger d-none"></span>
                                     </div>
-                                    <div class="mb-1 etc">
+                                    <div class="mb-1">
                                         <label for="whatsapp" class="form-label">Whatsapp</label>
                                         <input type="text" class="form-control-sm form-control" id="whatsapp"
                                             name="whatsapp" placeholder="+62">
+                                        <span class="error-whatsapp text-danger d-none"></span>
                                     </div>
-                                    <div class="mb-1 etc">
+                                    <div class="mb-1">
                                         <label for="address" class="form-label">Alamat lengkap </label>
                                         <textarea name="address" class="form-control-sm form-control" placeholder="Jl..." id="address" rows="2"></textarea>
+                                        <span class="error-address text-danger d-none"></span>
                                     </div>
                                     <div class="mb-1">
                                         <label for="list" class="form-label">List backsound video</label>
@@ -175,6 +183,7 @@
                                             <option value="Saya tidak menggunakan video">Saya tidak menggunakan video
                                             </option>
                                         </select>
+                                        <span class="error-list text-danger d-none"></span>
                                     </div>
                                     <div class="mb-1 url" style="display: none">
                                         <label for="urlVideo" class="form-label">List backsound untuk video saya (copas
@@ -186,11 +195,13 @@
                                     <div class="mb-1 ">
                                         <label for="other" class="form-label">Tanggal, jam & lokasi acara </label>
                                         <textarea name="other" class="form-control-sm form-control" placeholder="Jl..." id="other" rows="2"></textarea>
+                                        <span class="error-other text-danger d-none"></span>
                                     </div>
                                     <div class="mb-1">
                                         <label for="notes" class="form-label">Catatan tambahan untuk Hieros</label>
                                         <textarea name="notes" class="form-control-sm form-control"
                                             placeholder="Tuliskan secara detil jika anda memiliki preferensi khusus" id="notes" rows="2"></textarea>
+                                        <span class="error-notes text-danger d-none"></span>
                                     </div>
                                     <hr class="hr" />
                                     <div class="mt-4">
@@ -203,6 +214,7 @@
                                                 Hieros
                                                 2024 - SPK/001/MMXXIV di atas.
                                             </label>
+                                            <span class="error-agreement1 text-danger d-none"></span>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="agreement2"
@@ -214,6 +226,7 @@
                                                 pasangan pada foto tersebut. Kecuali hal-hal yang melanggar hukum seperti
                                                 penghinaan, fitnah & pornografi.
                                             </label>
+                                            <span class="error-agreement2 text-danger d-none"></span>
                                         </div>
                                     </div>
                                     <div class="mb-1 mt-4">
@@ -237,6 +250,8 @@
     </section>
 @endsection
 @push('scripts')
+    <script src="{{ asset('assets/js/main/alert.js') }}"></script>
+    <script src="{{ asset('assets/js/main/validation.js') }}"></script>
     <script>
         $(document).ready(function() {
             $("#type").on('change', function() {
@@ -279,7 +294,7 @@
             var form = document.getElementById('form-booking');
             var formData = new FormData(form);
             $.ajax({
-                url: '{{ route('account.register') }}',
+                url: '{{ route('reservation') }}',
                 method: 'POST',
                 data: formData,
                 processData: false,

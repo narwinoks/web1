@@ -33,6 +33,10 @@ Route::get('/form', [MainController::class, 'form'])->name('form');
 Route::get('/login', [MainController::class, 'login'])->name('login');
 Route::get('/register', [MainController::class, 'register']);
 
+Route::controller(MainController::class)->group(function () {
+    Route::post('/reservation', 'reservation')->name('reservation');
+
+});
 Route::controller(UserController::class)->name('account.')->middleware('auth')->prefix('account')->group(function () {
     Route::get('/', 'account')->name('index');
 

@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('data_fixes', function (Blueprint $table) {
             $table->uuid('id');
+            $table->text('value');
             $table->string('name');
-            $table->json('content');
-            $table->string('category')->nullable();
+            $table->text('noted')->nullable();
             $table->boolean('statusenable')->nullable()->default(true);
-            $table->string('status', 20)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contents');
+        Schema::dropIfExists('data_fixes');
     }
 };
