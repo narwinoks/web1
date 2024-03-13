@@ -39,7 +39,11 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $user = User::updateOrCreate(['email' => $request->email], $data);
-            $user['redirect'] = route('account.index');
+            if ($user->account_type == 1) {
+                $user['redirect'] = route('admin.home');
+            }else{
+                $user['redirect'] = route('account.index');
+            }
             $result = [
                 'message' => 'Welcome' . '   ' . $user->name,
                 'data' => $user,
@@ -86,7 +90,11 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $user = Auth::user();
-            $user['redirect'] = route('account.index');
+            if ($user->account_type == 1) {
+                $user['redirect'] = route('admin.home');
+            }else{
+                $user['redirect'] = route('account.index');
+            }
             $data = [
                 'rc' => 200,
                 'data' => $user,

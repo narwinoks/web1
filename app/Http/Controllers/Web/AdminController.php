@@ -7,13 +7,38 @@ use App\Models\Content;
 use App\Traits\Valet;
 use Exception;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class AdminController extends Controller
 {
     use Valet;
     public function home(Request $request)
     {
-        return view('features.admin.dashboard');
+        $endDate = Carbon::now();
+        $startDate = $endDate->copy()->subDays(6);
+        $category = $this->getFix('booking-category');
+        $bookings = Content::where('category', $category)->where('statusenable', true);
+        $booking = $bookings->whereBetween('created_at', [$startDate, $endDate])->get();
+        $acceptedBookings = clone $bookings;
+        $accept = $acceptedBookings->where('status', 'LIKE', '%Approve%')->count();
+        $pendingBookings = clone $bookings;
+        $pending = $pendingBookings->where('status', 'LIKE', '%Pending%')->count();
+        $rejectedBookings = clone $bookings;
+        $reject = $rejectedBookings->where('status', 'LIKE', '%Reject%')->count();
+        $bookingCounts = [];
+        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+            $bookingCounts[$date->toDateString()] = 0;
+        }
+        foreach ($booking as $b) {
+            $date = $b->created_at->toDateString();
+            $bookingCounts[$date]++;
+        }
+        $bookingsResult = [];
+        foreach ($bookingCounts as $count) {
+            $bookingsResult[] = $count;
+        }
+        return view('features.admin.dashboard', compact('bookingsResult', 'booking', 'accept', 'pending', 'reject'));
     }
     public function booking(Request $request)
     {
@@ -38,7 +63,7 @@ class AdminController extends Controller
         $startDate = $request->startDate . " " . "00:00:00";
         $endDate = $request->endDate . " " . "23:59:59";
         $category = $this->getFix('booking-category');
-        $bookings = Content::where('category', $this->getFix('booking-category'))
+        $bookings = Content::where('category', $category)
             ->when($limit, function ($query) use ($limit) {
                 return $query->limit($limit);
             })
@@ -48,7 +73,6 @@ class AdminController extends Controller
             ->when($startDate, function ($query) use ($startDate) {
                 return $query->where('created_at', '>=', $startDate);
             })
-            ->where('category', $category)
             ->when($endDate, function ($query) use ($endDate) {
                 return $query->where('created_at', '<=', $endDate);
             })
