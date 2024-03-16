@@ -21,19 +21,11 @@
     <section class="blog-category">
         <div class="container text-center">
             <h4 class="h5">Browser by category :</h4>
-            <div class="row text-center justify-content-center align-items-center">
-                <div class="col-md-5">
-                    <div class="category mb-3">
-                        <img src="{{ asset('assets/img/wedding.webp') }}" alt="category-1" class="img-fluid">
-                    </div>
-                </div>
+            <div id="category-image">
+
             </div>
-            <div class="row text-center justify-content-center align-items-center">
-                <div class="col-md-5">
-                    <div class="category mb-3">
-                        <img src="{{ asset('assets/img/wedding.webp') }}" alt="category-1" class="img-fluid">
-                    </div>
-                </div>
+            <div id="loading-category" class="text-center" style="display: none">
+                <img src="{{ asset('assets/img/loading.gif') }}" width="30px">
             </div>
         </div>
     </section>
@@ -60,8 +52,8 @@
     <script>
         var timeout;
         loadMoreData();
+        loadCategory();
         $('#show-more').on('click', function() {
-            $("#istrue").val(true);
             loadMoreData();
         });
 
@@ -96,6 +88,26 @@
                     $("#loading-animation").hide();
                 }, 2000)
                 $('#content-blog').append(data);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error: " + textStatus, errorThrown);
+            })
+        }
+
+        function loadCategory() {
+            $("#loading-category").show();
+            var key = "category-blog";
+            $.ajax({
+                url: "{{ route('content') }}",
+                type: 'GET',
+                async: false,
+                data: {
+                    key: key,
+                },
+            }).done(function(data) {
+                setTimeout(function() {
+                    $("#loading-category").hide();
+                }, 2000)
+                $('#category-image').append(data);
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 console.error("Error: " + textStatus, errorThrown);
             })

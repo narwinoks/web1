@@ -166,6 +166,9 @@ class MainController extends Controller
             case trim($this->getFix('image')):
                 return $this->getDataImage($request);
                 break;
+            case trim('category-blog'):
+                return $this->getCategoryBlog($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -189,5 +192,10 @@ class MainController extends Controller
             })
             ->get();
         return view('features.public.data.gallery', compact('images'));
+    }
+    public function getCategoryBlog(Request $request)
+    {
+        $categories = Content::where('category', 'category-image')->where('statusenable', true)->get();
+        return view('features.public.data.category', compact('categories'));
     }
 }
