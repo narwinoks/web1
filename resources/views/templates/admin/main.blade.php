@@ -9,7 +9,8 @@
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <link href="{{ asset('assets/img/icon.png') }}" rel="shortcut icon" type="image/png">
-    <meta name="author" content="Phoenixcoded" />
+    <meta name="author" content="herios" />
+    <meta name="_token" content="{{ csrf_token() }}" />
     @include('templates.admin.styles')
 </head>
 

@@ -10,3 +10,7 @@ Breadcrumbs::for('admin.booking', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Booking', route('admin.booking'));
 });
+Breadcrumbs::for('admin.image', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Image', route('admin.image'));
+});

@@ -35,8 +35,8 @@
                           Gallery
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
-                          <li><a class="dropdown-item" href="#">All</a></li>
-                          <li><a class="dropdown-item" href="#">Videos</a></li>
+                          <li><a class="dropdown-item" href="{{ url('blog') }}">All</a></li>
+                          <li><a class="dropdown-item" href="{{ url('video') }}">Videos</a></li>
                           <li><a class="dropdown-item" href="#">Studio Session</a></li>
                           <li><a class="dropdown-item" href="#">Wedding</a></li>
                           <li><a class="dropdown-item" href="#">Prewedding</a></li>
@@ -46,7 +46,7 @@
                       </ul>
                   </li>
                   <li class="nav-item ">
-                      <a class="nav-link" href="/">PriceList</a>
+                      <a class="nav-link" href="{{ url('/pl') }}">PriceList</a>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="forDropdown" role="button"
@@ -61,13 +61,13 @@
                       </ul>
                   </li>
                   <li class="nav-item ">
-                      <a class="nav-link" href="/">Review</a>
+                      <a class="nav-link" href="{{ url('/review') }}">Review</a>
                   </li>
                   <li class="nav-item ">
-                      <a class="nav-link" href="/">F.A.Q</a>
+                      <a class="nav-link" href="{{ url('/faq') }}">F.A.Q</a>
                   </li>
                   <li class="nav-item ">
-                      <a class="nav-link" href="/">About Us</a>
+                      <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
                   </li>
                   <li class="nav-item d-block d-sm-none">
                       <a class="nav-link" href="{{ route('form') }}">Reservasi</a>

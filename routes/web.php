@@ -35,7 +35,6 @@ Route::get('/register', [MainController::class, 'register']);
 
 Route::controller(MainController::class)->group(function () {
     Route::post('/reservation', 'reservation')->name('reservation');
-
 });
 Route::controller(UserController::class)->name('account.')->middleware('auth')->prefix('account')->group(function () {
     Route::get('/', 'account')->name('index');
@@ -53,6 +52,11 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/', 'home')->name('home');
     Route::get('/booking', 'booking')->name('booking');
     Route::get('/content', 'content')->name('content');
+    Route::get('/image', 'image')->name('image');
+    Route::get('/show-modal', 'showModal')->name('showModal');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');
+    Route::post('/save-content', 'saveContent')->name('saveContent');
+
+    Route::delete('/delete-content', 'deleteContent')->name('deleteContent');
 });

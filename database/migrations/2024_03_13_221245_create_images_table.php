@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('name');
-            $table->json('content');
-            $table->string('category')->nullable();
+            $table->string('name')->nullable();
+            $table->foreignUuid('parent_id')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('url');
+            $table->string('type');
             $table->boolean('statusenable')->nullable()->default(true);
-            $table->string('status', 20)->nullable();
-            $table->integer('order')->nullable();
-            $table->string('image', 200)->nullable();
+            $table->string('category')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contents');
+        Schema::dropIfExists('images');
     }
 };

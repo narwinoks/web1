@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Models\Image;
+use App\Responses\ServerResponse;
 use App\Traits\Valet;
 use Exception;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
 
 
 class AdminController extends Controller
@@ -52,7 +58,38 @@ class AdminController extends Controller
             case trim($this->getFix('booking-category')):
                 return $this->getDataBooking($request);
                 break;
+            case trim($this->getFix('image')):
+                return $this->getDataImage($request);
+                break;
+            case 'image-edit':
+                return $this->editImage($request);
+                break;
             default:
+                return response()->json(['message' => 'not found']);
+                break;
+        }
+    }
+    public function saveContent(Request $request)
+    {
+        $key = $request->key;
+        switch ($key) {
+            case 'save-image':
+                return $this->saveImage($request);
+                break;
+            default:
+                return response()->json(['message' => 'not found']);
+                break;
+        }
+    }
+    public function deleteContent(Request $request)
+    {
+        $key = $request->key;
+        switch ($key) {
+            case 'delete-image':
+                return $this->deleteImage($request);
+                break;
+            default:
+                return response()->json(['message' => 'not found']);
                 break;
         }
     }
@@ -89,6 +126,191 @@ class AdminController extends Controller
                 'data' => $content,
                 'message' => 'Successfully',
                 'code' => 200
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function image(Request $request)
+    {
+        $keyCategory = $this->getFix('image');
+        $categories = Content::select('name')->where('category', 'category-image')->where('statusenable', true)->get();
+        return view('features.admin.image', compact('categories', 'keyCategory'));
+    }
+    public function getDataImage(Request $request)
+    {
+        $limit = $request->limit;
+        $category = $request->category;
+        $offset = $request->offset;
+        $startDate = $request->startDate . " " . "00:00:00";
+        $endDate = $request->endDate . " " . "23:59:59";
+        $images = Image::where('statusenable', true)
+            ->whereNull('parent_id')
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->when($startDate, function ($query) use ($startDate) {
+                return $query->where('created_at', '>=', $startDate);
+            })
+            ->when($endDate, function ($query) use ($endDate) {
+                return $query->where('created_at', '<=', $endDate);
+            })
+            ->get();
+        return view('features.admin.data.image', compact('images'));
+    }
+    public function showModal(Request $request)
+    {
+        $variable = str_replace(' ', '', $request->key);
+        switch ($variable) {
+            case 'image':
+                return $this->modalImage($request);
+                break;
+            default:
+                break;
+        }
+    }
+    public function editImage(Request $request)
+    {
+        $images = DB::table('images as img')->where('img.id', $request->id)
+            ->where('img.statusenable', true)->whereNull('img.parent_id')
+            ->where('img2.statusenable', true)->leftJoin('images as img2', 'img.id', "=", 'img2.parent_id')->get();
+        return view('features.admin.data.img', compact('images'));
+    }
+    public function modalImage(Request $request)
+    {
+        $categories = Content::select('name')->where('category', 'category-image')->where('statusenable', true)->get();
+        $types = json_decode($this->getFix('type-image'), true);
+        if ($request->id) {
+            $image = Image::where('id', $request->id)->first();
+            return view('features.admin.modal.edit-image', compact('categories', 'types', 'image'));
+        } else {
+            return view('features.admin.modal.add-image', compact('categories', 'types'));
+        }
+    }
+    public function saveImage(Request $request)
+    {
+        $rules = [
+            'name' => 'required',
+            'category' => 'required',
+        ];
+
+        $messages = [
+            'name.required' => 'Bagian ini harus diisi!',
+            'category.required' => 'Bagian ini harus diisi!',
+        ];
+        if (!$request->id) {
+            $rules['thumbnail'] = 'required';
+            $messages['thumbnail.required'] = 'Bagian ini harus diisi!';
+        }
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        DB::beginTransaction();
+        try {
+            if ($request->thumbnail) {
+                $thumbnail = $request->thumbnail;
+                $imageName = 'thumbnail-' . Str::slug($request->name, '-') . '.' . $thumbnail->extension();
+                $thumbnail->move(public_path('assets/img'), $imageName);
+            } else {
+                $imageName = $request->image_old;
+            }
+            $thumbnailData = [
+                'name' => $request->name,
+                'slug' => Str::slug($request->name, '-'),
+                'url' => $imageName,
+                'type' => 'Image',
+                'category' => $request->category
+            ];
+            $parent = Image::updateOrCreate(['id' => $request->id], $thumbnailData);
+
+            $images = $request->images;
+            if ($images) {
+                foreach ($images as $key => $image) {
+                    $img = Str::slug($request->name) . '-' . Str::random(2)  . '.' . $image->extension();
+                    $image->move(public_path('assets/img'), $img);
+                    $data = [
+                        'url' => $img,
+                        'type' => 'Image',
+                        'parent_id' => $parent->id,
+                        'category' => $request->category
+                    ];
+                    Image::create($data);
+                }
+            }
+            $embed = $request->embed;
+            if ($embed) {
+                $data = [
+                    'url' => $request->embed,
+                    'type' => 'Embed Youtube',
+                    'parent_id' => $parent->id,
+                    'category' => $request->category
+                ];
+                Image::create($data);
+            }
+            $video = $request->video;
+            if ($video) {
+                $videoName = Str::slug($request->name) . '-' . Str::random(2) . '.' . $video->extension();
+                $video->move(public_path('assets/img'), $videoName);
+                $data = [
+                    'url' => $video,
+                    'type' => 'Embed Youtube',
+                    'parent_id' => $parent->id,
+                    'category' => $request->category
+                ];
+                Image::create($data);
+            }
+            DB::commit();
+            $result = [
+                'message' => 'Data Berhasil Ditambahkan !',
+                'data' => [],
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            DB::rollBack();
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function deleteImage(Request $request)
+    {
+        try {
+            $image = Image::where('id', $request->id)->first();
+            $image->statusenable = false;
+            $image->save();
+            $result = [
+                'message' => 'Data Berhasil Dihapus !',
+                'data' => $image,
+                'code' => 200,
+                'errors' => []
             ];
         } catch (Exception $e) {
             $result = [
