@@ -28,12 +28,13 @@ Route::get('/pl', [MainController::class, 'pl']);
 Route::get('/review', [MainController::class, 'review']);
 Route::get('/faq', [MainController::class, 'faq']);
 Route::get('/about-us', [MainController::class, 'aboutUs']);
-Route::get('/gallery', [MainController::class, 'gallery']);
+Route::get('/gallery/{slug}', [MainController::class, 'gallery'])->name('gallery');
 Route::get('/form', [MainController::class, 'form'])->name('form');
 Route::get('/login', [MainController::class, 'login'])->name('login');
 Route::get('/register', [MainController::class, 'register']);
 
 Route::controller(MainController::class)->group(function () {
+    Route::get('/content', 'getContent')->name('content');
     Route::post('/reservation', 'reservation')->name('reservation');
 });
 Route::controller(UserController::class)->name('account.')->middleware('auth')->prefix('account')->group(function () {

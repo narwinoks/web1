@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Models\Image;
 use App\Responses\ServerResponse;
 use App\Traits\Valet;
 use Exception;
@@ -63,7 +64,7 @@ class MainController extends Controller
     {
         return view('features.public.about-us');
     }
-    public function gallery(Request $request)
+    public function gallery(Request $request, $slug)
     {
         $title = "Gallery Title";
         return view('features.public.gallery', compact('title'));
@@ -157,5 +158,36 @@ class MainController extends Controller
     public function register(Request $request)
     {
         return view('features.public.register');
+    }
+    public function getContent(Request $request)
+    {
+        $variable = str_replace(' ', '', $request->key);
+        switch ($variable) {
+            case trim($this->getFix('image')):
+                return $this->getDataImage($request);
+                break;
+            default:
+                return response()->json(['message' => 'not found']);
+                break;
+        }
+    }
+    public function getDataImage(Request $request)
+    {
+        $limit = $request->limit;
+        $category = $request->category;
+        $offset = $request->offset;
+        $images = Image::where('statusenable', true)
+            ->whereNull('parent_id')
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', 'like', '%' . $category . '%');
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->get();
+        return view('features.public.data.gallery', compact('images'));
     }
 }

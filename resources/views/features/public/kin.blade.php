@@ -6,28 +6,15 @@
     </section>
     <section class="blog">
         <div class="container-fluid">
-            <div class="row mt-4">
-                <div class="col-md-6 col-lg-4 col-12">
-                    <div class="img-gallery">
-                        <img src="{{ asset('assets/img/image-blog-1.webp') }}" alt="image-gallery-2" class="image-fluid">
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-12">
-                    <div class="img-gallery">
-                        <div class="ratio ratio-4x3">
-                            <iframe src="https://www.youtube.com/embed/R2Vi-5louxI?rel=0" title="YouTube video"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-12">
-                    <div class="img-gallery">
-                        <img src="{{ asset('assets/img/image-blog-1.webp') }}" alt="image-gallery-2" class="image-fluid">
-                    </div>
-                </div>
+            <input type="hidden" value="5" name="limit" id="limit">
+            <input type="hidden" value="0" name="offseat" id="offset">
+            <input type="hidden" value="kin" name="category" id="category">
+            <input type="hidden" value="image" name="key" id="key">
+            <div class="row mt-4" id="content-blog">
+
             </div>
             <div class="text-center justify-content-center mt-4">
-                <button class="button">Perlihatan Lagi</button>
+                <button class="button" id="show-more">Perlihatan Lagi</button>
             </div>
         </div>
     </section>
@@ -87,4 +74,47 @@
     </section>
 @endsection
 @push('scripts')
+    <script>
+        var timeout;
+        loadMoreData();
+        $('#show-more').on('click', function() {
+            loadMoreData();
+        });
+
+        function loadMoreData() {
+            $("#loading-animation").show();
+            var offset = parseInt($('#offset').val());
+            var limit = parseInt($('#limit').val());
+            var category = $('#category').val().replace(/\s+/g, '');
+            var key = $('#key').val().replace(/\s+/g, '');
+            $.ajax({
+                url: "{{ route('content') }}",
+                type: 'GET',
+                async: false,
+                data: {
+                    offset: $('#offset').val(),
+                    limit: $('#limit').val(),
+                    startDate: $('#startDate').val(),
+                    endDate: $('#endDate').val(),
+                    key: key,
+                    category: category
+                },
+            }).done(function(data) {
+                if (offset == 0) {
+                    offset = offset + 5;
+
+                } else {
+                    offset = offset + 5;
+                }
+                $('#offset').val(offset);
+                $('#limit').val(3);
+                setTimeout(function() {
+                    $("#loading-animation").hide();
+                }, 2000)
+                $('#content-blog').append(data);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error: " + textStatus, errorThrown);
+            })
+        }
+    </script>
 @endpush

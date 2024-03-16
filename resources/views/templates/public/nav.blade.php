@@ -2,7 +2,7 @@
       <div class="container-lg item d-flex justify-content-between">
           <div class="row justify-content-start">
               <div class="col-auto">
-                  <span><i class="fa fa-whatsapp" aria-hidden="true"></i>  {{ $profile['whatsapp'] }}</span>
+                  <span><i class="fa fa-whatsapp" aria-hidden="true"></i> {{ $profile['whatsapp'] }}</span>
               </div>
               <div class="col-auto">
                   <span><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $profile['email1'] }}</span>
@@ -37,12 +37,12 @@
                       <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
                           <li><a class="dropdown-item" href="{{ url('blog') }}">All</a></li>
                           <li><a class="dropdown-item" href="{{ url('video') }}">Videos</a></li>
-                          <li><a class="dropdown-item" href="#">Studio Session</a></li>
-                          <li><a class="dropdown-item" href="#">Wedding</a></li>
-                          <li><a class="dropdown-item" href="#">Prewedding</a></li>
-                          <li><a class="dropdown-item" href="#">Enggetment</a></li>
-                          <li><a class="dropdown-item" href="#">Ceremonial before wedding</a></li>
-                          <li><a class="dropdown-item" href="#">Hieros.Kin</a></li>
+                          <li><a class="dropdown-item" href="{{ url('studion') }}">Studio Session</a></li>
+                          <li><a class="dropdown-item" href="{{ url('wedding') }}">Wedding</a></li>
+                          <li><a class="dropdown-item" href="{{ url('prewedding') }}">Prewedding</a></li>
+                          <li><a class="dropdown-item" href="{{ url('engagement') }}">Enggetment</a></li>
+                          <li><a class="dropdown-item" href="{{ url('pengajian') }}">Ceremonial before wedding</a></li>
+                          <li><a class="dropdown-item" href="{{ url('kin') }}"">Hieros.Kin</a></li>
                       </ul>
                   </li>
                   <li class="nav-item ">
