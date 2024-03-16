@@ -44,6 +44,13 @@
           });
       });
   </script>
+  <script>
+      $(".logout").click(function(event) {
+          event.preventDefault();
+          var form = $('#form-logout');
+          form.submit();;
+      });
+  </script>
   <script src="{{ asset('assets/templates/js/analytics.js') }}"></script>
   <script src="{{ asset('assets/plugin/bs-notify/bs-notify.min.js') }}"></script>
   @stack('scripts')

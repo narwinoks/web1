@@ -17,14 +17,9 @@
                     <a href="{{ route('admin.home') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                 </li>
-                <li class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-layout"></i></span><span class="pcoded-mtext">Page
-                            layouts</span></a>
-                    <ul class="pcoded-submenu">
-                        <li><a href="#">Vertical</a></li>
-                        <li><a href="#">Horizontal</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a href="{{ route('admin.image') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-file"></i></span><span class="pcoded-mtext">Image</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.booking') }}" class="nav-link "><span class="pcoded-micon"><i
@@ -40,7 +35,7 @@
     <div class="container">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-            <a href="#!" class="b-brand">
+            <a href="{{ url('/') }}" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
                 <img src="{{ asset('assets/img/logo-admin.png') }}" height="30" alt="logo-admin" class="logo">
                 <img src="{{ asset('assets/templates/images/logo-icon.png') }}" alt="" class="logo-thumb">
@@ -71,17 +66,21 @@
                             <div class="pro-head">
                                 <img src="{{ asset('assets/templates/images/user/avatar-1.jpg') }}" class="img-radius"
                                     alt="User-Profile-Image">
-                                <span>John Doe</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                <span>{{ auth()->user()->name }}</span>
+                                <a href="#" class="dud-logout logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
                                 <li><a href="#" class="dropdown-item"><i class="feather icon-user"></i>
                                         Profile</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-lock"></i>Logout</a>
+                                <li><a href="#" class="dropdown-item logout"><i
+                                            class="feather icon-lock"></i>Logout</a>
                                 </li>
                             </ul>
+                            <form action="{{ route('account.logout') }}" method="post" id="form-logout" class="d-none">
+                                @csrf
+                            </form>
                         </div>
                     </div>
                 </li>

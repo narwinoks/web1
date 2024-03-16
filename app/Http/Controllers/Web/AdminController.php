@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Image;
+use App\Models\User;
 use App\Responses\ServerResponse;
 use App\Traits\Valet;
 use Exception;
@@ -21,30 +22,7 @@ class AdminController extends Controller
     use Valet;
     public function home(Request $request)
     {
-        $endDate = Carbon::now();
-        $startDate = $endDate->copy()->subDays(6);
-        $category = $this->getFix('booking-category');
-        $bookings = Content::where('category', $category)->where('statusenable', true);
-        $booking = $bookings->whereBetween('created_at', [$startDate, $endDate])->get();
-        $acceptedBookings = clone $bookings;
-        $accept = $acceptedBookings->where('status', 'LIKE', '%Approve%')->count();
-        $pendingBookings = clone $bookings;
-        $pending = $pendingBookings->where('status', 'LIKE', '%Pending%')->count();
-        $rejectedBookings = clone $bookings;
-        $reject = $rejectedBookings->where('status', 'LIKE', '%Reject%')->count();
-        $bookingCounts = [];
-        for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-            $bookingCounts[$date->toDateString()] = 0;
-        }
-        foreach ($booking as $b) {
-            $date = $b->created_at->toDateString();
-            $bookingCounts[$date]++;
-        }
-        $bookingsResult = [];
-        foreach ($bookingCounts as $count) {
-            $bookingsResult[] = $count;
-        }
-        return view('features.admin.dashboard', compact('bookingsResult', 'booking', 'accept', 'pending', 'reject'));
+        return view('features.admin.dashboard');
     }
     public function booking(Request $request)
     {
@@ -64,9 +42,83 @@ class AdminController extends Controller
             case 'image-edit':
                 return $this->editImage($request);
                 break;
+            case 'dashboard':
+                return $this->dashboard($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
+        }
+    }
+    public function dashboard(Request $request)
+    {
+        $endDate = Carbon::now();
+        $startDate = $endDate->copy()->subDays(6);
+        if ($request->type == "booking") {
+            $category = $this->getFix('booking-category');
+            $bookings = Content::where('category', $category)->where('statusenable', true);
+            $booking = $bookings->whereBetween('created_at', [$startDate, $endDate])->get();
+            $acceptedBookings = clone $bookings;
+            $accept = $acceptedBookings->where('status', 'LIKE', '%Approve%')->count();
+            $pendingBookings = clone $bookings;
+            $pending = $pendingBookings->where('status', 'LIKE', '%Pending%')->count();
+            $rejectedBookings = clone $bookings;
+            $reject = $rejectedBookings->where('status', 'LIKE', '%Reject%')->count();
+            $bookingCounts = [];
+            $dates = [];
+            $bookingsResult = [];
+            for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+                $formattedDate = $date->toDateString();
+                $dates[] = $formattedDate;
+                $bookingsResult[] = isset($bookingCounts[$formattedDate]) ? $bookingCounts[$formattedDate] : 0;
+            }
+            return view('features.admin.data.dp', compact('bookingsResult', 'booking', 'accept', 'pending', 'reject'));
+        } elseif ($request->type == "image") {
+            $image = Image::whereNull('parent_id')->count();
+            $countByCategories = Image::whereNull('parent_id')->select('category', DB::raw('COUNT(*) as total'))
+                ->groupBy('category')
+                ->orderByDesc('total')
+                ->take(3)
+                ->get();
+            $imageCounts = Image::whereNull('parent_id')
+                ->whereBetween(DB::raw('DATE(created_at)'), [$startDate->toDateString(), $endDate->toDateString()])
+                ->select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as total'))
+                ->groupBy('date')
+                ->orderBy('date')
+                ->pluck('total', 'date')
+                ->toArray();
+
+            $dates = [];
+            $imagesResult = [];
+            for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+                $formattedDate = $date->toDateString();
+                $dates[] = $formattedDate;
+                $imagesResult[] = isset($imageCounts[$formattedDate]) ? $imageCounts[$formattedDate] : 0;
+            }
+
+            return view('features.admin.data.ds', compact('image', 'countByCategories', 'dates', 'imagesResult'));
+        } else {
+            $user = User::count();
+            $userStatus = User::select('statusenambled', DB::raw('COUNT(*) as total'))
+                ->groupBy('statusenambled')
+                ->orderByDesc('total')
+                ->take(3)
+                ->get();
+            $userCounts = User::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as total'))
+                ->whereBetween('created_at', [$startDate, $endDate->endOfDay()])
+                ->groupBy('date')
+                ->orderBy('date')
+                ->pluck('total', 'date')
+                ->toArray();
+
+            $dates = [];
+            $usersResult = [];
+            for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+                $formattedDate = $date->toDateString();
+                $dates[] = $formattedDate;
+                $usersResult[] = isset($userCounts[$formattedDate]) ? $userCounts[$formattedDate] : 0;
+            }
+            return view('features.admin.data.du', compact('user', 'userStatus', 'usersResult'));
         }
     }
     public function saveContent(Request $request)

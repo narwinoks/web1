@@ -158,3 +158,10 @@
     max-width: 100%;
     height: auto;
 }
+.subtitle {
+    display: inline-block;
+    width: 75px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
