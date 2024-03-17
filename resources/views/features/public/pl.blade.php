@@ -34,7 +34,7 @@
             <div class="row justify-content-center text-center">
                 <h4 class="h6 fw-bolder fst-italic">Dear Creatures,</h4>
                 <p class="h7">
-                    <span class="fw-normal">For your support and apprecciation so far, Hieros is offering you </span>
+                    <span class="fw-normal">For your support and apprecciation so far, Shutterbox is offering you </span>
                     <span class="fw-bolder">special offer up to IDR 1.500.000,- </span>
                 </p>
                 <p class="h7">
@@ -65,7 +65,7 @@
                             <p class="pricing">IDR 2</p>
                             <ul class="offers">
                                 <li>1 Photographer</li>
-                                <li>1.5 Workhour & include Hieros' studio facility</li>
+                                <li>1.5 Workhour & include Shutterbox' studio facility</li>
                                 <li>15 Edited photo</li>
                                 <li>Print 1pc 16Rp w/ minimalist frame</li>
                                 <li>Max 1 outfit</li>
@@ -80,7 +80,7 @@
                             <p class="pricing">FOR STUDIO SESSION</p>
                             <ul class="offers">
                                 <li>1 Photographer</li>
-                                <li>1.5 Workhour & include Hieros' studio facility</li>
+                                <li>1.5 Workhour & include Shutterbox' studio facility</li>
                                 <li>15 Edited photo</li>
                                 <li>Print 1pc 16Rp w/ minimalist frame</li>
                                 <li>Max 1 outfit</li>
@@ -190,7 +190,7 @@
             <div class="text-center">
                 <p class="h7">
                     <span>After fill the form below</span><br>
-                    <span class="fw-bolder">Go check your email</span> <span>(inbox/promotion/updates) to see Hieros'
+                    <span class="fw-bolder">Go check your email</span> <span>(inbox/promotion/updates) to see Shutterbox'
                         pricelist.</span>
                 </p>
                 <p class="h7 mx-0 px-0 py-0 my-0">
@@ -229,7 +229,7 @@
                                 </select>
                             </div>
                             <div class="mb-1">
-                                <label for="package" class="form-label">How do you find Hieros? </label>
+                                <label for="package" class="form-label">How do you find Shutterbox? </label>
                                 <select id="package" class="form-select form-select-sm is-rounded"
                                     aria-label=".form-select-sm is-rounded example">
                                     <option value="friend">Instagram</option>
@@ -262,7 +262,7 @@
                                     placeholder="Ex: 31 Nov 2024 at Sampoerna Strategic, Jakarta."></textarea>
                             </div>
                             <div class="mb-1">
-                                <label for="why" class="form-label">Why Hieros? What do you expect from us? </label>
+                                <label for="why" class="form-label">Why Shutterbox? What do you expect from us? </label>
                                 <input type="why" class="form-control-sm is-rounded form-control" id="name"
                                     placeholder="...">
                             </div>

@@ -1,5 +1,5 @@
 @extends('templates.public.main')
-@section('title', 'Hieros Kin (Family Portraiture)')
+@section('title', 'Shutterbox (Family Portraiture)')
 @section('content')
     <section class="hero d-none d-md-block">
         <img src="{{ asset('assets/img/hero-kin.png') }}" class="img-fluid" alt="hero-kin">
@@ -21,7 +21,7 @@
     <section class="form-price">
         <div class="container justify-content-center text-center">
             <h2>Pricelist</h2>
-            <p>After filling out the form below, you can access Hieros Kin Pricelist.pdf </p>
+            <p>After filling out the form below, you can access Shutterbox Pricelist.pdf </p>
             <p>Our team will contact you as soon as possible</p>
         </div>
         <div class="container">
@@ -39,9 +39,9 @@
                                 <input type="email" class="form-control-sm form-control" id="email" placeholder="..">
                             </div>
                             <div class="mb-1">
-                                <label for="email" class="form-label">How do you know Hieros?</label>
+                                <label for="email" class="form-label">How do you know Shutterbox?</label>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>How do you know Hieros</option>
+                                    <option selected>How do you know Shutterbox</option>
                                     <option value="google">Google</option>
                                     <option value="friend">Friend</option>
                                     <option value="ig">IG / FB Ads</option>
@@ -55,7 +55,7 @@
                                     placeholder="Home / Studio / Air BnB / Hotel / Etc...">
                             </div>
                             <div class="mb-5">
-                                <label for="email" class="form-label">Why choose Hieros Photography?</label>
+                                <label for="email" class="form-label">Why choose Shutterbox Photography?</label>
                                 <input type="email" class="form-control-sm form-control" id="email" placeholder="...">
                             </div>
                             <div class="mb-1">

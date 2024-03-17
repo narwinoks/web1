@@ -42,7 +42,7 @@
                           <li><a class="dropdown-item" href="{{ url('prewedding') }}">Prewedding</a></li>
                           <li><a class="dropdown-item" href="{{ url('engagement') }}">Enggetment</a></li>
                           <li><a class="dropdown-item" href="{{ url('pengajian') }}">Ceremonial before wedding</a></li>
-                          <li><a class="dropdown-item" href="{{ url('kin') }}"">Hieros.Kin</a></li>
+                          <li><a class="dropdown-item" href="{{ url('kin') }}"">Shutterbox.Kin</a></li>
                       </ul>
                   </li>
                   <li class="nav-item ">

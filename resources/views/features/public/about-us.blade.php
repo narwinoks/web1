@@ -22,7 +22,7 @@
                                 who you are.</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span><span class="fw-bold">HIEROS (ἱερός)</span> is Greek for "sacred, sanctified". That's how
+                            <span><span class="fw-bold">SHUTTERBOX.ID (ἱερός)</span> is Greek for "sacred, sanctified". That's how
                                 we see it on every wedding
                                 ceremony. It takes several ceremonial steps before the day in our culture. Engagement,
                                 recitation to God - whoever you believe in - every step is sacred.</span>
@@ -39,7 +39,7 @@
                             <span>Address: Komplek Mulya Golf Residence A7, Cisaranten - Bandung.</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span>E-mail: hierosphotography@gmail.com</span>
+                            <span>E-mail: shutterbox.group@gmail.com</span>
                         </p>
                         <p class="paragraph-about-us">
                             <span>Phone (WA): +62 8565-9004-317</span>
@@ -48,7 +48,7 @@
                             <span>Instagram: hierosphoto</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span>YouTube: Hieros Photograph</span>
+                            <span>YouTube: Shutterbox Photograph</span>
                         </p>
 
                     </div>

@@ -16,7 +16,7 @@
     </section>
     <section class="info">
         <div class="container text-center">
-            <h3 class="bold h5">Hieros means 'sacred' in Greek</h3>
+            <h3 class="bold h5">Shutterbox means 'sacred' in Greek</h3>
             <div class="content text-center">
                 <p class="p">
                     We're established to immortalize the most sanctified of yours <br />
@@ -122,7 +122,7 @@
                     <div class="content text-end">
                         <h2 class="light h3">Review</h2>
                         <p class="p">
-                            Here's the review based on our lovely customers' experience with Hieros. <br />
+                            Here's the review based on our lovely customers' experience with Shutterbox. <br />
                             Hopefully, this might help you choose the right photographer on your special day!
                         </p>
                     </div>
