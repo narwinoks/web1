@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-8">
                     <div class="content">
-                        <h3 class="h5">HIEROS (ἱερός) <span>is Greek for ”sacred, sanctified”</span></h3>
+                        <h3 class="h5">SHUTTERBOX.ID (ἱερός) <span>is Greek for ”sacred, sanctified”</span></h3>
                         <p>That’s how we see it on every wedding ceremony. It takes several ceremonial before the day in
                             our
                             culture. Engagement, recitation to God – whoever you believes in – every step are sacred. </p>

@@ -12,7 +12,7 @@
             <p class="p">
                 Here is our latest offer to bring more emotional bond to your portrait. <br>
                 <span class="fw-bold">
-                    Hieros Short studio session is now available.
+                    Shutterbox Short studio session is now available.
                 </span> <br />
             </p>
             <p>
@@ -107,7 +107,7 @@
                             <p class="pricing">IDR 2</p>
                             <ul class="offers">
                                 <li>1 Photographer</li>
-                                <li>1.5 Workhour & include Hieros' studio facility</li>
+                                <li>1.5 Workhour & include Shutterbox' studio facility</li>
                                 <li>15 Edited photo</li>
                                 <li>Print 1pc 16Rp w/ minimalist frame</li>
                                 <li>Max 1 outfit</li>

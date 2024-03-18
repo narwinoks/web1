@@ -142,7 +142,10 @@ CREATE TABLE `profile`  (
 -- ----------------------------
 -- Records of profile
 -- ----------------------------
-INSERT INTO `profile` VALUES ('c7106906-80f9-4a42-b1df-dad5105c75eb', 'PT Hieros Photography Indonesia', 'Herios Photograpy', 1, 'Wedding Photographers Based In Bandung, Komplek Mulya Golf Residence A7- Pakemitan, Cinambo, Bandung.', ' Hello@Hierosphoto.Com', NULL, '08565-900-4317', '08565-900-4317', 'https://www.youtube.com/', 'https://www.youtube.com/', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://drive.google.com/file/d/1jUHM7uUvs3pbip3NBssamvCIxaSSGXHy/view', NULL, NULL, 'logo.png', 'partners.png', NULL, NULL, '2024-03-10 22:14:25', '2024-03-10 22:14:28');
+INSERT INTO `profile`
+VALUES ('c7106906-80f9-4a42-b1df-dad5105c75eb', 'Shutterbox.id', 'Shutterbox Photography', 1, 'Wedding Photographers Based In Tasikmalaya, Jl. Ps. Ciawi, Pakemitan, Kec. Ciawi, Kabupaten Tasikmalaya, Jawa Barat 46156', 'shutterbox.group@gmail.com', NULL,
+'+62878-4016-4533', '+62878-4016-4533', 'https://www.youtube.com/@shutterboxproject.', 'https://www.tiktok.com/@shutterboxproject?_t=8h70h0naI0F&_r=1',
+'https://m.facebook.com/p/Shutterboxid-100075908503746/', 'https://www.instagram.com/shutterbox.photography/', 'https://drive.google.com/file/d/1jUHM7uUvs3pbip3NBssamvCIxaSSGXHy/view', NULL, NULL, 'logo.png', 'partners.png', NULL, NULL, '2024-03-10 22:14:25', '2024-03-10 22:14:28');
 
 -- ----------------------------
 -- Table structure for users

@@ -12,7 +12,7 @@
                         <p class="h6"><span>Sebelum mengisi data di bawah ini, silahkan pelajari perjanjian kerjasama di
                                 bawah ini
                             </span></p>
-                        <a href="{{ $profile['file1'] }}" target="_blank">Surat Perjanjian Kerjasama Hieros 2024 -
+                        <a href="{{ $profile['file1'] }}" target="_blank">Surat Perjanjian Kerjasama Shutterbox 2024 -
                             SPK/001/MMXXIV
                         </a>
                         <p class="h6 mt-4">
@@ -82,8 +82,8 @@
                                             <option value="engagement">
                                                 Engagement
                                             </option>
-                                            <option value="Family Portraiture (Hieros.kin)">
-                                                Family Portraiture (Hieros.kin)
+                                            <option value="Family Portraiture (Shutterbox.kin)">
+                                                Family Portraiture (Shutterbox.kin)
                                             </option>
                                             <option value="Tradional ceremony (Pengajian Siraman)">
                                                 Tradional ceremony (Pengajian Siraman)
@@ -100,7 +100,7 @@
                                             <option value="Short Session (4 Hours)">Short Session (4 Hours)</option>
                                             <option value="Halftday Session (6 Hours)">Halftday Session (6 Hours)</option>
                                             <option value="Fullday Session (12 Hours)">Fullday Session (12 Hours)</option>
-                                            <option value="Prewedding at Hieros's Studio">Prewedding at Hieros's Studio
+                                            <option value="Prewedding at Shutterbox's Studio">Prewedding at Shutterbox's Studio
                                             </option>
                                             <option value="Custom">Custom</option>
                                         </select>
@@ -114,7 +114,7 @@
                                                 Hours)
                                             </option>
                                             <option value="Fullday Session (15 Hours)">Fullday Session (15 Hours)</option>
-                                            <option value="Prewedding at Hieros's Studio">Holy Matrimony / Akad Only (5
+                                            <option value="Prewedding at Shutterbox's Studio">Holy Matrimony / Akad Only (5
                                                 Hours)
                                             </option>
                                             <option value="Custom">Custom</option>
@@ -172,12 +172,12 @@
                                         <select class="form-select form-select-sm" id="list"
                                             aria-label=".form-select-sm example" name="list">
                                             <option
-                                                value="Saya mempercayakan backsound kepada Hieros & setuju tidak dapat diganti (revisi)"
-                                                selected>Saya mempercayakan backsound kepada Hieros & setuju tidak dapat
+                                                value="Saya mempercayakan backsound kepada Shutterbox & setuju tidak dapat diganti (revisi)"
+                                                selected>Saya mempercayakan backsound kepada Shutterbox & setuju tidak dapat
                                                 diganti
                                                 (revisi)</option>
-                                            <option value="Saya akan memberi tahu pihak Hieros nanti (Max H-1)">Saya akan
-                                                memberi tahu pihak Hieros nanti (Max H-1)</option>
+                                            <option value="Saya akan memberi tahu pihak Shutterbox nanti (Max H-1)">Saya akan
+                                                memberi tahu pihak Shutterbox nanti (Max H-1)</option>
                                             <option value="Saya sudah memiliki pilihan lagu sebagai berikut:">Saya sudah
                                                 memiliki pilihan lagu sebagai berikut:</option>
                                             <option value="Saya tidak menggunakan video">Saya tidak menggunakan video
@@ -203,7 +203,7 @@
                                         <span class="error-other text-danger d-none"></span>
                                     </div>
                                     <div class="mb-1">
-                                        <label for="notes" class="form-label">Catatan tambahan untuk Hieros</label>
+                                        <label for="notes" class="form-label">Catatan tambahan untuk Shutterbox</label>
                                         <textarea name="notes" class="form-control-sm form-control"
                                             placeholder="Tuliskan secara detil jika anda memiliki preferensi khusus" id="notes" rows="2"></textarea>
                                         <span class="error-notes text-danger d-none"></span>
@@ -216,7 +216,7 @@
                                                 value="true" id="agreement1">
                                             <label class="form-check-label" for="agreement1">
                                                 Saya secara sadar telah membaca dan menyetujui Surat Perjanjian Kerjasama
-                                                Hieros
+                                                Shutterbox
                                                 2024 - SPK/001/MMXXIV di atas.
                                             </label>
                                             <span class="error-agreement1 text-danger d-none"></span>
@@ -226,7 +226,7 @@
                                                 value="true" id="agreement2">
                                             <label class="form-check-label" for="agreement2">
                                                 Dengan ini saya yang namanya tercantum di atas, memberikan izin kepada
-                                                Hieros
+                                                Shutterbox
                                                 Photography untuk melisensikan dan menggunakan foto dimana terdapat saya dan
                                                 pasangan pada foto tersebut. Kecuali hal-hal yang melanggar hukum seperti
                                                 penghinaan, fitnah & pornografi.
