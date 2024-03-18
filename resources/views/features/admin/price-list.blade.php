@@ -118,14 +118,16 @@
             });
         })
         $("#btn-search").click(function() {
-            loadMoreData();
+            $('#offset').val(0)
+            $('#limit').val(6)
             $("#istrue").val(false);
+            loadMoreData();
         });
         loadMoreData();
 
         function loadMoreData() {
             $("#loading-animation").show();
-            let isTrue = Boolean($("#istrue").val());
+            let isTrue = $("#istrue").val() === "true" ? true : false;
             var category = $('#category').val();
             $.ajax({
                 url: "{{ route('admin.content') }}",

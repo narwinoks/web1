@@ -48,6 +48,9 @@ class AdminController extends Controller
             case 'price-list':
                 return $this->priceListData($request);
                 break;
+            case $this->getFix('qa'):
+                return $this->qaData($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -133,6 +136,9 @@ class AdminController extends Controller
                 break;
             case 'save-price-list':
                 return $this->savePriceList($request);
+                break;
+            case 'save-qa':
+                return $this->saveQa($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -244,6 +250,9 @@ class AdminController extends Controller
                 break;
             case 'pricelist':
                 return $this->modalPricelist($request);
+                break;
+            case 'qa':
+                return $this->modalQa($request);
                 break;
             default:
                 break;
@@ -486,5 +495,82 @@ class AdminController extends Controller
             ];
         }
         return $this->respond($result, $result['code']);
+    }
+    public function review(Request $request)
+    {
+        return view('features.admin.review');
+    }
+    public function qa(Request $request)
+    {
+        return view('features.admin.qa');
+    }
+    public function modalQa(Request $request)
+    {
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('qa'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-qa', compact('data'));
+        } else {
+            return view('features.admin.modal.add-qa');
+        }
+    }
+    public function saveQa(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'question' => 'required',
+            'answer' => 'required',
+        ], [
+            'question.required' => 'Bagian ini harus diisi !',
+            'answer.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $data['content'] = json_encode($request->all(), true);
+        $category = $this->getFix('qa');
+        $data['name'] = $category;
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function qaData(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('qa');
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $contents = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('category', $category)
+            ->get();
+        return view('features.admin.data.qa', compact('contents'));
     }
 }

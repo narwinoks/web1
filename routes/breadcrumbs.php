@@ -18,3 +18,7 @@ Breadcrumbs::for('admin.pricelist', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Pricelist', route('admin.pricelist'));
 });
+Breadcrumbs::for('admin.qa', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('QA', route('admin.qa'));
+});

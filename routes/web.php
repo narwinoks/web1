@@ -54,6 +54,7 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/booking', 'booking')->name('booking');
     Route::get('/content', 'content')->name('content');
     Route::get('/image', 'image')->name('image');
+    Route::get('/qa', 'qa')->name('qa');
     Route::get('/pricelist', 'pricelist')->name('pricelist');
     Route::get('/show-modal', 'showModal')->name('showModal');
 

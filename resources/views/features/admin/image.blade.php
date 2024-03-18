@@ -56,7 +56,7 @@
         </div>
     </div>
     <input type="hidden" value="{{ $keyCategory }}" id="image-category" name="image-category">
-    <input type="hidden" value="5" name="limit" id="limit">
+    <input type="hidden" value="6" name="limit" id="limit">
     <input type="hidden" value="0" name="offseat" id="offset">
     <input type="hidden" value="false" name="istrue" id="istrue">
     <!-- modal -->
@@ -150,9 +150,15 @@
                     }
                 });
             });
-            $("#btn-search").click(function() {
-                loadMoreData();
+
+            function search() {
+                $('#offset').val(0)
+                $('#limit').val(6)
                 $("#istrue").val(false);
+                loadMoreData();
+            }
+            $("#btn-search").click(function() {
+                search();
             });
             var timeout;
             loadMoreData();
@@ -163,14 +169,9 @@
 
             function loadMoreData() {
                 $("#loading-animation").show();
-                let isTrue =Boolean($("#istrue").val());
-                if (isTrue == true) {
-                    var offset = parseInt($('#offset').val());
-                    var limit = parseInt($('#limit').val());
-                } else {
-                    var offset = 0;
-                    var limit = 5;
-                }
+                let isTrue = $("#istrue").val() === "true" ? true : false;
+                var offset = parseInt($('#offset').val());
+                var limit = parseInt($('#limit').val());
                 var category = $('#category').val();
                 var key = $('#image-category').val().replace(/\s+/g, '');
                 $.ajax({
@@ -186,16 +187,13 @@
                         key: key
                     },
                 }).done(function(data) {
-                    if (isTrue == true) {
-                        if (offset == 0) {
-                            offset = offset + 5;
-
-                        } else {
-                            offset = offset + 5;
-                        }
+                    if (offset == 0) {
+                        offset = offset + 6;
+                    } else {
+                        offset = offset + 6;
                     }
                     $('#offset').val(offset);
-                    $('#limit').val(3);
+                    $('#limit').val(6);
                     setTimeout(function() {
                         $("#loading-animation").hide();
                     }, 2000)
@@ -223,7 +221,7 @@
                     success: function(data) {
                         $("#modal-content").html(data);
                         $("#modal-image").modal("show");
-                        loadDataImage();
+                        search();
                     },
                 });
             });
@@ -249,7 +247,7 @@
                     },
                     success: function(response) {
                         showAlert(response.message || 'Success', 'success')
-                        loadDataImage();
+                        search();
                     },
                     error: function(xhr) {
                         showAlert("Gagal" || 'Error', 'danger')
