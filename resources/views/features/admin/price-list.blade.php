@@ -125,7 +125,7 @@
 
         function loadMoreData() {
             $("#loading-animation").show();
-            let isTrue = $("#istrue").val();
+            let isTrue = Boolean($("#istrue").val());
             var category = $('#category').val();
             $.ajax({
                 url: "{{ route('admin.content') }}",

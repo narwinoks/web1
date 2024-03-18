@@ -163,7 +163,7 @@
 
             function loadMoreData() {
                 $("#loading-animation").show();
-                let isTrue = $("#istrue").val();
+                let isTrue =Boolean($("#istrue").val());
                 if (isTrue == true) {
                     var offset = parseInt($('#offset').val());
                     var limit = parseInt($('#limit').val());
