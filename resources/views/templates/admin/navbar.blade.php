@@ -25,6 +25,10 @@
                     <a href="{{ route('admin.booking') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-calendar"></i></span><span class="pcoded-mtext">Booking</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.pricelist') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-rewind"></i></span><span class="pcoded-mtext">Pricelist</span></a>
+                </li>
             </ul>
         </div>
     </div>

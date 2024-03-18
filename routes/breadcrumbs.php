@@ -14,3 +14,7 @@ Breadcrumbs::for('admin.image', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Image', route('admin.image'));
 });
+Breadcrumbs::for('admin.pricelist', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Pricelist', route('admin.pricelist'));
+});

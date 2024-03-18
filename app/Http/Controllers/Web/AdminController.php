@@ -45,6 +45,9 @@ class AdminController extends Controller
             case 'dashboard':
                 return $this->dashboard($request);
                 break;
+            case 'price-list':
+                return $this->priceListData($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -128,6 +131,9 @@ class AdminController extends Controller
             case 'save-image':
                 return $this->saveImage($request);
                 break;
+            case 'save-price-list':
+                return $this->savePriceList($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -140,6 +146,10 @@ class AdminController extends Controller
             case 'delete-image':
                 return $this->deleteImage($request);
                 break;
+            case 'delete':
+                return $this->delete($request);
+                break;
+
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -231,6 +241,9 @@ class AdminController extends Controller
         switch ($variable) {
             case 'image':
                 return $this->modalImage($request);
+                break;
+            case 'pricelist':
+                return $this->modalPricelist($request);
                 break;
             default:
                 break;
@@ -360,6 +373,103 @@ class AdminController extends Controller
             $image->save();
             $result = [
                 'message' => 'Data Berhasil Dihapus !',
+                'data' => $image,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function priceList(Request $request)
+    {
+        $types = json_decode($this->getFix('category-price'), true);
+        return view('features.admin.price-list', compact('types'));
+    }
+    public function modalPricelist(Request $request)
+    {
+        $types = json_decode($this->getFix('category-price'), true);
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('pricelist'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-pricelist', compact('types', 'data'));
+        } else {
+            return view('features.admin.modal.add-pricelist', compact('types'));
+        }
+    }
+    public function savePriceList(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'category' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
+            'content' => 'required',
+        ], [
+            'category.required' => 'Bagian ini harus diisi !',
+            'title.required' => 'Bagian ini harus diisi !',
+            'subtitle.required' => 'Bagian ini harus diisi !',
+            'content.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $data['content'] = json_encode($request->all(), true);
+        $category = $this->getFix('pricelist');
+        $data['name'] = $request->title;
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+
+    public function priceListData(Request $request)
+    {
+        $category = $request->category;
+        $contents = Content::where('statusenable', true)
+            ->when($category, function ($query) use ($category) {
+                $s = '"category": "' . $category . '"';
+                return $query->where('content', 'like', '%' . $category . '%');
+            })
+            ->where('category', 'pricelist')
+            ->get();
+        return view('features.admin.data.pl', compact('contents'));
+    }
+    public function delete(Request $request)
+    {
+        try {
+            $image = Content::where('id', $request->id)->first();
+            $image->statusenable = false;
+            $image->save();
+            $result = [
+                'message' => 'Success !',
                 'data' => $image,
                 'code' => 200,
                 'errors' => []
