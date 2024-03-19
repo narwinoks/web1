@@ -54,6 +54,9 @@ class AdminController extends Controller
             case $this->getFix('review'):
                 return $this->reviewData($request);
                 break;
+            case $this->getFix('banner'):
+                return $this->bannerData($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -145,6 +148,9 @@ class AdminController extends Controller
                 break;
             case 'review':
                 return $this->saveReview($request);
+                break;
+            case 'banner':
+                return $this->saveBanner($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -262,6 +268,9 @@ class AdminController extends Controller
                 break;
             case 'review':
                 return $this->modalReview($request);
+                break;
+            case 'banner':
+                return $this->modalBanner($request);
                 break;
             default:
                 break;
@@ -655,5 +664,98 @@ class AdminController extends Controller
             ->where('category', $category)
             ->get();
         return view('features.admin.data.review', compact('contents'));
+    }
+    public function banner(Request $request)
+    {
+        $type = $this->getFix('type-banner');
+        return view('features.admin.banner', compact('type'));
+    }
+    public function modalBanner(Request $request)
+    {
+        $types = json_decode($this->getFix('type-banner'), true);
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('banner'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-banner', compact('types', 'data'));
+        } else {
+            return view('features.admin.modal.add-banner', compact('types'));
+        }
+    }
+    public function saveBanner(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'subtitle' => 'required',
+            'category' => 'required',
+            'file' => 'required',
+        ], [
+            'title.required' => 'Bagian ini harus diisi !',
+            'subtitle.required' => 'Bagian ini harus diisi !',
+            'category.required' => 'Bagian ini harus diisi !',
+            'file.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $save = $request->only('title', 'subtitle', 'category');
+        if ($request->file('file')) {
+            $save['file'] = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . "banner");
+            $this->deleteImg($request->image_old);
+        }
+        $data['content'] = json_encode($save, true);
+        $data['name'] = $request->category;
+        $data['category'] = $request->category;
+        try {
+            if ($request->category == "banner") {
+                $banner = [
+                    'id' => $request->id,
+                ];
+            } else {
+                $banner = [
+                    'id' => $request->id,
+                    'category' => $request->category
+                ];
+            }
+            $res = Content::updateOrCreate($banner, $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function bannerData(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('banner');
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $contents = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('category', $category)
+            ->get();
+        return view('features.admin.data.banner', compact('contents'));
     }
 }

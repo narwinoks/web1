@@ -33,6 +33,10 @@
                     <a href="{{ route('admin.review') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="fas fa-star"></i></span><span class="pcoded-mtext">Review</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.banner') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fa fa-film"></i></span><span class="pcoded-mtext">Banner</span></a>
+                </li>
             </ul>
         </div>
     </div>
