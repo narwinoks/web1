@@ -22,3 +22,7 @@ Breadcrumbs::for('admin.qa', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('QA', route('admin.qa'));
 });
+Breadcrumbs::for('admin.review', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Review', route('admin.review'));
+});

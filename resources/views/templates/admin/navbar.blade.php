@@ -29,6 +29,10 @@
                     <a href="{{ route('admin.pricelist') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-rewind"></i></span><span class="pcoded-mtext">Pricelist</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.review') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fas fa-star"></i></span><span class="pcoded-mtext">Review</span></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -82,7 +86,8 @@
                                             class="feather icon-lock"></i>Logout</a>
                                 </li>
                             </ul>
-                            <form action="{{ route('account.logout') }}" method="post" id="form-logout" class="d-none">
+                            <form action="{{ route('account.logout') }}" method="post" id="form-logout"
+                                class="d-none">
                                 @csrf
                             </form>
                         </div>

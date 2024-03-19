@@ -56,6 +56,7 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/image', 'image')->name('image');
     Route::get('/qa', 'qa')->name('qa');
     Route::get('/pricelist', 'pricelist')->name('pricelist');
+    Route::get('/review', 'review')->name('review');
     Route::get('/show-modal', 'showModal')->name('showModal');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');

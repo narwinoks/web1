@@ -51,6 +51,9 @@ class AdminController extends Controller
             case $this->getFix('qa'):
                 return $this->qaData($request);
                 break;
+            case $this->getFix('review'):
+                return $this->reviewData($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -139,6 +142,9 @@ class AdminController extends Controller
                 break;
             case 'save-qa':
                 return $this->saveQa($request);
+                break;
+            case 'review':
+                return $this->saveReview($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -253,6 +259,9 @@ class AdminController extends Controller
                 break;
             case 'qa':
                 return $this->modalQa($request);
+                break;
+            case 'review':
+                return $this->modalReview($request);
                 break;
             default:
                 break;
@@ -572,5 +581,79 @@ class AdminController extends Controller
             ->where('category', $category)
             ->get();
         return view('features.admin.data.qa', compact('contents'));
+    }
+    public function modalReview(Request $request)
+    {
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('review'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-review', compact('data'));
+        } else {
+            return view('features.admin.modal.add-review');
+        }
+    }
+    public function saveReview(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'review' => 'required',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+            'review.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $save = $request->only('name', 'review', 'rating');
+        if ($request->file('file')) {
+            $save['file'] = $this->uploadImage($request->file, Str::slug($request->name, "-") . "-" . "review");
+            $this->deleteImg($request->image_old);
+        }
+        $data['content'] = json_encode($save, true);
+        $category = $this->getFix('review');
+        $data['name'] = $request->name . "-" . "review";
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function reviewData(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('review');
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $contents = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('category', $category)
+            ->get();
+        return view('features.admin.data.review', compact('contents'));
     }
 }

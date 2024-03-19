@@ -24201,3 +24201,35 @@ div.dtk-focus-alt table.dataTable tbody th.focus {
 
 /* image varient End */
 /**====== Authentication css end ======**/
+.card-review {
+    background: var(--white) !important;
+    padding: 20px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid #eee !important;
+    position: relative;
+}
+.card-review .header {
+    background: var(--white) !important;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+}
+.card-review .header h4 {
+    margin-left: 15px !important;
+}
+
+.card-review .header img {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+}
+.card-review .content p {
+    font-size: 13px !important;
+}
+.search {
+    border: 1px solid #eee;
+    padding: 20px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}

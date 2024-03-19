@@ -143,6 +143,7 @@
                         limit: $('#limit').val(),
                         startDate: $('#startDate').val(),
                         endDate: $('#endDate').val(),
+                        search :$('#search').val(),
                         key: key
                     },
                 }).done(function(data) {
