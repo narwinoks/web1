@@ -20,13 +20,13 @@ class ProfileMiddleware
     public function handle(Request $request, Closure $next)
     {
         $profile = Profile::where('statusenable', true)->first();
-        $profileCookie = $request->cookie('profile');
-        if ($profile && !$profileCookie) {
-            $minutes = 20160;
-            $cookie = Cookie::make('profile', $profile->toJson(), $minutes);
+        $profileSession = $request->session()->get('profile');
+
+        if ($profile && !$profileSession) {
+            $request->session()->put('profile', $profile->toJson());
             Log::info("Update Profile: " . json_encode($profile, JSON_PRETTY_PRINT));
-            return $next($request)->withCookie($cookie);
         }
+
         return $next($request);
     }
 }
