@@ -43,8 +43,11 @@ Route::controller(UserController::class)->name('account.')->middleware('auth')->
     Route::post('/logout', 'logout')->name('logout');
 });
 Route::controller(UserController::class)->name('account.')->prefix('account')->group(function () {
+    Route::get('/profile', 'profile')->name('profile');
     Route::post('/register', 'register')->name('register');
     Route::post('/login', 'login')->name('login');
+    Route::post('/update-profile', 'updateProfile')->name('updateProfile');
+    Route::post('/password', 'updatePassword')->name('password');
     Route::post('/update', 'update')->name('update');
 
     Route::get('/data', 'data')->name('data');

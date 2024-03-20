@@ -84,7 +84,7 @@
                                 </a>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-user"></i>
+                                <li><a href="{{ route('account.profile') }}" class="dropdown-item"><i class="feather icon-user"></i>
                                         Profile</a></li>
                                 <li><a href="#" class="dropdown-item logout"><i
                                             class="feather icon-lock"></i>Logout</a>

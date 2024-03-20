@@ -758,4 +758,7 @@ class AdminController extends Controller
             ->get();
         return view('features.admin.data.banner', compact('contents'));
     }
+    public function profile(Request $request){
+        
+    }
 }

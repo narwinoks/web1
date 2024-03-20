@@ -135,7 +135,7 @@
                     success: function(response) {
                         showAlert(response.message, 'success')
                         $("#modal-image").modal("hide");
-                        loadMoreData();
+                        search();
                     },
                     error: function(error) {
                         if (error.status == 400 || error.status == 422) {

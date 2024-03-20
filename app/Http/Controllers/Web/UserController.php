@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\User;
 use App\Responses\ServerResponse;
 use App\Traits\Valet;
@@ -41,7 +42,7 @@ class UserController extends Controller
             $user = User::updateOrCreate(['email' => $request->email], $data);
             if ($user->account_type == 1) {
                 $user['redirect'] = route('admin.home');
-            }else{
+            } else {
                 $user['redirect'] = route('account.index');
             }
             $result = [
@@ -92,7 +93,7 @@ class UserController extends Controller
             $user = Auth::user();
             if ($user->account_type == 1) {
                 $user['redirect'] = route('admin.home');
-            }else{
+            } else {
                 $user['redirect'] = route('account.index');
             }
             $data = [
@@ -154,6 +155,90 @@ class UserController extends Controller
             $result = $user->update($request->all());
             $result = [
                 'message' => 'Profile Berhasil Diubah' . '   ' . $user->name,
+                'data' => $user,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function profile(Request $request)
+    {
+        $profile = Profile::where('statusenable', true)->first();
+        return view('features.admin.profile', compact('profile'));
+    }
+    public function updateProfile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        try {
+            if ($request->file('logo')) {
+                $this->deleteImg($request->logo_old);
+                $data['logo'] = $this->uploadImage($request->logo, "logo");
+            }
+            $data = $request->all();
+            $result = Profile::where('id', $request->id)->update($data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $result,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function updatePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ], [
+            'password.required' => 'Bagian ini harus diisi !',
+            'confirm_password.required' => 'Bagian ini harus diisi !',
+            'confirm_password.same' => 'Konfirmasi password harus cocok dengan password.',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $data['password'] = Hash::make($request->password);
+        try {
+            $user = User::find(auth()->user()->id);
+            $user->password = $data['password'];
+            $user->save();
+            $result = [
+                'message' => 'Success !',
                 'data' => $user,
                 'code' => 200,
                 'errors' => []

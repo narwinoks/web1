@@ -36,8 +36,8 @@
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="galleryDropdown">
                           <li><a class="dropdown-item" href="{{ url('blog') }}">All</a></li>
-                          <li><a class="dropdown-item" href="{{ url('video') }}">Videos</a></li>
-                          <li><a class="dropdown-item" href="{{ url('studion') }}">Studio Session</a></li>
+                          <li><a class="dropdown-item" href="{{ $profile['youtube'] }}">Videos</a></li>
+                          <li><a class="dropdown-item" href="{{ url('studio') }}">Studio Session</a></li>
                           <li><a class="dropdown-item" href="{{ url('wedding') }}">Wedding</a></li>
                           <li><a class="dropdown-item" href="{{ url('prewedding') }}">Prewedding</a></li>
                           <li><a class="dropdown-item" href="{{ url('engagement') }}">Enggetment</a></li>
