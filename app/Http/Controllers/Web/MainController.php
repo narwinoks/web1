@@ -71,7 +71,7 @@ class MainController extends Controller
     }
     public function form(Request $request)
     {
-        $profile = json_decode($request->cookie('profile'), true);
+        $profile = $request->session()->has('profile') ? json_decode($request->session()->get('profile'), true) : null;
         return view('features.public.form', compact('profile'));
     }
     public function reservation(Request $request)

@@ -45,6 +45,18 @@ class AdminController extends Controller
             case 'dashboard':
                 return $this->dashboard($request);
                 break;
+            case 'price-list':
+                return $this->priceListData($request);
+                break;
+            case $this->getFix('qa'):
+                return $this->qaData($request);
+                break;
+            case $this->getFix('review'):
+                return $this->reviewData($request);
+                break;
+            case $this->getFix('banner'):
+                return $this->bannerData($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -128,6 +140,18 @@ class AdminController extends Controller
             case 'save-image':
                 return $this->saveImage($request);
                 break;
+            case 'save-price-list':
+                return $this->savePriceList($request);
+                break;
+            case 'save-qa':
+                return $this->saveQa($request);
+                break;
+            case 'review':
+                return $this->saveReview($request);
+                break;
+            case 'banner':
+                return $this->saveBanner($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -140,6 +164,10 @@ class AdminController extends Controller
             case 'delete-image':
                 return $this->deleteImage($request);
                 break;
+            case 'delete':
+                return $this->delete($request);
+                break;
+
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -231,6 +259,18 @@ class AdminController extends Controller
         switch ($variable) {
             case 'image':
                 return $this->modalImage($request);
+                break;
+            case 'pricelist':
+                return $this->modalPricelist($request);
+                break;
+            case 'qa':
+                return $this->modalQa($request);
+                break;
+            case 'review':
+                return $this->modalReview($request);
+                break;
+            case 'banner':
+                return $this->modalBanner($request);
                 break;
             default:
                 break;
@@ -376,5 +416,346 @@ class AdminController extends Controller
             ];
         }
         return $this->respond($result, $result['code']);
+    }
+    public function priceList(Request $request)
+    {
+        $types = json_decode($this->getFix('category-price'), true);
+        return view('features.admin.price-list', compact('types'));
+    }
+    public function modalPricelist(Request $request)
+    {
+        $types = json_decode($this->getFix('category-price'), true);
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('pricelist'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-pricelist', compact('types', 'data'));
+        } else {
+            return view('features.admin.modal.add-pricelist', compact('types'));
+        }
+    }
+    public function savePriceList(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'category' => 'required',
+            'title' => 'required',
+            'subtitle' => 'required',
+            'content' => 'required',
+        ], [
+            'category.required' => 'Bagian ini harus diisi !',
+            'title.required' => 'Bagian ini harus diisi !',
+            'subtitle.required' => 'Bagian ini harus diisi !',
+            'content.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $data['content'] = json_encode($request->all(), true);
+        $category = $this->getFix('pricelist');
+        $data['name'] = $request->title;
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+
+    public function priceListData(Request $request)
+    {
+        $category = $request->category;
+        $contents = Content::where('statusenable', true)
+            ->when($category, function ($query) use ($category) {
+                $s = '"category": "' . $category . '"';
+                return $query->where('content', 'like', '%' . $category . '%');
+            })
+            ->where('category', 'pricelist')
+            ->get();
+        return view('features.admin.data.pl', compact('contents'));
+    }
+    public function delete(Request $request)
+    {
+        try {
+            $image = Content::where('id', $request->id)->first();
+            $image->statusenable = false;
+            $image->save();
+            $result = [
+                'message' => 'Success !',
+                'data' => $image,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function review(Request $request)
+    {
+        return view('features.admin.review');
+    }
+    public function qa(Request $request)
+    {
+        return view('features.admin.qa');
+    }
+    public function modalQa(Request $request)
+    {
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('qa'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-qa', compact('data'));
+        } else {
+            return view('features.admin.modal.add-qa');
+        }
+    }
+    public function saveQa(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'question' => 'required',
+            'answer' => 'required',
+        ], [
+            'question.required' => 'Bagian ini harus diisi !',
+            'answer.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $data['content'] = json_encode($request->all(), true);
+        $category = $this->getFix('qa');
+        $data['name'] = $category;
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function qaData(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('qa');
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $contents = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('category', $category)
+            ->get();
+        return view('features.admin.data.qa', compact('contents'));
+    }
+    public function modalReview(Request $request)
+    {
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('review'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-review', compact('data'));
+        } else {
+            return view('features.admin.modal.add-review');
+        }
+    }
+    public function saveReview(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'review' => 'required',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+            'review.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $save = $request->only('name', 'review', 'rating');
+        if ($request->file('file')) {
+            $save['file'] = $this->uploadImage($request->file, Str::slug($request->name, "-") . "-" . "review");
+            $this->deleteImg($request->image_old);
+        }
+        $data['content'] = json_encode($save, true);
+        $category = $this->getFix('review');
+        $data['name'] = $request->name . "-" . "review";
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function reviewData(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('review');
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $contents = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('category', $category)
+            ->get();
+        return view('features.admin.data.review', compact('contents'));
+    }
+    public function banner(Request $request)
+    {
+        $type = $this->getFix('type-banner');
+        return view('features.admin.banner', compact('type'));
+    }
+    public function modalBanner(Request $request)
+    {
+        $types = json_decode($this->getFix('type-banner'), true);
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('banner'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-banner', compact('types', 'data'));
+        } else {
+            return view('features.admin.modal.add-banner', compact('types'));
+        }
+    }
+    public function saveBanner(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'subtitle' => 'required',
+            'category' => 'required',
+            'file' => 'required',
+        ], [
+            'title.required' => 'Bagian ini harus diisi !',
+            'subtitle.required' => 'Bagian ini harus diisi !',
+            'category.required' => 'Bagian ini harus diisi !',
+            'file.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $save = $request->only('title', 'subtitle', 'category');
+        if ($request->file('file')) {
+            $save['file'] = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . "banner");
+            $this->deleteImg($request->image_old);
+        }
+        $data['content'] = json_encode($save, true);
+        $data['name'] = $request->category;
+        $data['category'] = $request->category;
+        try {
+            if ($request->category == "banner") {
+                $banner = [
+                    'id' => $request->id,
+                ];
+            } else {
+                $banner = [
+                    'id' => $request->id,
+                    'category' => $request->category
+                ];
+            }
+            $res = Content::updateOrCreate($banner, $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function bannerData(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('banner');
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $contents = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('category', $category)
+            ->get();
+        return view('features.admin.data.banner', compact('contents'));
     }
 }

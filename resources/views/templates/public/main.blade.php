@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @php
-    $profile = json_decode(request()->cookie('profile'), true);
+    $profile = request()->session()->has('profile') ? json_decode(request()->session()->get('profile'), true) : null;
 @endphp
 @include('templates.public.head')
 

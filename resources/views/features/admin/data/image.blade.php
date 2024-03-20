@@ -1,6 +1,6 @@
 @foreach ($images as $key => $image)
     @if ($image->type == 'Image')
-        <div class="col-md-4 col-sm-6 col-lg-4">
+        <div class="col-md-4 col-sm-6 col-lg-4 mt-3">
             <div class="image-container position-relative">
                 <img src="{{ asset('assets/img/' . $image->url) }}" class="img-fluid rounded" alt="gambar">
                 <div class="button-group">

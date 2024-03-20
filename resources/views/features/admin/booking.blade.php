@@ -65,11 +65,15 @@
     <script src="{{ asset('assets/js/main/validation.js') }}"></script>
     <script>
         $("#btn-search").click(function() {
-            loadMoreData();
-            console.log($("#istrue").val());
-            $("#istrue").val(false);
-            console.log($("#istrue").val());
+            search();
         });
+
+        function search() {
+            $('#offset').val(0)
+            $('#limit').val(6)
+            $("#istrue").val(false);
+            loadMoreData();
+        }
         var timeout;
         loadMoreData();
         $('#show-more').on('click', function() {
@@ -79,14 +83,9 @@
 
         function loadMoreData() {
             $("#loading-animation").show();
-            let isTrue = $("#istrue").val();
-            if (isTrue == true) {
-                var offset = parseInt($('#offset').val());
-                var limit = parseInt($('#limit').val());
-            } else {
-                var offset = 0;
-                var limit = 5;
-            }
+            let isTrue = $("#istrue").val() === "true" ? true : false;
+            var offset = parseInt($('#offset').val());
+            var limit = parseInt($('#limit').val());
             var key = $('#booking-category').val().replace(/\s+/g, '');
             $.ajax({
                 url: "{{ route('admin.content') }}",
@@ -100,16 +99,13 @@
                     key: key
                 },
             }).done(function(data) {
-                if (isTrue == true) {
-                    if (offset == 0) {
-                        offset = offset + 5;
-
-                    } else {
-                        offset = offset + 5;
-                    }
+                if (offset == 0) {
+                    offset = offset + 6;
+                } else {
+                    offset = offset + 6;
                 }
                 $('#offset').val(offset);
-                $('#limit').val(3);
+                $('#limit').val(6);
                 setTimeout(function() {
                     $("#loading-animation").hide();
                 }, 2000)
@@ -136,7 +132,7 @@
                 },
                 success: function(data) {
                     showAlert("Berhasil !", "success");
-                    loadMoreData();
+                    search();
                 },
                 error: function(response) {
                     printErrorMsg(response);
@@ -156,7 +152,7 @@
                 },
                 success: function(data) {
                     showAlert("Berhasil !", "success");
-                    loadMoreData();
+                    search();
                 },
                 error: function(response) {
                     printErrorMsg(response);

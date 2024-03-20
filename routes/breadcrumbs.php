@@ -14,3 +14,19 @@ Breadcrumbs::for('admin.image', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Image', route('admin.image'));
 });
+Breadcrumbs::for('admin.pricelist', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Pricelist', route('admin.pricelist'));
+});
+Breadcrumbs::for('admin.qa', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('QA', route('admin.qa'));
+});
+Breadcrumbs::for('admin.review', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Review', route('admin.review'));
+});
+Breadcrumbs::for('admin.banner', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Banner', route('admin.banner'));
+});

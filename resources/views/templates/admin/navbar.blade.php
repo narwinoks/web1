@@ -25,6 +25,18 @@
                     <a href="{{ route('admin.booking') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-calendar"></i></span><span class="pcoded-mtext">Booking</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.pricelist') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-rewind"></i></span><span class="pcoded-mtext">Pricelist</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.review') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fas fa-star"></i></span><span class="pcoded-mtext">Review</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.banner') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fa fa-film"></i></span><span class="pcoded-mtext">Banner</span></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -78,7 +90,8 @@
                                             class="feather icon-lock"></i>Logout</a>
                                 </li>
                             </ul>
-                            <form action="{{ route('account.logout') }}" method="post" id="form-logout" class="d-none">
+                            <form action="{{ route('account.logout') }}" method="post" id="form-logout"
+                                class="d-none">
                                 @csrf
                             </form>
                         </div>
