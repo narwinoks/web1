@@ -1,6 +1,6 @@
-  <header class="header py-1">
-      <div class="container-lg item d-flex justify-content-between">
-          <div class="row justify-content-start">
+  <header class="header py-1 d-sm-block d-none">
+      <div class="container-lg item d-flex justify-content-between ">
+          <div class="row justify-content-start ">
               <div class="col-auto">
                   <span><i class="fa fa-whatsapp" aria-hidden="true"></i> {{ $profile['whatsapp'] }}</span>
               </div>
@@ -14,7 +14,7 @@
               </div>
               <div class="col-auto">
                   <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
-                      class="btn btn-black">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
+                    class="mb-0 d-sm-block d-none btn btn-black">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
                   <form action="{{ route('account.logout') }}" method="post"
                       id="{{ Auth()->user() ? 'form-logout' : '' }}" class="d-none">
                       @csrf
@@ -25,8 +25,10 @@
   </header>
   <nav class="navbar  navbar-expand-lg sticky-top navbar-light bg-white shadow-sm">
       <div class="container">
-          <a class="navbar-brand text-center" href="/"> <img src="{{ asset('assets/img/logo.png') }}"
-                  alt="logo-app" height="30"> </a>
+          <a class="navbar-brand text-center" href="/">
+
+             <img class="logo-sm" src="{{ asset('assets/img/logo.png') }}"
+                  alt="logo-app" height="40"> </a>
           <div class="collapse navbar-collapse justify-content-md-center" id="navbarNavAltMarkup">
               <ul class="navbar-nav photo-nav">
                   <li class="nav-item dropdown">
@@ -72,6 +74,14 @@
                   <li class="nav-item d-block d-sm-none">
                       <a class="nav-link" href="{{ route('form') }}">Reservasi</a>
                   </li>
+                  <li class="nav-item d-block d-sm-none">
+                    <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
+                        class="nav-link">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
+                      <form action="{{ route('account.logout') }}" method="post"
+                          id="{{ Auth()->user() ? 'form-logout' : '' }}" class="d-none">
+                          @csrf
+                      </form>
+                </li>
               </ul>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"

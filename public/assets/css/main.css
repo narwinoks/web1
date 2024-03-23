@@ -882,3 +882,20 @@ label {
     font-size: 14px !important;
     font-weight: 400;
 }
+.logo-sm{
+   background-image: url('../img/logo.png');
+   height: 45px;
+  }
+@media only screen and (max-width: 767px) {
+    .owl-carousel .owl-item img {
+     height: 600px;
+    }
+    .hide-phone-mobile{
+        display: none;
+    }
+
+    .logo-sm{
+        background-image: url('../img/logo_v.png');
+        height: 40px;
+    }
+}
