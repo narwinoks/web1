@@ -478,6 +478,7 @@ section {
 .img-gallery img {
     width: 100%;
     height: auto;
+    max-height: 250px;
     display: block;
 }
 .blog button {

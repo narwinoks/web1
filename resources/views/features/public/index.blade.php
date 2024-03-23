@@ -2,14 +2,16 @@
 @section('content')
     <section class="hero">
         <div class="owl-carousel owl-carousel-1 owl-theme">
-            <div class="item">
-                <img src="{{ asset('assets/img/hero1.png') }}" alt="hero">
-                <div class="overlay"></div>
-            </div>
-            <div class="item">
-                <img src="{{ asset('assets/img/hero1.png') }}" alt="hero-2">
-                <div class="overlay"></div>
-            </div>
+            @foreach ($banners as $key => $banner)
+                @php
+                    $data = json_decode($banner->content, true);
+                    $img = isset($data['file']) ? $data['file'] : '600x400.png';
+                @endphp
+                <div class="item">
+                    <img src="{{ asset('assets/img/' . $img) }}" alt="hero">
+                    <div class="overlay"></div>
+                </div>
+            @endforeach
         </div>
         <div class="nav-left"></div>
         <div class="nav-right"></div>
@@ -37,43 +39,13 @@
     <section class="blogs">
         <div class="container-fluid px-3 px-md-5">
             <div class="text-center text-orange">
-                <p class="p py-0 my-0">featured</p>
-                <h3 class="h6">BLOG POSTS</h3>
+                <p class="h6 py-0 my-0">featured</p>
+                <h3 class="h5">BLOG POSTS</h3>
             </div>
-            <div class="row mt-3">
-                <div class="col-lg-4  col-md-6 col-12">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/image-photo1.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-6 col-12">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-6 col-12">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/image-photo1.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-6 col-12">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-6 col-12">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-4  col-md-6 col-12">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/image-photo1.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
+            <div class="row mt-3" id="portfolio">
             </div>
             <div class="text-center">
-                <a href="/" class="btn btn-black is-rounded">View All PortFolio</a>
+                <a href="{{ url('blog') }}" class="btn btn-black is-rounded">View All PortFolio</a>
             </div>
         </div>
     </section>
@@ -83,7 +55,7 @@
             <div class="overlay"></div>
             <div class="content">
                 <h3>Let's connect</h3>
-                <a href="#" class="button"><i class="fa fa-check-circle" aria-disabled="true"></i> Access
+                <a href="{{ url('pl') }}" class="button"><i class="fa fa-check-circle" aria-disabled="true"></i> Access
                     pricelist</a>
             </div>
         </div>
@@ -131,82 +103,11 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-12 mt-5 mb-5">
+                    <div id="loading-animation-review" class="text-center" style="display: none">
+                        <img src="{{ asset('assets/img/loading.gif') }}" width="30px">
+                    </div>
                     <div class="items">
-                        <div class="owl-carousel owl-theme owl-carousel-2">
-                            <div class="item">
-                                <div class="card">
-                                    <div class="review">
-                                        <div class="user-profile">
-                                            <img src="{{ asset('assets/img/600x400.png') }}" alt="user-profile">
-                                        </div>
-                                        <div class="content">
-                                            <div class="stars">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                            </div>
-                                            <div class="name">
-                                                John Doe
-                                            </div>
-                                            <div class="text">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="card">
-                                    <div class="review">
-                                        <div class="user-profile">
-                                            <img src="{{ asset('assets/img/600x400.png') }}" alt="user-profile">
-                                        </div>
-                                        <div class="content">
-                                            <div class="stars">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-half"></i>
-                                            </div>
-                                            <div class="name">
-                                                John Doe
-                                            </div>
-                                            <div class="text">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non
-                                                metus quis metus fermentum congue.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="owl-carousel owl-theme owl-carousel-2" id="review-content">
                         </div>
                         <img src="{{ asset('assets/img/background-review.png') }}" alt="background-review"
                             class="background-image">
@@ -216,6 +117,7 @@
             </div>
         </div>
     </section>
+    <input type="hidden" value="portfolio" name="portfolio" id="portfolio_key">
 @endsection
 
 @push('styles')
@@ -251,28 +153,70 @@
                 }
             }
         })
-        $('.owl-carousel-2').owlCarousel({
-            margin: 20,
-            loop: true,
-            dots: false,
-            autoHeight: true,
-            autoplay: true,
-            autoplayTimeout: 1000,
-            autoplayHoverPause: true,
-            responsive: {
-                0: {
-                    items: 1,
+    </script>
+    <script>
+        loadData();
+        loadDataReview();
+
+        function loadData() {
+            $("#loading-animation").show();
+            var key = $('#portfolio_key').val().replace(/\s+/g, '');
+            $.ajax({
+                url: "{{ route('content') }}",
+                type: 'GET',
+                async: false,
+                data: {
+                    key: key,
                 },
-                576: {
-                    items: 1
+            }).done(function(data) {
+                setTimeout(function() {
+                    $("#loading-animation").hide();
+                }, 2000)
+                $('#portfolio').append(data);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error: " + textStatus, errorThrown);
+            })
+        }
+
+        function loadDataReview() {
+            $("#loading-animation-review").show();
+            $.ajax({
+                url: "{{ route('content') }}",
+                type: 'GET',
+                data: {
+                    key: 'review',
                 },
-                768: {
-                    items: 1
-                },
-                992: {
-                    items: 1
-                }
-            }
-        })
+            }).done(function(data) {
+                $('#review-content').append(data);
+                setTimeout(function() {
+                    $("#loading-animation-review").hide();
+                    $('.owl-carousel-2').owlCarousel({
+                        margin: 20,
+                        loop: true,
+                        dots: false,
+                        autoHeight: true,
+                        autoplay: true,
+                        autoplayTimeout: 1000,
+                        autoplayHoverPause: true,
+                        responsive: {
+                            0: {
+                                items: 1,
+                            },
+                            576: {
+                                items: 1
+                            },
+                            768: {
+                                items: 1
+                            },
+                            992: {
+                                items: 1
+                            }
+                        }
+                    });
+                }, 2000);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error: " + textStatus, errorThrown);
+            });
+        }
     </script>
 @endpush

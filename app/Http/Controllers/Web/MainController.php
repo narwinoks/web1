@@ -17,7 +17,11 @@ class MainController extends Controller
     use Valet;
     public function index(Request $request)
     {
-        return view('features.public.index');
+        $banners = Content::where('statusenable', true)
+            ->where('statusenable', true)
+            ->where('category', 'banner')
+            ->get();
+        return view('features.public.index', compact('banners'));
     }
     public function blog(Request $request)
     {
@@ -169,6 +173,15 @@ class MainController extends Controller
             case trim('category-blog'):
                 return $this->getCategoryBlog($request);
                 break;
+            case trim('portfolio'):
+                return $this->genRandomImage($request);
+                break;
+            case trim('review'):
+                return $this->getReview($request);
+                break;
+            case trim('banner'):
+                return $this->getBanner($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -185,7 +198,7 @@ class MainController extends Controller
                 return $query->limit($limit);
             })
             ->when($category, function ($query) use ($category) {
-                return $query->where('category', 'like', '%' . $category . '%');
+                return $query->where('category', $category);
             })
             ->when($offset, function ($query) use ($offset) {
                 return $query->offset($offset);
@@ -193,9 +206,58 @@ class MainController extends Controller
             ->get();
         return view('features.public.data.gallery', compact('images'));
     }
+    public function genRandomImage(Request $request)
+    {
+        $limit = 6;
+        $offset = 0;
+        $images = Image::where('statusenable', true)
+            ->whereNull('parent_id')
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->get();
+        return view('features.public.data.portfolio', compact('images'));
+    }
     public function getCategoryBlog(Request $request)
     {
         $categories = Content::where('category', 'category-image')->where('statusenable', true)->get();
         return view('features.public.data.category', compact('categories'));
+    }
+    public function getReview(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('review');
+        $limit = 10;
+        $offset = 0;
+        $reviews = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('statusenable', true)
+            ->where('category', $category)
+            ->get();
+
+        return view('features.public.data.review', compact('reviews'));
+    }
+    public function getBanner(Request $request)
+    {
+        $offset = 0;
+        $category = $this->getFix('banner');
+        $search = $this->getFix('banner');
+
+        $banners = Content::where('statusenable', true)
+            ->where('statusenable', true)
+            ->where('category', $category)
+            ->get();
+        return view('features.public.data.banner', compact('banners'));
     }
 }
