@@ -33,7 +33,7 @@
                         </p>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-5 col-sm-12 col-5">
+                        <div class="col-md-8 col-lg-5  col-12">
                             <form id="form-booking">
                                 @csrf
                                 <div class="form mt-5">
