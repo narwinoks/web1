@@ -71,8 +71,8 @@ class MainController extends Controller
     }
     public function gallery(Request $request, $slug)
     {
-        $title = "Gallery Title";
-        return view('features.public.gallery', compact('title'));
+        $title = Helper::getImageTitle($slug);
+        return view('features.public.gallery', compact('title', 'slug'));
     }
     public function form(Request $request)
     {
@@ -191,6 +191,9 @@ class MainController extends Controller
                 break;
             case trim('qa'):
                 return $this->getQA($request);
+                break;
+            case trim('gallery'):
+                return $this->getGallery($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -393,5 +396,10 @@ class MainController extends Controller
             ->where('category', $category)
             ->get();
         return view('features.public.data.qa', compact('contents'));
+    }
+    public function getGallery(Request $request)
+    {
+        $images  = DB::table('images as img1')->join('images as img2', 'img1.id', '=', 'img2.parent_id')->where('img1.slug', $request->slug)->get();
+        return view('features.public.data.gallery-detail', compact('images'));
     }
 }
