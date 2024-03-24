@@ -63,28 +63,11 @@
     <section class="memories">
         <div class="container-fluid px-3 px-md-5 ">
             <h3 class="light h5">TOMORROW'S MEMORIES, TODAY.</h3>
-            <div class="row mt-5">
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="image-gallery">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="image-1" class="img-fluid">
-                    </div>
-                </div>
+            <div class="row mt-5" id="catgeory-featured">
             </div>
+        </div>
+        <div id="loading-category" class="text-center" style="display: none">
+            <img src="{{ asset('assets/img/loading.gif') }}" width="30px">
         </div>
     </section>
     <section class="review">
@@ -157,6 +140,7 @@
     <script>
         loadData();
         loadDataReview();
+        loadDataCategory();
 
         function loadData() {
             $("#loading-animation").show();
@@ -217,6 +201,27 @@
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 console.error("Error: " + textStatus, errorThrown);
             });
+        }
+
+        function loadDataCategory() {
+            $("#loading-category").show();
+            var key = "category-blog";
+            $.ajax({
+                url: "{{ route('content') }}",
+                type: 'GET',
+                async: false,
+                data: {
+                    home: true,
+                    key: key,
+                },
+            }).done(function(data) {
+                setTimeout(function() {
+                    $("#loading-category").hide();
+                }, 2000)
+                $('#catgeory-featured').append(data);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error: " + textStatus, errorThrown);
+            })
         }
     </script>
 @endpush

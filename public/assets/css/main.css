@@ -214,9 +214,9 @@ section {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 180px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto;
+    max-height: 250px;
+    min-height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -893,6 +893,19 @@ label {
     border-radius: 4px;
     font-size: 14px !important;
     font-weight: 400;
+}
+.img-category {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.img-category img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
 }
 .logo-sm {
     background-image: url("../img/logo.png");

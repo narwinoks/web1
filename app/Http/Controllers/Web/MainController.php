@@ -237,7 +237,11 @@ class MainController extends Controller
     public function getCategoryBlog(Request $request)
     {
         $categories = Content::where('category', 'category-image')->where('statusenable', true)->get();
-        return view('features.public.data.category', compact('categories'));
+        if ($request->home) {
+            return view('features.public.data.tommorrow', compact('categories'));
+        }else{
+            return view('features.public.data.category', compact('categories'));
+        }
     }
     public function getReview(Request $request)
     {

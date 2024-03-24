@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\MainController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,12 @@ Route::get('/gallery/{slug}', [MainController::class, 'gallery'])->name('gallery
 Route::get('/form', [MainController::class, 'form'])->name('form');
 Route::get('/login', [MainController::class, 'login'])->name('login');
 Route::get('/register', [MainController::class, 'register']);
+Route::get('/clear', function () {
+    Artisan::call('optimize');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    return 'Cache cleared and application optimized successfully!';
+});
 
 Route::controller(MainController::class)->group(function () {
     Route::get('/content', 'getContent')->name('content');
