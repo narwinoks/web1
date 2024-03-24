@@ -49,18 +49,6 @@
                   <li class="nav-item ">
                       <a class="nav-link" href="{{ url('/pl') }}">PriceList</a>
                   </li>
-                  {{-- <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="forDropdown" role="button"
-                          data-bs-toggle="dropdown" aria-expanded="false">
-                          For Photographers
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="forDropdown">
-                          <li><a class="dropdown-item" href="#">Mantra (E-Book)</a></li>
-                          <li><a class="dropdown-item" href="#">Preset x Luts</a></li>
-                          <li><a class="dropdown-item" href="#">Website Class</a></li>
-                          <li><a class="dropdown-item" href="#">Bussines Class (play back)</a></li>
-                      </ul>
-                  </li> --}}
                   <li class="nav-item ">
                       <a class="nav-link" href="{{ url('/product') }}">Products</a>
                   </li>
