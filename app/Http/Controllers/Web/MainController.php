@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Image;
@@ -182,6 +183,12 @@ class MainController extends Controller
             case trim('banner'):
                 return $this->getBanner($request);
                 break;
+            case trim('pricelist'):
+                return $this->getPricelist($request);
+                break;
+            case trim('image-pricelist'):
+                return $this->getImagePricelist($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -244,6 +251,7 @@ class MainController extends Controller
             })
             ->where('statusenable', true)
             ->where('category', $category)
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         return view('features.public.data.review', compact('reviews'));
@@ -259,5 +267,105 @@ class MainController extends Controller
             ->where('category', $category)
             ->get();
         return view('features.public.data.banner', compact('banners'));
+    }
+
+    public function getPricelist(Request $request)
+    {
+        $category = $request->category;
+        $contents = Content::where('statusenable', true)
+            ->when($category, function ($query) use ($category) {
+                $s = '"category": "' . $category . '"';
+                return $query->where('content', 'like', '%' . $category . '%');
+            })
+            ->where('category', 'pricelist')
+            ->get();
+        return view('features.public.data.pl', compact('contents'));
+    }
+    public function getImagePricelist(Request $request)
+    {
+        $limit = 6;
+        $offset = 0;
+        $images = Image::where('statusenable', true)
+            ->whereNull('parent_id')
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('features.public.data.img-pl', compact('images'));
+    }
+
+    public function save(Request $request)
+    {
+        $key = $request->key;
+        switch ($key) {
+            case 'save-pl':
+                return $this->savePl($request);
+                break;
+            case 'genaral':
+                return $this->savePl($request);
+                break;
+            default:
+                return response()->json(['message' => 'not found']);
+                break;
+        }
+    }
+    public function savePl(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'package' => 'required',
+            'location' => 'required',
+            'find' => 'required',
+            'brand' => 'required',
+            'estimed' => 'required',
+            'why' => 'required',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+            'package.required' => 'Bagian ini harus diisi !',
+            'location.required' => 'Bagian ini harus diisi !',
+            'find.required' => 'Bagian ini harus diisi !',
+            'brand.required' => 'Bagian ini harus diisi !',
+            'estimed.required' => 'Bagian ini harus diisi !',
+            'why.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $data = $request->all();
+        $data['name'] = $request->name;
+        $data['content'] = json_encode($request->all());
+        DB::beginTransaction();
+        try {
+            $db = Content::create($data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $db,
+                'code' => 200,
+                'errors' => []
+            ];
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function saveForm(Request $request)
+    {
     }
 }

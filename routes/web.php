@@ -36,6 +36,7 @@ Route::get('/register', [MainController::class, 'register']);
 Route::controller(MainController::class)->group(function () {
     Route::get('/content', 'getContent')->name('content');
     Route::post('/reservation', 'reservation')->name('reservation');
+    Route::post('/save', 'save')->name('save');
 });
 Route::controller(UserController::class)->name('account.')->middleware('auth')->prefix('account')->group(function () {
     Route::get('/', 'account')->name('index');

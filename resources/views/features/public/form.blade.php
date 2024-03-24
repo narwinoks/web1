@@ -100,7 +100,8 @@
                                             <option value="Short Session (4 Hours)">Short Session (4 Hours)</option>
                                             <option value="Halftday Session (6 Hours)">Halftday Session (6 Hours)</option>
                                             <option value="Fullday Session (12 Hours)">Fullday Session (12 Hours)</option>
-                                            <option value="Prewedding at Shutterbox's Studio">Prewedding at Shutterbox's Studio
+                                            <option value="Prewedding at Shutterbox's Studio">Prewedding at Shutterbox's
+                                                Studio
                                             </option>
                                             <option value="Custom">Custom</option>
                                         </select>
@@ -176,7 +177,8 @@
                                                 selected>Saya mempercayakan backsound kepada Shutterbox & setuju tidak dapat
                                                 diganti
                                                 (revisi)</option>
-                                            <option value="Saya akan memberi tahu pihak Shutterbox nanti (Max H-1)">Saya akan
+                                            <option value="Saya akan memberi tahu pihak Shutterbox nanti (Max H-1)">Saya
+                                                akan
                                                 memberi tahu pihak Shutterbox nanti (Max H-1)</option>
                                             <option value="Saya sudah memiliki pilihan lagu sebagai berikut:">Saya sudah
                                                 memiliki pilihan lagu sebagai berikut:</option>
@@ -241,7 +243,8 @@
                                                 </div>
                                                 <span class="mr-4" id="tag-button"> <i aria-disabled="true"
                                                         class="fa fa-check-square-o"></i> Kirim Ke
-                                                    Herios Photograpy</span>
+                                                    {{ $profile['slug'] ?? '' }}
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -282,7 +285,7 @@
                     $('.etc').hide();
                     $('.wedding-content').hide();
                     $('.prewedding-content').show();
-                }else{
+                } else {
                     $('.etc').hide();
                     $('.wedding-content').hide();
                     $('.prewedding-content').hide();
