@@ -14,7 +14,7 @@
               </div>
               <div class="col-auto">
                   <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
-                    class="mb-0 d-sm-block d-none btn btn-black">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
+                      class="mb-0 d-sm-block d-none btn btn-black">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
                   <form action="{{ route('account.logout') }}" method="post"
                       id="{{ Auth()->user() ? 'form-logout' : '' }}" class="d-none">
                       @csrf
@@ -27,8 +27,7 @@
       <div class="container">
           <a class="navbar-brand text-center" href="/">
 
-             <img class="logo-sm" src="{{ asset('assets/img/logo.png') }}"
-                  alt="logo-app" height="40"> </a>
+              <img class="logo-sm" src="{{ asset('assets/img/logo.png') }}" alt="logo-app" height="40"> </a>
           <div class="collapse navbar-collapse justify-content-md-center" id="navbarNavAltMarkup">
               <ul class="navbar-nav photo-nav">
                   <li class="nav-item dropdown">
@@ -50,7 +49,7 @@
                   <li class="nav-item ">
                       <a class="nav-link" href="{{ url('/pl') }}">PriceList</a>
                   </li>
-                  <li class="nav-item dropdown">
+                  {{-- <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="forDropdown" role="button"
                           data-bs-toggle="dropdown" aria-expanded="false">
                           For Photographers
@@ -61,6 +60,9 @@
                           <li><a class="dropdown-item" href="#">Website Class</a></li>
                           <li><a class="dropdown-item" href="#">Bussines Class (play back)</a></li>
                       </ul>
+                  </li> --}}
+                  <li class="nav-item ">
+                      <a class="nav-link" href="{{ url('/product') }}">Products</a>
                   </li>
                   <li class="nav-item ">
                       <a class="nav-link" href="{{ url('/review') }}">Review</a>
@@ -75,13 +77,13 @@
                       <a class="nav-link" href="{{ route('form') }}">Reservasi</a>
                   </li>
                   <li class="nav-item d-block d-sm-none">
-                    <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
-                        class="nav-link">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
+                      <a href="{{ url(Auth()->user() ? '#' : '/login') }}" id="{{ Auth()->user() ? 'logout' : '' }}"
+                          class="nav-link">{{ Auth()->user() ? 'Logout' : 'Login' }}</a>
                       <form action="{{ route('account.logout') }}" method="post"
                           id="{{ Auth()->user() ? 'form-logout' : '' }}" class="d-none">
                           @csrf
                       </form>
-                </li>
+                  </li>
               </ul>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"

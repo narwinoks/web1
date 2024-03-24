@@ -25,6 +25,7 @@ class ProfileMiddleware
         if ($profile && !$profileSession) {
             $request->session()->put('profile', $profile->toJson());
             Log::info("Update Profile: " . json_encode($profile, JSON_PRETTY_PRINT));
+            Log::info("User: " . json_encode(['user' => getHostByName(getHostName()), 'pc' => gethostname()], JSON_PRETTY_PRINT));
         }
 
         return $next($request);

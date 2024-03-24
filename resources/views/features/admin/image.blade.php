@@ -284,6 +284,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 10px;
+            height: 250px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 

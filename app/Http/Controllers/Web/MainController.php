@@ -239,7 +239,7 @@ class MainController extends Controller
         $categories = Content::where('category', 'category-image')->where('statusenable', true)->get();
         if ($request->home) {
             return view('features.public.data.tommorrow', compact('categories'));
-        }else{
+        } else {
             return view('features.public.data.category', compact('categories'));
         }
     }
@@ -405,5 +405,9 @@ class MainController extends Controller
     {
         $images  = DB::table('images as img1')->join('images as img2', 'img1.id', '=', 'img2.parent_id')->where('img1.slug', $request->slug)->get();
         return view('features.public.data.gallery-detail', compact('images'));
+    }
+    public function product(Request $request)
+    {
+        return view('features.public.product');
     }
 }
