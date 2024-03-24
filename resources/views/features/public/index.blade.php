@@ -60,7 +60,7 @@
             </div>
         </div>
     </section>
-    <section class="memories">
+    {{-- <section class="memories">
         <div class="container-fluid px-3 px-md-5 ">
             <h3 class="light h5">TOMORROW'S MEMORIES, TODAY.</h3>
             <div class="row mt-5" id="catgeory-featured">
@@ -69,7 +69,7 @@
         <div id="loading-category" class="text-center" style="display: none">
             <img src="{{ asset('assets/img/loading.gif') }}" width="30px">
         </div>
-    </section>
+    </section> --}}
     <section class="review">
         <div class="container-fluid px-3 px-md-5">
             <div class="row">
@@ -140,7 +140,7 @@
     <script>
         loadData();
         loadDataReview();
-        loadDataCategory();
+        // loadDataCategory();
 
         function loadData() {
             $("#loading-animation").show();
