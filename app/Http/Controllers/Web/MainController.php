@@ -189,6 +189,9 @@ class MainController extends Controller
             case trim('image-pricelist'):
                 return $this->getImagePricelist($request);
                 break;
+            case trim('qa'):
+                return $this->getQA($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -237,8 +240,8 @@ class MainController extends Controller
     {
         $search = $request->search;
         $category = $this->getFix('review');
-        $limit = 10;
-        $offset = 0;
+        $limit = $request->limit ?? 10;
+        $offset = $request->offset ?? 0;
         $reviews = Content::where('statusenable', true)
             ->when($search, function ($query) use ($search) {
                 return $query->where('content', 'like', '%' . $search . '%');
@@ -253,8 +256,11 @@ class MainController extends Controller
             ->where('category', $category)
             ->orderBy('created_at', 'DESC')
             ->get();
-
-        return view('features.public.data.review', compact('reviews'));
+        if ($request->detail) {
+            return view('features.public.data.review-detail', compact('reviews'));
+        } else {
+            return view('features.public.data.review', compact('reviews'));
+        }
     }
     public function getBanner(Request $request)
     {
@@ -367,5 +373,25 @@ class MainController extends Controller
     }
     public function saveForm(Request $request)
     {
+    }
+    public function getQA(Request $request)
+    {
+        $search = $request->search;
+        $category = $this->getFix('qa');
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $contents = Content::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('content', 'like', '%' . $search . '%');
+            })
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->where('category', $category)
+            ->get();
+        return view('features.public.data.qa', compact('contents'));
     }
 }

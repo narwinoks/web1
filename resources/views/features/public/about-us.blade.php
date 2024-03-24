@@ -22,7 +22,8 @@
                                 who you are.</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span><span class="fw-bold">SHUTTERBOX.ID (ἱερός)</span> is Greek for "sacred, sanctified". That's how
+                            <span><span class="fw-bold">SHUTTERBOX.ID (ἱερός)</span> is Greek for "sacred, sanctified".
+                                That's how
                                 we see it on every wedding
                                 ceremony. It takes several ceremonial steps before the day in our culture. Engagement,
                                 recitation to God - whoever you believe in - every step is sacred.</span>
@@ -57,9 +58,8 @@
         </div>
     </section>
     <section class="maps">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.804686349418!2d107.6333816!3d-6.896444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7af3be758af%3A0xbbcb42d633c6e40d!2sBORMA%20Toserba%20%E2%80%A2%20Cikutra!5e0!3m2!1sen!2sid!4v1709574874787!5m2!1sen!2sid"
-            class="map" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+            src="https://maps.google.com/maps?width=100%&amp;height=auto&amp;hl=en&amp;q={{ \App\Helpers\Helper::getProfile('address') }}&amp;t=m&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+        </iframe>
     </section>
 @endsection

@@ -37,6 +37,10 @@
                     <a href="{{ route('admin.banner') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="fa fa-film"></i></span><span class="pcoded-mtext">Banner</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.qa') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fa fa-question-circle"></i></span><span class="pcoded-mtext">QA</span></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -84,7 +88,8 @@
                                 </a>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="{{ route('account.profile') }}" class="dropdown-item"><i class="feather icon-user"></i>
+                                <li><a href="{{ route('account.profile') }}" class="dropdown-item"><i
+                                            class="feather icon-user"></i>
                                         Profile</a></li>
                                 <li><a href="#" class="dropdown-item logout"><i
                                             class="feather icon-lock"></i>Logout</a>

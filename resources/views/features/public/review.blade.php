@@ -10,34 +10,50 @@
                     <span>Hopefully this might help you to choose the right photographer on your special day! </span>
                 </p>
             </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-12 col-md-8">
-                    <div class="card card-review">
-                        <div class="header">
-                            <img src="{{ asset('assets/img/600x400.png') }}" class="img-fluid" alt="image-1">
-                            <h4 class="h6 fw-normal fst-italic">Roslynn | Reynaldo</h4>
-                        </div>
-                        <div class="content mt-2">
-                            <p>
-                                Pertama kali liat Shutterbox waktu di Apps nya Bridestory (a year ago) dan langsung suka banget
-                                sm
-                                warnanya hieros, cara ngambil foto2nya, anglenya, vibenya dll trus ga ragu langsung book
-                                saat
-                                itu juga! Adminnya juga ramah, sigap dan informatif. Pas hari H couple session (a day with
-                                Shutterbox), bisa langsung ngarahin kita yg kaku (krn jarang foto bareng), bikin suasana lebih
-                                santai, perhatian, jaga timeline biar gak ngaret, slalu inget angle terbaik, gercep, dan
-                                mood yg
-                                aku pengenin juga bisa di achieve sm hieros, even more than enough! Berkesan banget sesi
-                                foto sm
-                                hieros :D Thankyou so much buat hieros especially kak. See you on another session!
-                            </p>
-                        </div>
-                    </div>
+            <div class="row justify-content-center mt-4" id="review-content">
+            </div>
+            <div class="row justify-content-center mt-4" id="review-content">
+                <div id="loading-animation-review" class="text-center" style="display: none">
+                    <img src="{{ asset('assets/img/loading.gif') }}" width="30px">
                 </div>
                 <div class="text-center justify-content-center mt-4">
-                    <button class="btn-show">Perlihatan Lagi</button>
+                    <button class="btn-show" id="show-more">Perlihatan Lagi</button>
                 </div>
             </div>
         </div>
     </section>
+    <input type="hidden" value="0" id="offset" name="offset">
+    <input type="hidden" value="10" id="limit" name="limit">
 @endsection
+@push('scripts')
+    <script>
+        loadDataReview()
+        $('#show-more').on('click', function() {
+            loadDataReview();
+        });
+
+        function loadDataReview() {
+            $("#loading-animation-review").show();
+            var offset = parseInt($('#offset').val());
+            var limit = parseInt($('#limit').val());
+            $.ajax({
+                url: "{{ route('content') }}",
+                type: 'GET',
+                data: {
+                    key: 'review',
+                    offset: $('#offset').val(),
+                    limit: $('#limit').val(),
+                    detail: true
+                },
+            }).done(function(data) {
+                $('#review-content').append(data);
+                $("#loading-animation-review").hide();
+                offset = offset + 10;
+                $('#offset').val(offset);
+                $('#limit').val(10);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error: " + textStatus, errorThrown);
+            });
+        }
+    </script>
+@endpush
