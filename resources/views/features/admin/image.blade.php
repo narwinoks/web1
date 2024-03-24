@@ -221,7 +221,7 @@
                     success: function(data) {
                         $("#modal-content").html(data);
                         $("#modal-image").modal("show");
-                        search();
+                        loadDataImage();
                     },
                 });
             });
