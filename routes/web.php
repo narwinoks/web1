@@ -33,7 +33,9 @@ Route::get('/gallery/{slug}', [MainController::class, 'gallery'])->name('gallery
 Route::get('/form', [MainController::class, 'form'])->name('form');
 Route::get('/login', [MainController::class, 'login'])->name('login');
 Route::get('/register', [MainController::class, 'register']);
-Route::get('/product', [MainController::class, 'product']);
+Route::get('/products', [MainController::class, 'products']);
+Route::get('/product/{slug}', [MainController::class, 'product']);
+Route::get('/cart', [MainController::class, 'cart']);
 Route::get('/clear', function () {
     Artisan::call('optimize');
     Artisan::call('cache:clear');

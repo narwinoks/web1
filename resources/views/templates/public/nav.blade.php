@@ -50,7 +50,7 @@
                       <a class="nav-link" href="{{ url('/pl') }}">PriceList</a>
                   </li>
                   <li class="nav-item ">
-                      <a class="nav-link" href="{{ url('/product') }}">Products</a>
+                      <a class="nav-link" href="{{ url('/products') }}">For Photographers</a>
                   </li>
                   <li class="nav-item ">
                       <a class="nav-link" href="{{ url('/review') }}">Review</a>

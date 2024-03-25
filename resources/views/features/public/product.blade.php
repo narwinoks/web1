@@ -57,15 +57,15 @@
                                 <div class="product-info smart-form">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <a href="javascript:void(0);" class="btn btn-success">Detail</a>
+                                            <a href="{{ url('product/123') }}" class="btn btn-success">Detail</a>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <div class="rating">
-                                                <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                                                <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                                                <label for="stars-rating-3"><i class="fa fa-star text-primary"></i></label>
-                                                <label for="stars-rating-2"><i class="fa fa-star text-primary"></i></label>
-                                                <label for="stars-rating-1"><i class="fa fa-star text-primary"></i></label>
+                                            <div class="rating stars">
+                                                <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                                                <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                                                <label for="stars-rating-3"><i class="fa fa-star "></i></label>
+                                                <label for="stars-rating-4"> <i class="fa fa-star-o"></i></label>
+                                                <label for="stars-rating-5"> <i class="fa fa-star-o"></i></label>
                                             </div>
                                         </div>
                                     </div>
@@ -106,7 +106,7 @@
                                 <div class="product-info smart-form">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <a href="javascript:void(0);" class="btn btn-success">Detail</a>
+                                            <a href="{{ url('product/123') }}" class="btn btn-success">Detail</a>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="rating stars">
@@ -155,18 +155,15 @@
                                 <div class="product-info smart-form">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <a href="javascript:void(0);" class="btn btn-success">Detail</a>
+                                            <a href="{{ url('product/123') }}" class="btn btn-success">Detail</a>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <div class="rating">
-                                                <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                                                <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                                                <label for="stars-rating-3"><i
-                                                        class="fa fa-star text-primary"></i></label>
-                                                <label for="stars-rating-2"><i
-                                                        class="fa fa-star text-primary"></i></label>
-                                                <label for="stars-rating-1"><i
-                                                        class="fa fa-star text-primary"></i></label>
+                                            <div class="rating stars">
+                                                <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                                                <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                                                <label for="stars-rating-3"><i class="fa fa-star "></i></label>
+                                                <label for="stars-rating-4"> <i class="fa fa-star-o"></i></label>
+                                                <label for="stars-rating-5"> <i class="fa fa-star-o"></i></label>
                                             </div>
                                         </div>
                                     </div>
@@ -207,18 +204,15 @@
                                 <div class="product-info smart-form">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <a href="javascript:void(0);" class="btn btn-success">Detail</a>
+                                            <a href="{{ url('product/123') }}" class="btn btn-success">Detail</a>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <div class="rating">
-                                                <label for="stars-rating-5"><i class="fa fa-star"></i></label>
-                                                <label for="stars-rating-4"><i class="fa fa-star"></i></label>
-                                                <label for="stars-rating-3"><i
-                                                        class="fa fa-star text-primary"></i></label>
-                                                <label for="stars-rating-2"><i
-                                                        class="fa fa-star text-primary"></i></label>
-                                                <label for="stars-rating-1"><i
-                                                        class="fa fa-star text-primary"></i></label>
+                                            <div class="rating stars">
+                                                <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                                                <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                                                <label for="stars-rating-3"><i class="fa fa-star "></i></label>
+                                                <label for="stars-rating-4"> <i class="fa fa-star-o"></i></label>
+                                                <label for="stars-rating-5"> <i class="fa fa-star-o"></i></label>
                                             </div>
                                         </div>
                                     </div>
