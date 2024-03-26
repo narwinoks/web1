@@ -20,6 +20,10 @@ use Illuminate\Support\Str;
 class AdminController extends Controller
 {
     use Valet;
+    public function __construct()
+    {
+        $this->middleware('isAdmin');
+    }
     public function home(Request $request)
     {
         return view('features.admin.dashboard');

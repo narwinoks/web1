@@ -60,6 +60,7 @@
                 <div class="card">
                     <div class="tab-content p-4">
                         <div class="tab-pane active show" id="team-tab" role="tabpanel">
+                            <a href="{{ url('form-review') }}" class="btn btn-black">Add Review</a>
                         </div>
                     </div>
                 </div>

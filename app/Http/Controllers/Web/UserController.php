@@ -113,7 +113,7 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
     public function data(Request $request)
     {
