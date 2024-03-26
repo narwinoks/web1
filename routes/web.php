@@ -21,6 +21,7 @@ Route::get('/clear', function () {
     Artisan::call('optimize');
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
+    Artisan::call('route:clear');
     return 'Cache cleared and application optimized successfully!';
 });
 
@@ -39,9 +40,9 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/gallery/{slug}', 'gallery')->name('gallery');
     Route::get('/form', 'form')->name('form');
     Route::get('/login', 'login')->name('login');
-    Route::get('/register', 'register')->name('login');
-    Route::get('/products', 'products')->name('login');
-    Route::get('/product/{slug}', 'product')->name('login');
+    Route::get('/register', 'register')->name('register');
+    Route::get('/products', 'products')->name('products');
+    Route::get('/product/{slug}', 'product')->name('product');
     Route::get('/cart', 'cart')->name('cart');
     Route::get('/form-review', 'formReview')->name('formReview');
     Route::get('/content', 'getContent')->name('content');
