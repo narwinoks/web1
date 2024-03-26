@@ -46,7 +46,7 @@
                             <span>Phone (WA): +62 8565-9004-317</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span>Instagram: hierosphoto</span>
+                            <span>Instagram: shutterbox.photography</span>
                         </p>
                         <p class="paragraph-about-us">
                             <span>YouTube: Shutterbox Photograph</span>

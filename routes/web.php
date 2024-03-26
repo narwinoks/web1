@@ -17,25 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('home');
-Route::get('/blog', [MainController::class, 'blog']);
-Route::get('/studio', [MainController::class, 'studio']);
-Route::get('/wedding', [MainController::class, 'wedding']);
-Route::get('/prewedding', [MainController::class, 'prewedding']);
-Route::get('/engagement', [MainController::class, 'engagement']);
-Route::get('/pengajian', [MainController::class, 'pengajian']);
-Route::get('/kin', [MainController::class, 'kin']);
-Route::get('/pl', [MainController::class, 'pl']);
-Route::get('/review', [MainController::class, 'review']);
-Route::get('/faq', [MainController::class, 'faq']);
-Route::get('/about-us', [MainController::class, 'aboutUs']);
-Route::get('/gallery/{slug}', [MainController::class, 'gallery'])->name('gallery');
-Route::get('/form', [MainController::class, 'form'])->name('form');
-Route::get('/login', [MainController::class, 'login'])->name('login');
-Route::get('/register', [MainController::class, 'register']);
-Route::get('/products', [MainController::class, 'products']);
-Route::get('/product/{slug}', [MainController::class, 'product']);
-Route::get('/cart', [MainController::class, 'cart']);
 Route::get('/clear', function () {
     Artisan::call('optimize');
     Artisan::call('cache:clear');
@@ -44,9 +25,30 @@ Route::get('/clear', function () {
 });
 
 Route::controller(MainController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/blog', 'blog')->name('blog');
+    Route::get('/wedding', 'wedding')->name('wedding');
+    Route::get('/prewedding', 'prewedding')->name('prewedding');
+    Route::get('/engagement', 'engagement')->name('engagement');
+    Route::get('/pengajian', 'pengajian')->name('pengajian');
+    Route::get('/kin', 'kin')->name('kin');
+    Route::get('/pl', 'pl')->name('pl');
+    Route::get('/review', 'review')->name('review');
+    Route::get('/faq', 'faq')->name('faq');
+    Route::get('/about-us', 'aboutUs')->name('aboutUs');
+    Route::get('/gallery/{slug}', 'gallery')->name('gallery');
+    Route::get('/form', 'form')->name('form');
+    Route::get('/login', 'login')->name('login');
+    Route::get('/register', 'register')->name('login');
+    Route::get('/products', 'products')->name('login');
+    Route::get('/product/{slug}', 'product')->name('login');
+    Route::get('/cart', 'cart')->name('cart');
+    Route::get('/form-review', 'formReview')->name('formReview');
     Route::get('/content', 'getContent')->name('content');
+
     Route::post('/reservation', 'reservation')->name('reservation');
     Route::post('/save', 'save')->name('save');
+    Route::post('/save-form', 'saveForm')->name('saveForm');
 });
 Route::controller(UserController::class)->name('account.')->middleware('auth')->prefix('account')->group(function () {
     Route::get('/', 'account')->name('index');
@@ -72,6 +74,7 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/pricelist', 'pricelist')->name('pricelist');
     Route::get('/review', 'review')->name('review');
     Route::get('/banner', 'banner')->name('banner');
+    Route::get('/products', 'products')->name('products');
     Route::get('/show-modal', 'showModal')->name('showModal');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');

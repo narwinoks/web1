@@ -758,7 +758,8 @@ class AdminController extends Controller
             ->get();
         return view('features.admin.data.banner', compact('contents'));
     }
-    public function profile(Request $request){
-        
+    public function products(Request $request)
+    {
+        return view('features.admin.products');
     }
 }

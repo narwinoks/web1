@@ -8,7 +8,7 @@
                     <h3 class="h3 fst-italic">PRODUCTS</h3>
                     <p class="h7">
                         <span>Dapatkan akses eksklusif ke <span class="fw-bold">pengetahuan dan pengalaman 9 tahun</span>
-                            Hieros
+                            shutterbox.photography
                             di industri Fotografi
                             Pernikahan. </span><br />
                     </p>

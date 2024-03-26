@@ -380,6 +380,15 @@ class MainController extends Controller
     }
     public function saveForm(Request $request)
     {
+        $variable = $request->key;
+        switch ($variable) {
+            case 'review':
+                return $this->saveReviewUser($request);
+                break;
+            default:
+                return response()->json(['message' => 'not found'], 404);
+                break;
+        }
     }
     public function getQA(Request $request)
     {
@@ -417,5 +426,51 @@ class MainController extends Controller
     public function cart(Request $request)
     {
         return view('features.public.cart');
+    }
+    public function formReview(Request $request)
+    {
+        return view('features.public.form-review');
+    }
+    public function saveReviewUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'review' => 'required',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+            'review.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $save = $request->only('name', 'review', 'rating');
+        $save['image'] = auth()->user()->profile;
+        $data['content'] = json_encode($save, true);
+        $category = $this->getFix('review');
+        $data['name'] = $request->name . "-" . "review";
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
     }
 }

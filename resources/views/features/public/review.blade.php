@@ -19,6 +19,9 @@
                 <div class="text-center justify-content-center mt-4">
                     <button class="btn-show" id="show-more">Perlihatan Lagi</button>
                 </div>
+                <div class="text-center justify-content-center mt-4">
+                    <a href="{{ url('form-review') }}" class="btn btn-black" id="show-more">Add Book Review</a>
+                </div>
             </div>
         </div>
     </section>

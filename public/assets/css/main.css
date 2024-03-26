@@ -1561,3 +1561,34 @@ label {
 .stars label {
     color: #ffd700 !important;
 }
+
+/* form review */
+.form {
+    background: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid hsl(0 0% calc(93% - 3%));
+    transition: all 0.3s;
+}
+
+.rating-review {
+    display: inline-block;
+    direction: rtl;
+}
+
+.rating-review input {
+    display: none;
+}
+
+.rating-review label {
+    cursor: pointer;
+    color: #ccc;
+}
+
+.rating-review label i {
+    font-size: 24px;
+}
+
+.rating-review input:checked ~ label {
+    color: #f8d71e;
+}
