@@ -28,6 +28,7 @@ Route::get('/clear', function () {
 Route::controller(MainController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/blog', 'blog')->name('blog');
+    Route::get('/studio', 'studio')->name('studio');
     Route::get('/wedding', 'wedding')->name('wedding');
     Route::get('/prewedding', 'prewedding')->name('prewedding');
     Route::get('/engagement', 'engagement')->name('engagement');
