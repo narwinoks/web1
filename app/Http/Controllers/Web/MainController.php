@@ -195,6 +195,9 @@ class MainController extends Controller
             case trim('gallery'):
                 return $this->getGallery($request);
                 break;
+            case trim('studio'):
+                return $this->studioData($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -236,7 +239,9 @@ class MainController extends Controller
     }
     public function getCategoryBlog(Request $request)
     {
-        $categories = Content::where('category', 'category-image')->where('statusenable', true)->get();
+        $categories = Content::where('category', 'category-image')
+            ->whereNotNull('image')
+            ->where('statusenable', true)->get();
         if ($request->home) {
             return view('features.public.data.tommorrow', compact('categories'));
         } else {
@@ -287,7 +292,6 @@ class MainController extends Controller
         $category = $request->category;
         $contents = Content::where('statusenable', true)
             ->when($category, function ($query) use ($category) {
-                $s = '"category": "' . $category . '"';
                 return $query->where('content', 'like', '%' . $category . '%');
             })
             ->where('category', 'pricelist')
@@ -472,5 +476,24 @@ class MainController extends Controller
             ];
         }
         return $this->respond($result, $result['code']);
+    }
+    public function studioData(Request $request)
+    {
+        $category = 'Studio';
+        $limit = 20;
+        $order = $request->order;
+        $images = Image::where('statusenable', true)
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
+            ->when($order, function ($query) use ($order) {
+                return $query->orderBy('created_at', $order);
+            })
+            ->inRandomOrder()
+            ->get();
+        return view('features.public.data.studio', compact('images'));
     }
 }

@@ -3,13 +3,14 @@
         $data = json_decode($content->content, true);
     @endphp
     <div class="col-md-6 col-12 col-lg-4">
-        <div class="pricing-item is-rounded">
-            <h3 class="pricing-kit">{{ $data['subtitle'] ?? '' }}</h3>
-            <p class="pricing">{{ $data['title'] ?? '' }}</p>
-            <ul class="offers">
-                {!! $data['content'] ?? '' !!}
-            </ul>
-            <button class="order-btn">order now</button>
+        <div class="pricingTable pink">
+            <h3 class="title">{{ $data['title'] ?? '' }}</h3>
+            <div class="price-value">
+                <span class="currency">Rp</span>
+                <span class="amount">{{ $data['subtitle'] ?? '' }}</span>
+            </div>
+            {!! $data['content'] ?? '' !!}
+            <a href="#" class="pricingTable-signup">Order Now</a>
         </div>
     </div>
 @endforeach

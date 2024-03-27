@@ -205,13 +205,25 @@
                 remove_script_host: false,
                 document_base_url: "#",
                 templates: [{
-                    title: 'PENDIDIKAN',
-                    description: 'TEMPLATE PENDIDIDKAN',
-                    content: '<ul class="offers"><li>1 Photographer</li><li>1.5 Workhour & include Hieros` studio facility</li> <li>15 Edited photo</li><li>Print 1pc 16Rp w/ minimalist frame</li><li>Max 1 outfit</li><li>All edited & JPG files via Google Drive</li></ul>'
-            }],
-            init_instance_callback: function(editor) {
-                editor.setContent(
-                    '<ul class="offers"><li>1 Photographer</li><li>1.5 Workhour & include Hieros` studio facility</li> <li>15 Edited photo</li><li>Print 1pc 16Rp w/ minimalist frame</li><li>Max 1 outfit</li><li>All edited & JPG files via Google Drive</li></ul>'
+                    title: 'PRICELIST',
+                    description: 'TEMPLATE',
+                    content: '<ul class="pricing-content">' +
+                        '<li><b>1</b> Photographer</li>' +
+                        '<li><b>15</b> Workhour & include Hieros</li>' +
+                        '<li>Print 1pc 16Rp w/ minimalist frame</li>' +
+                        '<li><b>1</b>Autofit</li>' +
+                        '<li>All edited & JPG files via Google Drive</li>' +
+                        '</ul>'
+                }],
+                init_instance_callback: function(editor) {
+                    editor.setContent(
+                        '<ul class="pricing-content">' +
+                        '<li><b>1</b> Photographer</li>' +
+                        '<li><b>15</b> Workhour & include Hieros</li>' +
+                        '<li>Print 1pc 16Rp w/ minimalist frame</li>' +
+                        '<li><b>1</b>Autofit </li>' +
+                        '<li>All edited & JPG files via Google Drive</li>' +
+                        '</ul>'
                     );
                 }
             });

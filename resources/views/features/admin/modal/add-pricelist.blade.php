@@ -20,14 +20,14 @@
         </div>
         <div class="mb-1">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control input-custom" placeholder="GIFT VOUCHER WORTH 500K"
+            <input type="text" class="form-control input-custom" placeholder="GIFT VOUCHER WORTH"
                 aria-label="title" aria-describedby="basic-addon1" id="title" name="title">
             <span class="error-title text-danger d-none"></span>
         </div>
         <div class="mb-1">
-            <label for="subtitle" class="form-label">Subtitle</label>
-            <input type="text" class="form-control input-custom" placeholder="FREE MAKE UP ARTIST"
-                aria-label="subtitle" aria-describedby="basic-addon1" id="subtitle" name="subtitle">
+            <label for="subtitle" class="form-label">Price</label>
+            <input type="text" class="form-control input-custom" placeholder="250k" aria-label="subtitle"
+                aria-describedby="basic-addon1" id="subtitle" name="subtitle">
             <span class="error-subtitle text-danger d-none"></span>
         </div>
         <div class="mb-1">

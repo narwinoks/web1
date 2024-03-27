@@ -758,7 +758,9 @@ class AdminController extends Controller
             ->when($offset, function ($query) use ($offset) {
                 return $query->offset($offset);
             })
-            ->where('category', $category)
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', 'like', '%' . $category . '%');
+            })
             ->get();
         return view('features.admin.data.banner', compact('contents'));
     }

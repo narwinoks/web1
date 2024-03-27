@@ -32,9 +32,8 @@
         </div>
         <div class="mb-1">
             <label for="subtitle" class="form-label">Subtitle</label>
-            <input type="text" class="form-control input-custom" placeholder="FREE MAKE UP ARTIST"
-                aria-label="subtitle" aria-describedby="basic-addon1" id="subtitle" name="subtitle"
-                value="{{ $price['subtitle'] }}">
+            <input type="text" class="form-control input-custom" placeholder="250k" aria-label="subtitle"
+                aria-describedby="basic-addon1" id="subtitle" name="subtitle" value="{{ $price['subtitle'] }}">
             <span class="error-subtitle text-danger d-none"></span>
         </div>
         <div class="mb-1">
