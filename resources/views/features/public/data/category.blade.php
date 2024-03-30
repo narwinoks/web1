@@ -1,7 +1,7 @@
 @foreach ($categories as $key => $category)
     @php
         $data = json_decode($category->content, true);
-        $url = $data['url'] ?? '/';
+        $url = $data['link'] ?? '/';
     @endphp
     <div class="row text-center justify-content-center align-items-center">
         <div class="col-md-4">
