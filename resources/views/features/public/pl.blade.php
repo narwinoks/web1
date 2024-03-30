@@ -154,7 +154,7 @@
                                 <div class="mb-1">
                                     <label for="estimed" class="form-label">Estimated date & venue for your event
                                     </label>
-                                    <textarea  id="estimed" class="form-control is-rounded" rows="2"
+                                    <textarea id="estimed" class="form-control is-rounded" rows="2"
                                         placeholder="Ex: 31 Nov 2024 at Sampoerna Strategic, Jakarta." name="estimed"></textarea>
                                     <span class="error-estimed text-danger d-none"></span>
                                 </div>
@@ -164,6 +164,18 @@
                                     <input type="text" class="form-control-sm is-rounded form-control" id="why"
                                         placeholder="..." name="why">
                                     <span class="error-why text-danger d-none"></span>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control-sm is-rounded form-control" id="email"
+                                        placeholder="Dimas Setiawan" name="email">
+                                    <span class="error-email text-danger d-none"></span>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="number" class="form-label">Whatsapp / Phone Number</label>
+                                    <input type="email" class="form-control-sm is-rounded form-control" id="email"
+                                        placeholder="Whatsapp / Phone Number" name="number">
+                                    <span class="error-number text-danger d-none"></span>
                                 </div>
                                 <div class="mb-1 mt-4">
                                     <div class="row px-3">

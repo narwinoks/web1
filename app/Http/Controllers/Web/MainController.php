@@ -340,6 +340,8 @@ class MainController extends Controller
             'brand' => 'required',
             'estimed' => 'required',
             'why' => 'required',
+            'email' => 'required',
+            'number' => 'required',
         ], [
             'name.required' => 'Bagian ini harus diisi !',
             'package.required' => 'Bagian ini harus diisi !',
@@ -348,6 +350,8 @@ class MainController extends Controller
             'brand.required' => 'Bagian ini harus diisi !',
             'estimed.required' => 'Bagian ini harus diisi !',
             'why.required' => 'Bagian ini harus diisi !',
+            'enail.required' => 'Bagian ini harus diisi !',
+            'phone.required' => 'Bagian ini harus diisi !',
         ]);
         if ($validator->fails()) {
             $error = [
@@ -358,6 +362,7 @@ class MainController extends Controller
         $data = $request->all();
         $data['name'] = $request->name;
         $data['content'] = json_encode($request->all());
+        $data['category'] = 'request-pl';
         DB::beginTransaction();
         try {
             $db = Content::create($data);
