@@ -3,7 +3,8 @@
 @section('content')
     <section class="hero-wedding">
         <div class="content">
-            <img src="{{ asset('assets/img/wedding.webp') }}" class="img-fluid" alt="thumnail-weedding">
+            <img src="{{ asset('assets/img/' . \App\Helpers\Helper::getBanner('Banner Wedding')) }}" class="img-fluid"
+                alt="thumnail-weedding">
         </div>
     </section>
     <section class="blog">

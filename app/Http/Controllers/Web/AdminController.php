@@ -705,8 +705,10 @@ class AdminController extends Controller
         }
         $save = $request->only('title', 'subtitle', 'category');
         if ($request->file('file')) {
-            $save['file'] = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . "banner");
+            $img = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . "banner");
             $this->deleteImg($request->image_old);
+            $data['image'] = $img;
+            $save['file'] = $img;
         }
         $data['content'] = json_encode($save, true);
         $data['name'] = $request->category;

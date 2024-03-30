@@ -30,6 +30,10 @@ Breadcrumbs::for('admin.banner', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Banner', route('admin.banner'));
 });
+Breadcrumbs::for('admin.products', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Product', route('admin.products'));
+});
 Breadcrumbs::for('account.profile', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Profile', route('account.profile'));

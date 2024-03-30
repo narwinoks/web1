@@ -3,7 +3,8 @@
 @section('content')
     <section class="hero-wedding">
         <div class="content">
-            <img src="{{ asset('assets/img/engagement-1.png') }}" class="img-fluid" alt="thumnail-engagement">
+            <img src="{{ asset('assets/img/' . \App\Helpers\Helper::getBanner('Banner Engagement')) }}" class="img-fluid"
+                alt="thumnail-engagement">
         </div>
     </section>
     <section class="blog">
