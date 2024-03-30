@@ -38,3 +38,7 @@ Breadcrumbs::for('account.profile', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Profile', route('account.profile'));
 });
+Breadcrumbs::for('admin.plRequest', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Pl Request', route('admin.plRequest'));
+});

@@ -78,9 +78,9 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/banner', 'banner')->name('banner');
     Route::get('/products', 'products')->name('products');
     Route::get('/show-modal', 'showModal')->name('showModal');
+    Route::get('/pl-request', 'plRequest')->name('plRequest');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');
     Route::post('/save-content', 'saveContent')->name('saveContent');
-
     Route::delete('/delete-content', 'deleteContent')->name('deleteContent');
 });

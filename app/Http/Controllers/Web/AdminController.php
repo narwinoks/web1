@@ -61,6 +61,9 @@ class AdminController extends Controller
             case $this->getFix('banner'):
                 return $this->bannerData($request);
                 break;
+            case 'request-pl':
+                return $this->getPLRequest($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -769,5 +772,32 @@ class AdminController extends Controller
     public function products(Request $request)
     {
         return view('features.admin.products');
+    }
+    public function plRequest(Request $request)
+    {
+        return view('features.admin.pl-request');
+    }
+    public function getPLRequest(Request $request)
+    {
+        $limit = $request->limit;
+        $offset = $request->offset;
+        $startDate = $request->startDate . " " . "00:00:00";
+        $endDate = $request->endDate . " " . "23:59:59";
+        $category = 'request-pl';
+        $contents = Content::where('category', $category)
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->when($startDate, function ($query) use ($startDate) {
+                return $query->where('created_at', '>=', $startDate);
+            })
+            ->when($endDate, function ($query) use ($endDate) {
+                return $query->where('created_at', '<=', $endDate);
+            })
+            ->get();
+        return view('features.admin.data.pl-request', compact('contents'));
     }
 }

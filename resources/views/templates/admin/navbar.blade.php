@@ -38,6 +38,11 @@
                                 class="fa fa-film"></i></span><span class="pcoded-mtext">Banner</span></a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.plRequest') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fa fa-paper-plane"></i></span><span class="pcoded-mtext">Request
+                            PL</span></a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.qa') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="fa fa-question-circle"></i></span><span class="pcoded-mtext">QA</span></a>
                 </li>
