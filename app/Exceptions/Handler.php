@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Error;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -54,6 +55,11 @@ class Handler extends ExceptionHandler
     {
         if ($this->isHttpException($exception) && $exception->getCode() == 404) {
             return response()->view('errors.404', [], Response::HTTP_NOT_FOUND);
+        }
+
+        if ($exception instanceof Error && !config('app.debug')) {
+            $message = explode('\\', $exception->getMessage());
+            return response()->view('errors.500', ['message' => $message], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         return parent::render($request, $exception);
