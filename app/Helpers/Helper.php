@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Content;
 use App\Models\Image;
+use App\Models\Profile;
 use App\Models\User;
 
 class Helper
@@ -15,6 +16,12 @@ class Helper
     public static function getProfile($key): string
     {
         $profile = request()->session()->has('profile') ? json_decode(request()->session()->get('profile'), true) : null;
+        $result = isset($profile[$key]) ?  $profile[$key]  : "";
+        return  $result;
+    }
+    public static function profile($key): string
+    {
+        $profile = Profile::first()->toArray();
         $result = isset($profile[$key]) ?  $profile[$key]  : "";
         return  $result;
     }
