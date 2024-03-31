@@ -79,6 +79,7 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/products', 'products')->name('products');
     Route::get('/show-modal', 'showModal')->name('showModal');
     Route::get('/pl-request', 'plRequest')->name('plRequest');
+    Route::get('/bank', 'bank')->name('bank');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');
     Route::post('/save-content', 'saveContent')->name('saveContent');

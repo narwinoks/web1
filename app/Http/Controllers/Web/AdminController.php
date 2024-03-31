@@ -64,6 +64,9 @@ class AdminController extends Controller
             case 'request-pl':
                 return $this->getPLRequest($request);
                 break;
+            case 'bank':
+                return $this->getBank($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -158,6 +161,9 @@ class AdminController extends Controller
                 break;
             case 'banner':
                 return $this->saveBanner($request);
+                break;
+            case 'bank':
+                return $this->saveBank($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -278,6 +284,9 @@ class AdminController extends Controller
                 break;
             case 'banner':
                 return $this->modalBanner($request);
+                break;
+            case 'bank':
+                return $this->modalBank($request);
                 break;
             default:
                 break;
@@ -799,5 +808,68 @@ class AdminController extends Controller
             })
             ->get();
         return view('features.admin.data.pl-request', compact('contents'));
+    }
+    public function bank(Request $request)
+    {
+        return view('features.admin.bank');
+    }
+    public function modalBank(Request $request)
+    {
+        $banks = json_decode($this->getFix('bank-category'), true);
+        if ($request->id) {
+            $data = Content::where('category', $this->getFix('bank'))->where('id', $request->id)->first();
+            return view('features.admin.modal.edit-bank', compact('banks', 'data'));
+        } else {
+            return view('features.admin.modal.add-bank', compact('banks'));
+        }
+    }
+    public function saveBank(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'norekening' => 'required',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+            'norekening.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $data['content'] = json_encode($request->all(), true);
+        $category = $this->getFix('bank');
+        $data['name'] = $category;
+        $data['category'] = $category;
+        try {
+            $res = Content::updateOrCreate(['id' => $request->id], $data);
+            $result = [
+                'message' => 'Success !',
+                'data' => $res,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+
+    public function getBank(Request $request)
+    {
+        $category = $this->getFix('bank');
+        $contents = Content::where('category', $category)
+            ->where('statusenable', true)
+            ->get();
+        return view('features.admin.data.bank', compact('contents'));
     }
 }

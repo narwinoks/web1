@@ -42,3 +42,7 @@ Breadcrumbs::for('admin.plRequest', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Pl Request', route('admin.plRequest'));
 });
+Breadcrumbs::for('admin.bank', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Bank', route('admin.bank'));
+});

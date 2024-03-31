@@ -90,6 +90,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card payment-card my-2">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/img/BANK/BSI.png') }}" class="img-fluid rounded-start"
+                                    alt="Bank Logo">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">BCA</h5>
+                                    <p class="card-text">4370963440</p>
+                                    <p class="card-text">(Yusuf Maulana Bahari)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

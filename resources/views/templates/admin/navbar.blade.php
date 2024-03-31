@@ -46,6 +46,10 @@
                     <a href="{{ route('admin.qa') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="fa fa-question-circle"></i></span><span class="pcoded-mtext">QA</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.bank') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fa fa-home"></i></span><span class="pcoded-mtext">BANK</span></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -85,8 +89,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
-                                <img src="{{ asset('assets/templates/images/user/avatar-1.jpg') }}" class="img-radius"
-                                    alt="User-Profile-Image">
+                                <img src="{{ asset('assets/templates/images/user/avatar-1.jpg') }}"
+                                    class="img-radius" alt="User-Profile-Image">
                                 <span>{{ auth()->user()->name }}</span>
                                 <a href="#" class="dud-logout logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
