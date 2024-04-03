@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Image;
+use App\Models\Product;
 use App\Models\User;
 use App\Responses\ServerResponse;
 use App\Traits\Valet;
@@ -66,6 +67,9 @@ class AdminController extends Controller
                 break;
             case 'bank':
                 return $this->getBank($request);
+                break;
+            case 'img-gallery':
+                return $this->getProductGallery($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -164,6 +168,9 @@ class AdminController extends Controller
                 break;
             case 'bank':
                 return $this->saveBank($request);
+                break;
+            case 'product':
+                return $this->saveProduct($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -780,7 +787,12 @@ class AdminController extends Controller
     }
     public function products(Request $request)
     {
-        return view('features.admin.products');
+        $products = Product::where('statusenable', true)->get();
+        return view('features.admin.products', compact('products'));
+    }
+    public function productAdd(Request $request)
+    {
+        return view('features.admin.product-add');
     }
     public function plRequest(Request $request)
     {
@@ -871,5 +883,104 @@ class AdminController extends Controller
             ->where('statusenable', true)
             ->get();
         return view('features.admin.data.bank', compact('contents'));
+    }
+    public function saveProduct(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'price' => 'required',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+            'price.required' => 'Bagian ini harus diisi !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        DB::beginTransaction();
+        try {
+            $data = $request->only('name', 'price', 'promo', 'stock', 'description', 'tag');
+            $data['slug'] = Str::slug($request->name, '-');
+            if ($request->file('image')) {
+                $data['image'] = $this->uploadImage($request->image, Str::slug($request->name, "-") . "-" . "thubnail");
+                $this->deleteImg($request->image_old);
+            }
+            $product = Product::updateOrCreate(['id' => $request->id], $data);
+            $images = $request->images;
+            if ($images) {
+                foreach ($images as $key => $image) {
+                    $img = $this->uploadImage($image, Str::slug($request->name, "-") . "-" . $key);
+                    Image::create([
+                        'product_id' => $product->id,
+                        'url' => $img,
+                        'type' => 'Image'
+                    ]);
+                }
+            }
+            DB::commit();
+            $result = [
+                'message' => 'Success !',
+                'data' => $product,
+                'code' => 200,
+                'errors' => []
+            ];
+        } catch (Exception $e) {
+            DB::rollBack();
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        return $this->respond($result, $result['code']);
+    }
+    public function getProductGallery(Request $request)
+    {
+        $productID = $request->id;
+        $images = Image::where('statusenable', true)
+            ->when($productID, function ($query) use ($productID) {
+                return $query->where('product_id', $productID);
+            })->where('category', null)->get();
+        return view('features.admin.data.pr', compact('images'));
+    }
+    public function deleteProduct(Request $request)
+    {
+        Product::where('id', $request->id)->update(['statusenable' => false]);
+        return response()->json(['message' => 'successfully']);
+    }
+    public function productEdit(Request $request, $id)
+    {
+        $productID = $request->id;
+        $product = Product::where('statusenable', true)
+            ->where('id', $id)->first();
+        return view('features.admin.product-edit', compact('product'));
+    }
+    public function data(Request $request)
+    {
+        $key  = $request->key;
+        switch ($key) {
+            case 'products':
+                return $this->dataProducts($request);
+                break;
+            default:
+                return response()->json(['message' => 'resource non found'], 404);
+                break;
+        }
+    }
+    public function dataProducts(Request $request)
+    {
+        $search = $request->search;
+        $products = Product::where('statusenable', true)
+            ->when($search, function ($query) use ($search) {
+                return $query->where('nama_produk', 'like', '%' . $search . '%');
+            })
+            ->get();
+        return view('features.admin.data.product', compact('products'));
     }
 }

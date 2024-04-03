@@ -26,29 +26,24 @@
                                 class="feather icon-calendar"></i></span><span class="pcoded-mtext">Booking</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.pricelist') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="feather icon-rewind"></i></span><span class="pcoded-mtext">Pricelist</span></a>
-                </li>
-                <li class="nav-item">
                     <a href="{{ route('admin.review') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="fas fa-star"></i></span><span class="pcoded-mtext">Review</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.banner') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="fa fa-film"></i></span><span class="pcoded-mtext">Banner</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.plRequest') }}" class="nav-link "><span class="pcoded-micon"><i
                                 class="fa fa-paper-plane"></i></span><span class="pcoded-mtext">Request
                             PL</span></a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.qa') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="fa fa-question-circle"></i></span><span class="pcoded-mtext">QA</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.bank') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="fa fa-home"></i></span><span class="pcoded-mtext">BANK</span></a>
+                <li class="nav-item pcoded-hasmenu">
+                    <a href="#!" class="nav-link "><span class="pcoded-micon"><i
+                                class="feather icon-box"></i></span><span class="pcoded-mtext">MASTER</span></a>
+                    <ul class="pcoded-submenu">
+                        <li><a href="{{ route('admin.bank') }}">Bank Akun</a></li>
+                        <li><a href="{{ route('admin.qa') }}">QA</a></li>
+                        <li><a href="{{ route('admin.banner') }}">Banner</a></li>
+                        <li><a href="{{ route('admin.pricelist') }}">Pricelist</a></li>
+                        <li><a href="{{ route('admin.products') }}">Product</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -89,8 +84,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
-                                <img src="{{ asset('assets/templates/images/user/avatar-1.jpg') }}"
-                                    class="img-radius" alt="User-Profile-Image">
+                                <img src="{{ asset('assets/templates/images/user/avatar-1.jpg') }}" class="img-radius"
+                                    alt="User-Profile-Image">
                                 <span>{{ auth()->user()->name }}</span>
                                 <a href="#" class="dud-logout logout" title="Logout">
                                     <i class="feather icon-log-out"></i>

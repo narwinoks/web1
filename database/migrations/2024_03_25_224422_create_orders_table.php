@@ -15,6 +15,20 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('email')->nullable();
+            $table->string('name')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('city')->nullable();
+            $table->string('file')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('name_rek')->nullable();
+            $table->string('price')->nullable();
+            $table->string('number_order')->nullable();
+            $table->string('date')->nullable();
+            $table->string('transfer_to')->nullable();
+            $table->longText('note')->nullable();
+            $table->foreignId('product_id')->nullable();
+            $table->boolean('statusenable')->nullable()->default(true);
             $table->timestamps();
         });
     }

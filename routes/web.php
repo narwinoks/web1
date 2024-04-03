@@ -77,11 +77,15 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/review', 'review')->name('review');
     Route::get('/banner', 'banner')->name('banner');
     Route::get('/products', 'products')->name('products');
+    Route::get('/products/add', 'productAdd')->name('productAdd');
+    Route::get('/products/edit/{id}', 'productEdit')->name('productEdit');
     Route::get('/show-modal', 'showModal')->name('showModal');
     Route::get('/pl-request', 'plRequest')->name('plRequest');
     Route::get('/bank', 'bank')->name('bank');
+    Route::get('/data', 'data')->name('data');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');
     Route::post('/save-content', 'saveContent')->name('saveContent');
     Route::delete('/delete-content', 'deleteContent')->name('deleteContent');
+    Route::delete('/product', 'deleteProduct')->name('deleteProduct');
 });

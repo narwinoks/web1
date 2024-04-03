@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id');
             $table->string('name')->nullable();
             $table->foreignUuid('parent_id')->nullable();
+            $table->foreignId('product_id')->nullable();
             $table->string('slug')->nullable();
             $table->string('url');
             $table->string('type');

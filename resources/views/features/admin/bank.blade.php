@@ -200,7 +200,6 @@
                     success: function(data) {
                         $("#modal-content").html(data);
                         $("#modal-bank").modal("show");
-                        loadTimy();
                     },
                 });
             });

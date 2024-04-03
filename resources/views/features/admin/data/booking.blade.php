@@ -17,7 +17,7 @@
                     <span class="bg-light-blue">{{ date('d-m-Y H:i:s', strtotime($booking->created_at)) ?? '' }}</span>
                 </div>
                 <div class="mb-3">
-                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Booking Date:</span>
+                    <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Event Date:</span>
                     <span class="bg-light-danger">{{ date('d-m-Y H:i:s', strtotime($data['date'])) ?? '' }}</span>
                 </div>
                 <div class="mb-3">
