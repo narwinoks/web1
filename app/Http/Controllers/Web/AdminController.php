@@ -978,7 +978,7 @@ class AdminController extends Controller
         $search = $request->search;
         $products = Product::where('statusenable', true)
             ->when($search, function ($query) use ($search) {
-                return $query->where('nama_produk', 'like', '%' . $search . '%');
+                return $query->where('name', 'like', '%' . $search . '%');
             })
             ->get();
         return view('features.admin.data.product', compact('products'));
