@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Image;
+use App\Models\Product;
 use App\Responses\ServerResponse;
 use App\Traits\Valet;
 use Exception;
@@ -197,6 +198,9 @@ class MainController extends Controller
                 break;
             case trim('studio'):
                 return $this->studioData($request);
+                break;
+            case trim('products'):
+                return $this->getProducts($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -428,9 +432,16 @@ class MainController extends Controller
     {
         return view('features.public.product');
     }
-    public function product(Request $request)
+    public function product(Request $request, $slug)
     {
-        return view('features.public.products-detail');
+        $product = Product::where('statusenable', true)
+            ->with('images')
+            ->where('slug', $slug)
+            ->first();
+        if (!$product) {
+            return view('errors.404');
+        }
+        return view('features.public.products-detail', compact('product'));
     }
     public function cart(Request $request)
     {
@@ -500,5 +511,11 @@ class MainController extends Controller
             ->inRandomOrder()
             ->get();
         return view('features.public.data.studio', compact('images'));
+    }
+    public function getProducts(Request $request)
+    {
+        $products = Product::where('statusenable', true)
+            ->get();
+        return view('features.public.data.product', compact('products'));
     }
 }

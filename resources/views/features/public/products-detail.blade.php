@@ -2,6 +2,9 @@
 @section('title', 'product Detail 1')
 @section('content')
     <div class="container bootdey">
+        @php
+            $tags = explode(',', $product->tag);
+        @endphp
         <div class="row">
             <div class="col-md-12">
                 <section class="panel">
@@ -10,50 +13,46 @@
 
                             <div class="col-md-6">
                                 <div class="pro-img-details">
-                                    <img src="https://www.bootdey.com/image/550x380/FFB6C1/000000" alt="img-1"
+                                    <img src="{{ asset('assets/img/' . $product->image) }}" alt="{{ $product->name }}"
                                         class="img-fluid is-rounded">
                                 </div>
                                 <div class="pro-img-list">
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/115x100/87CEFA/000000" alt="img-1"
-                                            class="img-fluid is-rounded">
-                                    </a>
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/115x100/FF7F50/000000" alt="img-1"
-                                            class="img-fluid is-rounded">
-                                    </a>
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/115x100/20B2AA/000000" alt="img-1"
-                                            class="img-fluid is-rounded">
-                                    </a>
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/120x100/20B2AA/000000" alt="img-1"
-                                            class="img-fluid is-rounded">
-                                    </a>
+                                    <div class="row">
+                                        @foreach ($product->images as $key => $img)
+                                            <div class="col-md-6 col-12 col-lg-3">
+                                                <a href="#">
+                                                    <img src="{{ asset('assets/img/' . $img->url) }}" alt="image"
+                                                        class="img-fluid is-rounded">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <h4 class="pro-d-title">
                                     <a href="#" class="">
-                                        Leopard Shirt Dress
+                                        {{ $product->name }}
                                     </a>
                                 </h4>
-                                <p>
-                                    Praesent ac condimentum felis. Nulla at nisl orci, at dignissim dolor, The best product
-                                    descriptions address your ideal buyer directly and personally. The best product
-                                    descriptions
-                                    address your ideal buyer directly and personally.
-                                </p>
+                                {!! $product->description !!}
                                 <div class="product_meta">
                                     <span class="posted_in"> <strong>Categories:</strong> <a rel="tag"
-                                            href="#">Jackets</a>, <a rel="tag" href="#">Men</a>, <a
-                                            rel="tag" href="#">Shirts</a>, <a rel="tag"
-                                            href="#">T-shirt</a>.</span>
-                                    <span class="tagged_as"><strong>Tags:</strong> <a rel="tag"
-                                            href="#">mens</a>, <a rel="tag" href="#">womens</a>.</span>
+                                            href="#">Jackets</a>For Photographers.</span>
+                                    <span class="tagged_as"><strong>Tags:</strong>
+                                        @foreach ($tags as $key => $tag)
+                                            <a rel="tag" href="#">{{ $tag }}</a>,
+                                        @endforeach
+                                    </span>
                                 </div>
-                                <div class="m-bot15"> <strong>Price : </strong> <span class="amount-old">$544</span> <span
-                                        class="pro-price"> $300.00</span></div>
+                                <div class="m-bot15"> <strong>Price : </strong>
+                                    @if ($product->discount)
+                                        <span class="amount-old">{{ $product->price }}</span>
+                                        <span class="pro-price">{{ $product->discount }}</span>
+                                    @else
+                                        <span class="amount-old">{{ $product->price }}</span>
+                                    @endif
+                                </div>
                                 <div class="form-group">
                                     <label>Quantity</label>
                                     <input type="quantiy" placeholder="1" class="form-control quantity">

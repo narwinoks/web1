@@ -99,10 +99,15 @@
 
 .pro-img-details {
     margin-left: -15px;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
 }
 
 .pro-img-details img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .pro-d-title {

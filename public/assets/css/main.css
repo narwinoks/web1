@@ -992,13 +992,6 @@ label {
     background-color: #fa9442;
 }
 
-.product-content .description {
-    font-size: 12.5px;
-    line-height: 20px;
-    padding: 10px 14px 16px 19px;
-    background: #fff;
-}
-
 .product-content .product-info {
     padding: 11px 19px 10px 20px;
 }
@@ -1314,6 +1307,11 @@ label {
     line-height: 20px;
     padding: 10px 14px 16px 19px;
     background: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    overflow: hidden !important;
 }
 
 .product-content .product-info {

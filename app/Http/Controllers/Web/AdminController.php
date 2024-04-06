@@ -697,7 +697,7 @@ class AdminController extends Controller
     {
         $types = json_decode($this->getFix('type-banner'), true);
         if ($request->id) {
-            $data = Content::where('category', $this->getFix('banner'))->where('id', $request->id)->first();
+            $data = Content::where('id', $request->id)->first();
             return view('features.admin.modal.edit-banner', compact('types', 'data'));
         } else {
             return view('features.admin.modal.add-banner', compact('types'));
