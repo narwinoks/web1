@@ -96,6 +96,9 @@
                         _token: $("#token").val()
                     },
                     success: function(data) {
+
+                    },
+                    error: function(error) {
                         if (error.status == 400 || error.status == 422) {
                             printErrorMsg(error);
                         } else {

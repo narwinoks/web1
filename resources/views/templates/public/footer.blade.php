@@ -7,19 +7,19 @@
                         <h5 class="h6">Link</h5>
                         <ul class="list">
                             <li>
-                                <a href="/">Home</a>
+                                <a href="{{ url('/') }}">Home</a>
                             </li>
                             <li>
-                                <a href="/">Pricelist</a>
+                                <a href="{{ url('/pl') }}">Pricelist</a>
                             </li>
                             <li>
-                                <a href="/">Partnership (Vendor)</a>
+                                <a href="{{ url('/blog') }}">Portfolio</a>
                             </li>
                             <li>
-                                <a href="/">F.A.Q</a>
+                                <a href="{{ url('/faq') }}">F.A.Q</a>
                             </li>
                             <li>
-                                <a href="/">Career</a>
+                                <a href="{{ url('/about-us') }}">About Us</a>
                             </li>
                         </ul>
                     </div>

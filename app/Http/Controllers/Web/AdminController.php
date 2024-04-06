@@ -419,8 +419,8 @@ class AdminController extends Controller
     {
         try {
             $image = Image::where('id', $request->id)->first();
-            $image->statusenable = false;
-            $image->save();
+            $this->deleteImg($image->url);
+            $image->delete();
             $result = [
                 'message' => 'Data Berhasil Dihapus !',
                 'data' => $image,
@@ -724,7 +724,7 @@ class AdminController extends Controller
         }
         $save = $request->only('title', 'subtitle', 'category');
         if ($request->file('file')) {
-            $img = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . "banner");
+            $img = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . Str::random(12) . "-" . "banner");
             $this->deleteImg($request->image_old);
             $data['image'] = $img;
             $save['file'] = $img;
