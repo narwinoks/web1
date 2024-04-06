@@ -47,6 +47,7 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/cart', 'cart')->name('cart');
     Route::get('/form-review', 'formReview')->name('formReview');
     Route::get('/content', 'getContent')->name('content');
+    Route::get('/pay', 'pay')->name('pay');
 
     Route::post('/reservation', 'reservation')->name('reservation');
     Route::post('/save', 'save')->name('save');

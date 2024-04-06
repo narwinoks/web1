@@ -191,7 +191,7 @@ class UserController extends Controller
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
         try {
-            if ($request->file('logo')) {
+            if ($request->file('image')) {
                 $this->deleteImg($request->logo_old);
                 $data['logo'] = $this->uploadImage($request->logo, "logo");
             }

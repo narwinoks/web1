@@ -26,4 +26,12 @@ trait Valet
         $data = DataFix::where('name', $name)->where('statusenable', true)->first();
         return $data->value;
     }
+    protected function  generateUniqueOrderNumber()
+    {
+        $prefix = 'O-';
+        $datePart = date('ymd');
+        $randomPart = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+
+        return $prefix . $datePart . $randomPart;
+    }
 }

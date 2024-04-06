@@ -171,10 +171,10 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="mb-1">
-                                        <label for="logo" class="form-label">Logo</label>
+                                        <label for="image" class="form-label">Logo</label>
                                         <input type="file" class="form-control input-custom" placeholder="logo"
-                                            aria-label="logo" aria-describedby="basic-addon1" id="logo"
-                                            name="logo">
+                                            aria-label="image" aria-describedby="basic-addon1" id="image"
+                                            name="image">
                                         <span class="error-logo text-danger d-none"></span>
                                     </div>
                                 </div>

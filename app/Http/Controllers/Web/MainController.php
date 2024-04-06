@@ -398,6 +398,12 @@ class MainController extends Controller
             case 'review':
                 return $this->saveReviewUser($request);
                 break;
+            case 'order':
+                return $this->saveOrder($request);
+                break;
+            case 'pay-product':
+                return $this->payAdd($request);
+                break;
             default:
                 return response()->json(['message' => 'not found'], 404);
                 break;
@@ -517,5 +523,48 @@ class MainController extends Controller
         $products = Product::where('statusenable', true)
             ->get();
         return view('features.public.data.product', compact('products'));
+    }
+    public function pay(Request $request)
+    {
+        return view('features.public.pay');
+    }
+    public function saveOrder(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+        ], [
+            'name.required' => 'Bagian ini harus diisi !',
+            'email.required' => 'Bagian ini harus diisi !',
+            'email.email' => 'Email tidak valid !',
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $save = $request->only('name', 'email', 'city', 'noted');
+        try {
+            //code...
+        } catch (Exception $e) {
+            //throw $th;
+        }
+    }
+    public function payAdd(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required',
+        ], [
+            'quantity.required' => 'Bagian ini harus diisi !',
+
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        // return response()->json();
     }
 }

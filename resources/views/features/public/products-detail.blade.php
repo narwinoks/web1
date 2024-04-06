@@ -10,7 +10,7 @@
                 <section class="panel">
                     <div class="panel-body">
                         <div class="row">
-
+                            <input type="hidden" value="{{ $product->id }}" name="product_id" id="product_id">
                             <div class="col-md-6">
                                 <div class="pro-img-details">
                                     <img src="{{ asset('assets/img/' . $product->image) }}" alt="{{ $product->name }}"
@@ -38,7 +38,7 @@
                                 {!! $product->description !!}
                                 <div class="product_meta">
                                     <span class="posted_in"> <strong>Categories:</strong> <a rel="tag"
-                                            href="#">Jackets</a>For Photographers.</span>
+                                            href="#">For Photographers.</a></span>
                                     <span class="tagged_as"><strong>Tags:</strong>
                                         @foreach ($tags as $key => $tag)
                                             <a rel="tag" href="#">{{ $tag }}</a>,
@@ -55,13 +55,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Quantity</label>
-                                    <input type="quantiy" placeholder="1" class="form-control quantity">
+                                    <input type="text" name="quantity" id="quantity" placeholder="1"
+                                        class="form-control quantity">
+                                    <span class="error-quantity text-danger d-none"></span>
                                 </div>
                                 <p class="mt-2">
-                                    <button class="btn btn-round btn-black" type="button"><i
+                                    <a href="{{ url('/pay') }}" class="btn btn-round btn-black" type="button"><i
                                             class="fa fa-shopping-cart"></i>
-                                        Add
-                                        to Cart</button>
+                                        Beli
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -70,4 +72,38 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="token" value="{{ csrf_token() }}" id="token">
 @endsection
+@push('scripts')
+    <script src="{{ asset('assets/js/main/alert.js') }}"></script>
+    <script src="{{ asset('assets/js/main/validation.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="_token"]').attr("content"),
+                },
+            });
+            $(".btn-black").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('saveForm') }}",
+                    data: {
+                        key: "pay-product",
+                        quantity: $("#quantity").val(),
+                        productId: $("#product_id").val(),
+                        _token: $("#token").val()
+                    },
+                    success: function(data) {
+                        if (error.status == 400 || error.status == 422) {
+                            printErrorMsg(error);
+                        } else {
+                            showAlert(error.responseJSON.message || 'Error', 'danger')
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+@endpush
