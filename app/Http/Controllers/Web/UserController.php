@@ -195,7 +195,7 @@ class UserController extends Controller
                 $this->deleteImg($request->logo_old);
                 $data['logo'] = $this->uploadImage($request->logo, "logo");
             }
-            $data = $request->all();
+            $data =  $request->except('_token', 'logo_old');
             $result = Profile::where('id', $request->id)->update($data);
             $result = [
                 'message' => 'Success !',
