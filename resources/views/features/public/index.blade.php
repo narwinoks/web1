@@ -55,7 +55,9 @@
             <div class="overlay"></div>
             <div class="content">
                 <h3>Let's connect</h3>
-                <a href="{{ url('pl') }}" class="button"><i class="fa fa-check-circle" aria-disabled="true"></i> Access
+                <a href="{{ url('pl') }}" class="button"><i class="far fa-check-circle"
+                        aria-disabled="true"></i>
+                    Access
                     pricelist</a>
             </div>
         </div>

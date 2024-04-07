@@ -4,5 +4,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/main.scss') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/products.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugin/font-awesome/css/font-awesome.min.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('assets/plugin/fontawesome-free/css/all.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ asset('assets/plugin/font-awesome/css/font-awesome.css') }}" type="text/css">
 @stack('styles')

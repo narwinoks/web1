@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -195,8 +196,15 @@ class UserController extends Controller
                 $this->deleteImg($request->logo_old);
                 $data['logo'] = $this->uploadImage($request->image, "logo");
             }
-            $data =  $request->except('_token', 'logo_old','image');
+            if ($request->file('partnerImage1')) {
+                $data['partner1'] = $this->uploadImage($request->partnerImage1, Str::slug('partner' . Str::random(2) . date('Y-m-d')));
+            }
+            if ($request->file('partnerImage2')) {
+                $data['partner1'] = $this->uploadImage($request->partnerImage2, Str::slug('partner' . Str::random(2)  . date('Y-m-d')));
+            }
+            $data =  $request->except('_token', 'logo_old', 'image');
             $result = Profile::where('id', $request->id)->update($data);
+            session()->forget('profile');
             $result = [
                 'message' => 'Success !',
                 'data' => $result,

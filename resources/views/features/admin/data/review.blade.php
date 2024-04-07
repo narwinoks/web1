@@ -6,9 +6,9 @@
         <div class="card card-review">
             <div class="action-buttons">
                 <button class="btn btn-sm is-rounded  btn-primary edit-button-review" data-id="{{ $content->id }}"><i
-                        class="fa fa-edit"></i></button>
+                        class="fas fa-edit"></i></button>
                 <button class="btn  btn-sm is-rounded btn-danger delete-button-review" data-id="{{ $content->id }}"><i
-                        class="fa fa-trash"></i></button>
+                        class="fas fa-trash"></i></button>
             </div>
             <div class="header">
                 @if (isset($data['file']) && file_exists(public_path('assets/img/' . $data['file'])))

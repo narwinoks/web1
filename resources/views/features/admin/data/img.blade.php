@@ -5,7 +5,7 @@
                 <img src="{{ asset('assets/img/' . $image->url) }}" class="img-fluid rounded" alt="gambar">
                 <div class="button-group">
                     <button class="btn btn-danger delete-button-image" data-id="{{ $image->id }}"><i
-                            class="fa fa-trash"></i></button>
+                            class="fas fa-trash"></i></button>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="button-group">
                     <button class="btn btn-danger delete-button-image" data-id="{{ $image->id }}"><i
-                            class="fa fa-trash"></i></button>
+                            class="fas fa-trash"></i></button>
                 </div>
             </div>
         </div>

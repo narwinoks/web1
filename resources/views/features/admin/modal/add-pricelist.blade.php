@@ -20,8 +20,8 @@
         </div>
         <div class="mb-1">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control input-custom" placeholder="GIFT VOUCHER WORTH"
-                aria-label="title" aria-describedby="basic-addon1" id="title" name="title">
+            <input type="text" class="form-control input-custom" placeholder="GIFT VOUCHER WORTH" aria-label="title"
+                aria-describedby="basic-addon1" id="title" name="title">
             <span class="error-title text-danger d-none"></span>
         </div>
         <div class="mb-1">
@@ -42,7 +42,7 @@
         <button type="submit" id="button" class="btn btn-sm btn-primary is-rounded">
             <div class="spinner-border d-none mx-4" role="status">
             </div>
-            <span class="mr-4" id="tag-button"> <i aria-disabled="true" class="fa fa-save"></i>
+            <span class="mr-4" id="tag-button"> <i aria-disabled="true" class="fas fa-save"></i>
                 Simpan</span>
         </button>
     </div>

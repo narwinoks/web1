@@ -184,9 +184,18 @@
                                     <div class="mb-1">
                                         <label for="partner1" class="form-label">Partner</label>
                                         <input type="file" class="form-control input-custom" placeholder="partner1"
-                                            aria-label="partner1" aria-describedby="basic-addon1" id="partner1"
-                                            name="partner1">
+                                            aria-label="partner1" aria-describedby="basic-addon1" id="partnerImage1"
+                                            name="partnerImage1">
                                         <span class="error-partner1 text-danger d-none"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-12">
+                                    <div class="mb-1">
+                                        <label for="partner2" class="form-label">Partner2</label>
+                                        <input type="file" class="form-control input-custom" placeholder="partner2"
+                                            aria-label="partner2" aria-describedby="basic-addon1" id="partnerImage2"
+                                            name="partnerImage2">
+                                        <span class="error-partner2 text-danger d-none"></span>
                                     </div>
                                 </div>
                             </div>

@@ -28,15 +28,15 @@
             <label for="Rating" class="form-label">Rating</label>
             <div class="rating">
                 <input type="radio" id="star5" name="rating" value="5">
-                <label for="star5" title="5 stars"><i class="fa fa-star"></i></label>
+                <label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
                 <input type="radio" id="star4" name="rating" value="4">
-                <label for="star4" title="4 stars"><i class="fa fa-star"></i></label>
+                <label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
                 <input type="radio" id="star3" name="rating" value="3">
-                <label for="star3" title="3 stars"><i class="fa fa-star"></i></label>
+                <label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
                 <input type="radio" id="star2" name="rating" value="2">
-                <label for="star2" title="2 stars"><i class="fa fa-star"></i></label>
+                <label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
                 <input type="radio" id="star1" name="rating" value="1">
-                <label for="star1" title="1 star"><i class="fa fa-star"></i></label>
+                <label for="star1" title="1 star"><i class="fas fa-star"></i></label>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
         <button type="submit" id="button" class="btn btn-sm btn-primary is-rounded">
             <div class="spinner-border d-none mx-4" role="status">
             </div>
-            <span class="mr-4" id="tag-button"> <i aria-disabled="true" class="fa fa-save"></i>
+            <span class="mr-4" id="tag-button"> <i aria-disabled="true" class="fas fa-save"></i>
                 Simpan</span>
         </button>
     </div>

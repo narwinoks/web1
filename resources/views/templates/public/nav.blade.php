@@ -2,10 +2,10 @@
       <div class="container-lg item d-flex justify-content-between ">
           <div class="row justify-content-start ">
               <div class="col-auto">
-                  <span><i class="fa fa-whatsapp" aria-hidden="true"></i> {{ $profile['whatsapp'] }}</span>
+                  <span><i class="fab fa-whatsapp" aria-hidden="true"></i> {{ $profile['whatsapp'] }}</span>
               </div>
               <div class="col-auto">
-                  <span><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $profile['email1'] }}</span>
+                  <span><i class="far fa-envelope" aria-hidden="true"></i> {{ $profile['email1'] }}</span>
               </div>
           </div>
           <div class="row reservasi justify-content-end align-items-center d-none">

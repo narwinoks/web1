@@ -1,18 +1,20 @@
 @extends('templates.public.main')
 @section('title', 'Blog Post')
 @section('content')
+    @php
+        $banner = \App\Helpers\Helper::getContent('Banner Blog');
+        $head = json_decode($banner->content, true);
+    @endphp
     <section class="blog-hero">
         <div class="hero">
             <div class="row">
                 <div class="col-4">
-                    <img src="{{ asset('assets/img/blog-hero.png') }}" class="blog-hero" alt="blog-hero">
+                    <img src="{{ asset('assets/img/' . $banner->image) }}" class="blog-hero" alt="blog-hero">
                 </div>
                 <div class="col-8">
                     <div class="content">
-                        <h3 class="h5">SHUTTERBOX.ID (ἱερός) <span>is Greek for ”sacred, sanctified”</span></h3>
-                        <p>That’s how we see it on every wedding ceremony. It takes several ceremonial before the day in
-                            our
-                            culture. Engagement, recitation to God – whoever you believes in – every step are sacred. </p>
+                        <h3 class="h5">{!! $head['title'] ?? '' !!}</h3>
+                        <p>{!! $head['subtitle'] ?? '' !!}</p>
                     </div>
                 </div>
             </div>

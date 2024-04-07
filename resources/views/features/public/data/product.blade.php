@@ -47,13 +47,13 @@
                                 <div class="rating stars">
                                     <label for="stars-rating-1">
                                         @for ($i = 0; $i < $stars_full; $i++)
-                                            <i class="fa fa-star"></i>
+                                            <i class="fas fa-star"></i>
                                         @endfor
                                         @if ($stars_half > 0)
-                                            <i class="fa fa-star-half"></i>
+                                            <i class="fas fa-star-half"></i>
                                         @endif
                                         @for ($i = 0; $i < 5 - $stars_full - $stars_half; $i++)
-                                            <i class="fa fa-star-o"></i>
+                                            <i class="fas fa-star-o"></i>
                                         @endfor
                                     </label>
                                 </div>

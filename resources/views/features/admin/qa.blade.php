@@ -60,6 +60,7 @@
 @endpush
 @push('scripts')
     <script src="{{ asset('assets/js/main/alert.js') }}"></script>
+    <script src="{{ asset('assets/templates/plugins/tinymce/js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('assets/js/main/validation.js') }}"></script>
     <script>
         $(document).ready(function() {
@@ -93,6 +94,7 @@
                     success: function(data) {
                         $("#modal-content").html(data);
                         $("#modal-qa").modal("show");
+                        loadTimy();
                     },
                 });
             });
@@ -143,7 +145,7 @@
                         limit: $('#limit').val(),
                         startDate: $('#startDate').val(),
                         endDate: $('#endDate').val(),
-                        search :$('#search').val(),
+                        search: $('#search').val(),
                         key: key
                     },
                 }).done(function(data) {
@@ -205,6 +207,28 @@
                 });
             });
 
+            function loadTimy() {
+
+                tinymce.init({
+                    selector: "textarea.tinymce",
+                    theme: "modern",
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                        "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                        "table contextmenu directionality emoticons paste textcolor code template"
+                    ],
+                    toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+                    toolbar2: "| link unlink anchor | image media | forecolor backcolor  | print preview code | fontsizeselect template",
+                    image_advtab: true,
+                    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 18pt',
+                    content_style: "div, p { font-size: 14px; }",
+                    height: "40",
+                    relative_urls: false,
+                    remove_script_host: false,
+                    document_base_url: "#"
+                });
+
+            }
         });
     </script>
 @endpush

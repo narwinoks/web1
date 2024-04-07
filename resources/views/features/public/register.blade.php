@@ -38,7 +38,7 @@
                                             placeholder="Enter your password" name="password">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary toggle-password" type="button">
-                                                <i class="fa fa-eye"></i>
+                                                <i class="fas fa-eye"></i>
                                             </button>
                                         </div>
                                     </div>

@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.plRequest') }}" class="nav-link "><span class="pcoded-micon"><i
-                                class="fa fa-paper-plane"></i></span><span class="pcoded-mtext">Request
+                                class="fas fa-paper-plane"></i></span><span class="pcoded-mtext">Request
                             PL</span></a>
                 </li>
                 <li class="nav-item pcoded-hasmenu">

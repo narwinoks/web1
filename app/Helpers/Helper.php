@@ -46,4 +46,18 @@ class Helper
         }
         return $img;
     }
+    public static function getContent($name)
+    {
+        $content = Content::where('statusenable', true)
+            ->where('statusenable', true)
+            ->where('category', $name)
+            ->orderBy('created_at', 'DESC')
+            ->first();
+        if ($content) {
+            $data = $content;
+        } else {
+            $data = [];
+        }
+        return $data;
+    }
 }

@@ -61,7 +61,7 @@
                                 </div>
                                 <p class="mt-2">
                                     <a href="{{ url('/pay') }}" class="btn btn-round btn-black" type="button"><i
-                                            class="fa fa-shopping-cart"></i>
+                                            class="fas fa-shopping-cart"></i>
                                         Beli
                                     </a>
                                 </p>

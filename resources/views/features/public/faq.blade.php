@@ -3,8 +3,8 @@
 @section('content')
     <section class="faq">
         <div class="hero">
-            <img src="{{ asset('assets/img/hero-faq.png') }}" alt="image-studio" class="img-fluid">
-            <div class="overlay"></div>
+            <img src="{{ asset('assets/img/' . \App\Helpers\Helper::getBanner('Banner Faq')) }}" alt="image-studio"
+                class="img-fluid">
         </div>
         <div class="mt-5 container">
             <div class="row justify-content-center">

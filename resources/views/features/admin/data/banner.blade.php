@@ -11,9 +11,9 @@
             @endif
             <div class="button-group">
                 <button class="btn btn-primary edit-button edit-button-banner" data-id="{{ $content->id }}"><i
-                        class="fa fa-edit"></i></button>
+                        class="fas fa-edit"></i></button>
                 <button class="btn btn-danger delete-button delete-button-banner" data-id="{{ $content->id }}"><i
-                        class="fa fa-trash"></i></button>
+                        class="fas fa-trash"></i></button>
             </div>
         </div>
     </div>

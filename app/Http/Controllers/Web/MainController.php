@@ -22,6 +22,7 @@ class MainController extends Controller
         $banners = Content::where('statusenable', true)
             ->where('statusenable', true)
             ->where('category', 'banner')
+            ->orderBy('order', 'DESC')
             ->get();
         return view('features.public.index', compact('banners'));
     }
@@ -431,7 +432,7 @@ class MainController extends Controller
     }
     public function getGallery(Request $request)
     {
-        $images  = DB::table('images as img1')->join('images as img2', 'img1.id', '=', 'img2.parent_id')->where('img1.statusenable' ,true)->where('img2.statusenable' ,true)->where('img1.slug', $request->slug)->get();
+        $images  = DB::table('images as img1')->join('images as img2', 'img1.id', '=', 'img2.parent_id')->where('img1.statusenable', true)->where('img2.statusenable', true)->where('img1.slug', $request->slug)->get();
         return view('features.public.data.gallery-detail', compact('images'));
     }
     public function products(Request $request)

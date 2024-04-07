@@ -183,7 +183,7 @@
                                             <div class="spinner-border d-none mx-4" role="status">
                                             </div>
                                             <span class="mr-4" id="tag-button"> <i aria-disabled="true"
-                                                    class="fa fa-check-square-o"></i> Get The
+                                                    class="far fa-check-circlecle-square-o"></i> Get The
                                                 Pricelist</span>
                                         </button>
                                     </div>

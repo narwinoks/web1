@@ -75,7 +75,7 @@
                                                 <div class="spinner-border d-none mx-4" role="status">
                                                 </div>
                                                 <span class="mr-4" id="tag-button"> <i aria-disabled="true"
-                                                        class="fa fa-save"></i>
+                                                        class="fas fa-save"></i>
                                                     Simpan</span>
                                             </button>
                                         </div>

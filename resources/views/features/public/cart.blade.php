@@ -54,9 +54,9 @@
 
                         </div>
                         <div class="ibox-content">
-                            <button class="btn btn-black pull-right"><i class="fa fa fa-shopping-cart"></i>
+                            <button class="btn btn-black pull-right"><i class="fas fa-shopping-cart"></i>
                                 Konfirmasi Pembayaran</button>
-                            <button class="btn btn-white"><i class="fa fa-arrow-left"></i> Continue shopping</button>
+                            <button class="btn btn-white"><i class="fas fa-arrow-left"></i> Continue shopping</button>
                         </div>
                     </div>
                 </div>

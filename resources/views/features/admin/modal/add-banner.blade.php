@@ -36,6 +36,10 @@
                 aria-describedby="basic-addon1" id="subtitle" name="subtitle"></textarea>
             <span class="error-subtitle text-danger d-none"></span>
         </div>
+        <div class="mb-1">
+            <label for="order" class="form-label">Order</label>
+            <input type="text" class="form-control input-custom" name="order" id="order">
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" data-dismiss="modal" aria-label="Close"
@@ -43,7 +47,7 @@
         <button type="submit" id="button" class="btn btn-sm btn-primary is-rounded">
             <div class="spinner-border d-none mx-4" role="status">
             </div>
-            <span class="mr-4" id="tag-button"> <i aria-disabled="true" class="fa fa-save"></i>
+            <span class="mr-4" id="tag-button"> <i aria-disabled="true" class="fas fa-save"></i>
                 Simpan</span>
         </button>
     </div>

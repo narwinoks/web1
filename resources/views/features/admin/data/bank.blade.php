@@ -7,9 +7,9 @@
         <div class="card payment-card my-2">
             <div class="action-buttons">
                 <button type="button" class="btn btn-sm is-rounded btn-danger delete-button-bank"
-                    data-id="{{ $content->id }}"><i class="fa fa-trash"></i></button>
+                    data-id="{{ $content->id }}"><i class="fas fa-trash"></i></button>
                 <button type="button" class="btn btn-primary edit-button-bank" data-id="{{ $content->id }}"><i
-                        class="fa fa-edit"></i></button>
+                        class="fas fa-edit"></i></button>
             </div>
             <div class="row g-0">
                 <div class="col-md-4">

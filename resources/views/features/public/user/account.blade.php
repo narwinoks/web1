@@ -26,10 +26,10 @@
                                         <div class="col-md-12">
                                             <div>
                                                 <p class="text-muted mb-2 fw-medium"><i
-                                                        class="fa fa-envelope-o me-2"></i>{{ auth()->user()->email }}
+                                                        class="fas fa-envelope-o me-2"></i>{{ auth()->user()->email }}
                                                 </p>
                                                 <p class="text-muted fw-medium mb-0"><i
-                                                        class="fa fa-phone me-2"></i>{{ auth()->user()->phone }}
+                                                        class="fas fa-phone me-2"></i>{{ auth()->user()->phone }}
                                                 </p>
                                                 <p>
                                                 <div class="mt-4">
@@ -45,7 +45,7 @@
                                         role="tablist">
                                         <li class="nav-item" role="presentation">
                                             <a class="nav-link px-4 active " href="#" target="#">
-                                                <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
+                                                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                                 <span class="d-none d-sm-block">My Kelas</span>
                                             </a>
                                         </li><!-- end li -->

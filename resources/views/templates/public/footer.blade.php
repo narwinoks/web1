@@ -19,7 +19,7 @@
                                 <a href="{{ url('/faq') }}">F.A.Q</a>
                             </li>
                             <li>
-                                <a href="{{ url('/about-us') }}">About Us</a>
+                                <a href="{{ url('/about-us') }}">About</a>
                             </li>
                         </ul>
                     </div>
@@ -27,13 +27,16 @@
                         <h5 class="h6">Sosial Media</h5>
                         <div class="social">
                             <a href="{{ $profile['instagram'] }}" target="_blank">
-                                <span><i class="fa fa-instagram"></i></span>
+                                <span><i class="fab fa-instagram"></i></span>
                             </a>
                             <a href="{{ $profile['youtube'] }}" target="_blank">
-                                <span><i class="fa fa-youtube"></i></span>
+                                <span><i class="fab fa-youtube"></i></span>
                             </a>
                             <a href="{{ $profile['facebook'] }}" target="_blank">
-                                <span><i class="fa fa-facebook"></i></span>
+                                <span><i class="fab fa-facebook"></i></span>
+                            </a>
+                            <a href="{{ $profile['tiktok'] }}" target="_blank">
+                                <span><i class="fab fa-tiktok"></i></span>
                             </a>
                         </div>
                     </div>
@@ -50,7 +53,7 @@
                             <li>
                                 <a href="/">
                                     <span>
-                                        <i class="fa fa-whatsapp"></i>
+                                        <i class="fab fa-whatsapp"></i>
                                         {{ $profile['whatsapp'] }}
                                     </span>
                                 </a>
@@ -58,7 +61,7 @@
                             <li>
                                 <a href="/">
                                     <span>
-                                        <i class="fa fa-envelope-o"></i>
+                                        <i class="fas fa-envelope"></i>
                                         {{ $profile['email1'] }}
                                     </span>
                                 </a>
@@ -66,7 +69,7 @@
                             <li>
                                 <a href="/">
                                     <span>
-                                        <i class="fa fa-map-marker"></i>
+                                        <i class="fas fa-map-marker-alt"></i>
                                         {{ $profile['address'] }}
                                     </span>
                                 </a>

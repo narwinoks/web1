@@ -61,7 +61,7 @@
                             <div class="mb-1">
                                 <div class="row px-3">
                                     <button class="btn btn-purple"><span class="mr-4"> <i aria-disabled="true"
-                                                class="fa fa-check-square-o"></i></span>
+                                                class="far fa-check-circlecle-square-o"></i></span>
                                         Get The
                                         Pricelist</button>
                                 </div>

@@ -722,7 +722,7 @@ class AdminController extends Controller
             ];
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
-        $save = $request->only('title', 'subtitle', 'category');
+        $save = $request->only('title', 'subtitle', 'category','order');
         if ($request->file('file')) {
             $img = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . Str::random(12) . "-" . "banner");
             $this->deleteImg($request->image_old);

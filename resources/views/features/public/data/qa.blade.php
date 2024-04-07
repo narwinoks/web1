@@ -7,16 +7,16 @@
             <div class="card-question-header">
                 <h6 class="card-question-title">
                     <a class="text-muted text-uppercase" data-toggle="collapse" href="#question-{{ $key }}">
-                        <i class="fa fa-question-circle-o mr-2 mt-0-20 pull-left"></i>
+                        <i class="fas fa-question-circle-o mr-2 mt-0-20 pull-left"></i>
                         {{ $data['question'] ?? 'Null' }}
-                        <i class="fa fa-minus mr-2 text-slate pull-right"></i>
+                        <i class="fas fa-minus mr-2 text-slate pull-right"></i>
                     </a>
                 </h6>
             </div>
             <div id="question-{{ $key }}" class="collapse {{ $key == 0 ? 'show' : '' }}">
                 <div class="card-question-body">
                     <p>
-                        {{ $data['answer'] ?? 'Null' }}
+                        {!! $data['answer'] ?? 'Null' !!}
                     </p>
                 </div>
             </div>
