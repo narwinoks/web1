@@ -7,7 +7,7 @@
             <div class="card-question-header">
                 <h6 class="card-question-title">
                     <a class="text-muted text-uppercase" data-toggle="collapse" href="#question-{{ $key }}">
-                        <i class="fas fa-question-circle-o mr-2 mt-0-20 pull-left"></i>
+                        <i class="fas fa-question-circle pr-3 mt-0-20 pull-left"></i>
                         {{ $data['question'] ?? 'Null' }}
                         <i class="fas fa-minus mr-2 text-slate pull-right"></i>
                     </a>
