@@ -48,6 +48,7 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/form-review', 'formReview')->name('formReview');
     Route::get('/content', 'getContent')->name('content');
     Route::get('/pay', 'pay')->name('pay');
+    Route::get('/confirmation', 'confirmation')->name('confirmation');
 
     Route::post('/reservation', 'reservation')->name('reservation');
     Route::post('/save', 'save')->name('save');

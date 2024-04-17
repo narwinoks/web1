@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('email')->nullable();
             $table->string('name')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('city')->nullable();
             $table->string('file')->nullable();
             $table->string('bank')->nullable();
+            $table->enum('status', ['pendding', 'approve', 'complated'])->nullable()->default('pendding');
             $table->string('name_rek')->nullable();
             $table->string('price')->nullable();
             $table->string('number_order')->nullable();

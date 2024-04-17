@@ -28,7 +28,7 @@
                                         <div class="col-6">
                                             <div class="mb-1">
                                                 <label for="price" class="form-label">Haga</label>
-                                                <input type="text" class="form-control input-custom" placeholder="250 k"
+                                                <input type="text" class="form-control input-custom" placeholder="250000"
                                                     aria-label="price" aria-describedby="basic-addon1" id="price"
                                                     name="price" value="{{ $product->price }}">
                                                 <span class="error-price text-danger d-none"></span>
@@ -37,7 +37,7 @@
                                         <div class="col-6">
                                             <div class="mb-1">
                                                 <label for="promo" class="form-label">Promo</label>
-                                                <input type="text" class="form-control input-custom" placeholder="200 k"
+                                                <input type="text" class="form-control input-custom" placeholder="200000"
                                                     aria-label="promo" aria-describedby="basic-addon1" id="promo"
                                                     name="promo" value="{{ $product->promo }}">
                                                 <span class="error text-danger">* Harga Promo</span>

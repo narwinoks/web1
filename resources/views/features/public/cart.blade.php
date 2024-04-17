@@ -1,5 +1,5 @@
 @extends('templates.public.main')
-@section('title', 'Cart')
+@section('title', 'Order Pay')
 @section('content')
     <div class="container">
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -8,7 +8,7 @@
                     <div class="ibox">
                         <div class="ibox-title">
                             <h5>Items in your cart</h5>
-                            <span>(<strong>5</strong>) items</span>
+                            <span>(<strong>{{ $qty }}</strong>) items</span>
                         </div>
                         <div class="ibox-content is-rounded">
                             <div class="table-responsive">
@@ -22,29 +22,32 @@
                                             <td class="desc">
                                                 <h3>
                                                     <a href="#" class="text-navy text-decoration-none">
-                                                        Desktop publishing software
+                                                        {{ $product->name }}
                                                     </a>
                                                 </h3>
                                                 <p class="small">
-                                                    It is a long established fact that a reader will be distracted by the
-                                                    readable
-                                                    content of a page when looking at its layout. The point of using Lorem
-                                                    Ipsum is
+                                                    {!! $product->description !!}
                                                 </p>
                                             </td>
 
                                             <td>
                                                 <h3 class="h5">
-                                                    $180,00
-                                                    <small class="small text-muted">$230,00</small>
+                                                    @if ($product->discount)
+                                                        {{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}
+                                                        <small
+                                                            class="small text-muted">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</small>
+                                                    @else
+                                                        {{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}
+                                                    @endif
                                                 </h3>
                                             </td>
                                             <td width="65">
-                                                <input type="text" class="form-control" placeholder="1">
+                                                <input type="text" class="form-control" placeholder="1"
+                                                    value="{{ $qty }}" readonly>
                                             </td>
                                             <td>
                                                 <h5 class="h5">
-                                                    $180,00
+                                                    {{ \App\Helpers\Helper::convertPriceToShortFormat($qty * ($product->price - $product->discount)) }}
                                                 </h5>
                                             </td>
                                         </tr>
@@ -54,9 +57,10 @@
 
                         </div>
                         <div class="ibox-content">
-                            <button class="btn btn-black pull-right"><i class="fas fa-shopping-cart"></i>
-                                Konfirmasi Pembayaran</button>
-                            <button class="btn btn-white"><i class="fas fa-arrow-left"></i> Continue shopping</button>
+                            <a href="{{ $redirectUrl }}" class="btn btn-black pull-right"><i
+                                    class="fas fa-shopping-cart"></i>
+                                Konfirmasi Pembayaran</a>
+                            <button class="btn btn-white"><i class="fas fa-arrow-left"></i> Kembali</button>
                         </div>
                     </div>
                 </div>
@@ -70,43 +74,44 @@
                                 Total
                             </span>
                             <h2 class="font-bold h5">
-                                $390,00
+                                {{ \App\Helpers\Helper::convertPriceToShortFormat($qty * ($product->price - $product->discount)) }}
                             </h2>
                             <hr>
                         </div>
                     </div>
-                    <div class="card payment-card">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="https://bdsgp.my.id/img/200/JoXM0m.png" class="img-fluid rounded-start"
-                                    alt="Bank Logo">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">BCA</h5>
-                                    <p class="card-text">4370963440</p>
-                                    <p class="card-text">(Yusuf Maulana Bahari)</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="content-bank" id="content-bank">
+
                     </div>
-                    <div class="card payment-card my-2">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{ asset('assets/img/BANK/BSI.png') }}" class="img-fluid rounded-start"
-                                    alt="Bank Logo">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">BCA</h5>
-                                    <p class="card-text">4370963440</p>
-                                    <p class="card-text">(Yusuf Maulana Bahari)</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="loading-animation-bank" class="text-center" style="display: none">
+                        <img src="{{ asset('assets/img/loading.gif') }}" width="30px">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 @endsection
+@push('scripts')
+    <script>
+        loadBank();
+
+        function loadBank() {
+            $("#loading-animation-bank").show();
+            var key = 'bank';
+            $.ajax({
+                url: "{{ route('content') }}",
+                type: 'GET',
+                async: false,
+                data: {
+                    key: key
+                },
+            }).done(function(data) {
+                $('#content-bank').empty();
+                $('#content-bank').append(data);
+                $("#loading-animation-bank").hide();
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error: " + textStatus, errorThrown);
+            })
+        }
+    </script>
+@endpush

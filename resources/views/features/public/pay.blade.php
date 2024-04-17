@@ -7,11 +7,11 @@
                     <div class="product-item">
                         <img src="{{ asset('assets/img/600x400.png') }}" alt="Product Image" class="product-image">
                         <div class="product-details">
-                            <h6>Nama Produk 1</h6>
-                            <p class="desc">Kategori Produk 1</p>
+                            <h6>{{ $product->name }}</h6>
+                            <p class="desc">{!! Str::limit($product->description, 60) !!}</p>
                             <div class="info">
-                                <p class="price">Rp 100.000</p>
-                                <p class="quantity">Jumlah: 10</p>
+                                <p class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</p>
+                                <p class="quantity">Jumlah: {{ $qunatity }}</p>
                             </div>
                         </div>
                     </div>
@@ -63,9 +63,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-1 noted">
-                                        <label for="noted" class="form-label">Catatan </label>
-                                        <textarea name="noted" class="form-control-sm form-control" placeholder="Tambahkan catatan kamu disini!..."
-                                            id="noted" rows="2"></textarea>
+                                        <label for="note" class="form-label">Catatan </label>
+                                        <textarea name="note" class="form-control-sm form-control" placeholder="Tambahkan catatan kamu disini!..."
+                                            id="note" rows="2"></textarea>
                                     </div>
                                     <div class="mb-1 mt-4">
                                         <div class="row px-3">
@@ -73,7 +73,9 @@
                                                 <div class="spinner-border d-none mx-4" role="status">
                                                 </div>
                                                 <span class="mr-4" id="tag-button"> <i aria-disabled="true"
-                                                        class="far fa-check-circlecle-square-o"></i>Order</span>
+                                                        class="far fa-check-circlecle-square-o"></i>
+                                                    Order
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -168,7 +170,7 @@
             $(this).find('.spinner-border').removeClass('d-none');
             $(this).find('#tag-button').addClass('d-none');
             event.preventDefault();
-            var form = document.getElementById('form-pl');
+            var form = document.getElementById('form-order');
             var formData = new FormData(form);
             $.ajax({
                 url: '{{ route('saveForm') }}',
@@ -177,7 +179,10 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    showAlert(response.message, 'success')
+                    showAlert(response.message, 'success');
+                    setTimeout(() => {
+                        window.location.href = response.data.redirect;
+                    }, 2000);
                 },
                 error: function(error) {
                     if (error.status == 400 || error.status == 422) {

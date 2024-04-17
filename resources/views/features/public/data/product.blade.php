@@ -27,10 +27,13 @@
                         </h5>
                         <p class="price-container">
                             @if ($product->discount && $product->discount != null)
-                                <span class="discount">{{ $product->discount }}</span>
-                                <span class="price">{{ $product->price }}</span>
+                                <span
+                                    class="discount">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                <span
+                                    class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
                             @else
-                                <span class="price">{{ $product->price }}</span>
+                                <span
+                                    class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
                             @endif
                         </p>
                         <span class="tag1"></span>

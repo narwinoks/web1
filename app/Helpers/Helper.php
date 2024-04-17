@@ -60,4 +60,27 @@ class Helper
         }
         return $data;
     }
+    public static function convertPriceToShortFormat($price): string
+    {
+        $abbreviations = array('k', 'M', 'B', 'T');
+        $abbreviationsCount = count($abbreviations) - 1;
+
+        for ($i = $abbreviationsCount; $i >= 0; $i--) {
+            $size = pow(10, ($i + 1) * 3);
+            if ($size <= abs($price)) {
+                $formattedPrice = round($price / $size, 1) . $abbreviations[$i];
+                break;
+            }
+        }
+
+        return $formattedPrice ?? $price;
+    }
+    public static function generateUniqueOrderNumber(): string
+    {
+        $prefix = 'O-';
+        $datePart = date('ymd');
+        $randomPart = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+
+        return $prefix . $datePart . $randomPart;
+    }
 }

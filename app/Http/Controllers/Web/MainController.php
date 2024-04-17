@@ -6,12 +6,14 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Image;
+use App\Models\Order;
 use App\Models\Product;
 use App\Responses\ServerResponse;
 use App\Traits\Valet;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class MainController extends Controller
@@ -202,6 +204,9 @@ class MainController extends Controller
                 break;
             case trim('products'):
                 return $this->getProducts($request);
+                break;
+            case trim('bank'):
+                return $this->getBankAccount($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -402,6 +407,9 @@ class MainController extends Controller
             case 'order':
                 return $this->saveOrder($request);
                 break;
+            case 'confirmation':
+                return $this->saveConfirm($request);
+                break;
             case 'pay-product':
                 return $this->payAdd($request);
                 break;
@@ -452,7 +460,12 @@ class MainController extends Controller
     }
     public function cart(Request $request)
     {
-        return view('features.public.cart');
+        $qty = session()->get('qunatity');
+        $product = session()->get('product');
+        $token = csrf_token();
+        $order = Order::find($request->order_id);
+        $redirectUrl = url('/confirmation') . "?token=$token&order_id=$order->id&no_order=$order->number_order";
+        return view('features.public.cart', compact('qty', 'product', 'redirectUrl'));
     }
     public function formReview(Request $request)
     {
@@ -527,17 +540,23 @@ class MainController extends Controller
     }
     public function pay(Request $request)
     {
-        return view('features.public.pay');
+        $product = session()->get('product');
+        $qunatity = session()->get('qunatity');
+        return view('features.public.pay', compact('qunatity', 'product'));
     }
     public function saveOrder(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
+            'agreement1' => 'required',
+            'agreement2' => 'required',
         ], [
             'name.required' => 'Bagian ini harus diisi !',
             'email.required' => 'Bagian ini harus diisi !',
             'email.email' => 'Email tidak valid !',
+            'agreement1.required' => 'Bagian ini harus diisi !',
+            'agreement2.required' => 'Bagian ini harus diisi !',
         ]);
         if ($validator->fails()) {
             $error = [
@@ -546,11 +565,34 @@ class MainController extends Controller
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
         $save = $request->only('name', 'email', 'city', 'noted');
+        $product = session()->get('product');
+        $save['product_id'] = $product->id;
+        $totalPrice = session()->get('qunatity') * ($product->price - $product->discount);
+        $save['price'] = $totalPrice;
+        $save['number_order'] = Helper::generateUniqueOrderNumber();
         try {
-            //code...
+            $order = Order::create($save);
+            $token = csrf_token();
+            $redirectUrl = url('/cart') . "?token=$token&order_id=$order->id&no_order=$order->number_order";
+            $order['redirect'] = $redirectUrl;
+            $result = [
+                'message' => 'Success !',
+                'data' => $order,
+                'code' => 200,
+                'errors' => []
+            ];
         } catch (Exception $e) {
-            //throw $th;
+            $result = [
+                'message' => $e->getMessage(),
+                'data' => [],
+                'code' => 500,
+                'errors' => [
+                    'line' => $e->getLine(),
+                    'message' => $e->getMessage()
+                ]
+            ];
         }
+        return $this->respond($result, $result['code']);
     }
     public function payAdd(Request $request)
     {
@@ -566,8 +608,61 @@ class MainController extends Controller
             ];
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
+        session()->forget('product');
+        session()->forget('qunatity');
         $product = Product::where('id', $request->productId)->where('statusenable', true)->first();
         session()->put('product', $product);
-        return response()->json(['message' => 'Success !'], 200);
+        session()->put('qunatity', $request->quantity);
+        $data = [
+            'redirect' => url('/pay?token=' . csrf_token())
+        ];
+        return response()->json(['message' => 'Success !', 'data' => $data], 200);
+    }
+    public function getBankAccount(Request $request)
+    {
+        $category = $this->getFix('bank');
+        $contents = Content::where('category', $category)
+            ->where('statusenable', true)
+            ->get();
+        return view('features.public.data.bank', compact('contents'));
+    }
+    public function confirmation(Request $request)
+    {
+        $category = $this->getFix('bank');
+        $banks = Content::where('category', $category)
+            ->where('statusenable', true)
+            ->get();
+        $order = Order::find($request->order_id);
+        return view('features.public.confirmation', compact('banks', 'order'));
+    }
+    public function saveConfirm(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'bank' => 'required',
+            'name_rek' => 'required',
+        ], [
+            'bank.required' => 'Bagian ini harus diisi !',
+            'name_rek.required' => 'Bagian ini harus diisi !',
+
+        ]);
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        $order = Order::find($request->id);
+        $data = $request->only('date', 'transfer_to', 'bank', 'name_rek');
+        if ($request->file('file')) {
+            $data['file'] = $this->uploadImage($request->file, Str::slug($order->number_order, "-") . "-" . "bukti-transfer");
+        }
+        $order->update($data);
+        $result = [
+            'message' => 'Success !',
+            'data' => $order,
+            'code' => 200,
+            'errors' => []
+        ];
+        return $this->respond($result, $result['code']);
     }
 }

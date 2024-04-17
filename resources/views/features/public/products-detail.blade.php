@@ -47,10 +47,13 @@
                                 </div>
                                 <div class="m-bot15"> <strong>Price : </strong>
                                     @if ($product->discount)
-                                        <span class="amount-old">{{ $product->price }}</span>
-                                        <span class="pro-price">{{ $product->discount }}</span>
+                                        <span
+                                            class="pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                        <span
+                                            class="amount-old">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
                                     @else
-                                        <span class="amount-old">{{ $product->price }}</span>
+                                        <span
+                                            class="pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group">
@@ -95,8 +98,8 @@
                         productId: $("#product_id").val(),
                         _token: $("#token").val()
                     },
-                    success: function(data) {
-
+                    success: function(response) {
+                        window.location.href = response.data.redirect
                     },
                     error: function(error) {
                         if (error.status == 400 || error.status == 422) {

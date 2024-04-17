@@ -10,7 +10,7 @@
             <img src="{{ asset('assets/img/' . $product->image) }}" class="card-img-top" alt="Product Image">
             <div class="card-body">
                 <h5 class="card-title">{{ $product->name }}</h5>
-                <p class="card-text">{{ $product->price }}</p>
+                <p class="card-text">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price)  }}</p>
             </div>
         </div>
     </div>
