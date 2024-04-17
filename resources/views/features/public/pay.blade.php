@@ -32,9 +32,15 @@
                                     </div>
                                     <div class="mb-1">
                                         <label for="email" class="form-label">Email </label>
-                                        <input type="text" class="form-control-sm form-control" id="email"
+                                        <input type="email" class="form-control-sm form-control" id="email"
                                             name="email" placeholder="..">
                                         <span class="error-email text-danger d-none"></span>
+                                    </div>
+                                    <div class="mb-1">
+                                        <label for="whatsapp" class="form-label">Whatsapp </label>
+                                        <input type="text" class="form-control-sm form-control" id="whatsapp"
+                                            name="whatsapp" placeholder="..">
+                                        <span class="error-whatsapp text-danger d-none"></span>
                                     </div>
                                     <div class="mb-1">
                                         <label for="city" class="form-label">city </label>

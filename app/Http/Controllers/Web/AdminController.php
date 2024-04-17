@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\Image;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use App\Responses\ServerResponse;
@@ -70,6 +71,9 @@ class AdminController extends Controller
                 break;
             case 'img-gallery':
                 return $this->getProductGallery($request);
+                break;
+            case 'orders':
+                return $this->getOrder($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -722,7 +726,7 @@ class AdminController extends Controller
             ];
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
-        $save = $request->only('title', 'subtitle', 'category','order');
+        $save = $request->only('title', 'subtitle', 'category', 'order');
         if ($request->file('file')) {
             $img = $this->uploadImage($request->file, Str::slug($request->category, "-") . "-" . Str::random(12) . "-" . "banner");
             $this->deleteImg($request->image_old);
@@ -982,5 +986,21 @@ class AdminController extends Controller
             })
             ->get();
         return view('features.admin.data.product', compact('products'));
+    }
+    public function order(Request $request)
+    {
+        return view('features.admin.order');
+    }
+    public function getOrder(Request $request)
+    {
+        $startDate = $request->startDate . " 00:00:00";
+        $endDate = $request->endDate . " 23:59:59";
+
+        $orders = Order::with('product')
+            ->whereBetween('updated_at', [$startDate, $endDate])
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        return view('features.admin.data.order', compact('orders'));
     }
 }

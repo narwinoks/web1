@@ -34,6 +34,10 @@
                                 class="fas fa-paper-plane"></i></span><span class="pcoded-mtext">Request
                             PL</span></a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.order') }}" class="nav-link "><span class="pcoded-micon"><i
+                                class="fas fa-shopping-cart"></i></span><span class="pcoded-mtext">Order</span></a>
+                </li>
                 <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link "><span class="pcoded-micon"><i
                                 class="feather icon-box"></i></span><span class="pcoded-mtext">MASTER</span></a>

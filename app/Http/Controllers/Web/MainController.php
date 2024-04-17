@@ -653,6 +653,7 @@ class MainController extends Controller
         }
         $order = Order::find($request->id);
         $data = $request->only('date', 'transfer_to', 'bank', 'name_rek');
+        $data['status'] = 'complated';
         if ($request->file('file')) {
             $data['file'] = $this->uploadImage($request->file, Str::slug($order->number_order, "-") . "-" . "bukti-transfer");
         }

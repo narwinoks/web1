@@ -84,6 +84,7 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/show-modal', 'showModal')->name('showModal');
     Route::get('/pl-request', 'plRequest')->name('plRequest');
     Route::get('/bank', 'bank')->name('bank');
+    Route::get('/order', 'order')->name('order');
     Route::get('/data', 'data')->name('data');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');
