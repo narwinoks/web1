@@ -12,7 +12,7 @@
                     <img src="{{ asset('assets/img/' . $banner->image) }}" width="200px" class="blog-hero img-fluid"
                         alt="blog-hero">
                 </div>
-                <div class="col-sm-12 col-md-8 px-5 px-md-0 mt-md-0 mt-5">
+                <div class="col-sm-12 col-md-8 px-4 px-md-0 mt-md-0 mt-5">
                     <div class="content">
                         <h3 class="h5">{!! $head['title'] ?? '' !!}</h3>
                         <p>{!! $head['subtitle'] ?? '' !!}</p>
