@@ -9,7 +9,8 @@
         <div class="hero">
             <div class="row align-items-center">
                 <div class="col-sm-12 col-md-4">
-                    <img src="{{ asset('assets/img/' . $banner->image) }}" class="blog-hero img-fluid" alt="blog-hero">
+                    <img src="{{ asset('assets/img/' . $banner->image) }}" width="200px" class="blog-hero img-fluid"
+                        alt="blog-hero">
                 </div>
                 <div class="col-sm-12 col-md-8 px-5 px-md-0">
                     <div class="content">
@@ -115,4 +116,12 @@
             })
         }
     </script>
+@endpush
+@push('sctyles')
+    <style>
+        .blog-hero {
+            max-width: 200px !important;
+            max-height: auto !important;
+        }
+    </style>
 @endpush
