@@ -1,30 +1,45 @@
+<style>
+.link-foot{
+
+    font-weight: 500;
+    font-size: 13px;
+    white-space: pre-wrap;
+    color: #b5b5b5;
+}
+.link-head{
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: rgb(238, 238, 238);
+    font-size:14px
+}
+</style>
 <footer class="footer">
     <div class="container-md">
         <div class="row">
             <div class="col-md-8 col-12">
                 <div class="row item">
                     <div class="col-md-2 col-6">
-                        <h5 class="h6">Link</h5>
+                        <h5 class="h6 link-head">Link</h5>
                         <ul class="list">
                             <li>
-                                <a href="{{ url('/') }}">Home</a>
+                                <a class="link-foot" href="{{ url('/') }}">Home</a>
                             </li>
                             <li>
-                                <a href="{{ url('/pl') }}">Pricelist</a>
+                                <a class="link-foot" href="{{ url('/pl') }}">Pricelist</a>
                             </li>
                             <li>
-                                <a href="{{ url('/blog') }}">Portfolio</a>
+                                <a class="link-foot" href="{{ url('/blog') }}">Portfolio</a>
                             </li>
                             <li>
-                                <a href="{{ url('/faq') }}">F.A.Q</a>
+                                <a class="link-foot" href="{{ url('/faq') }}">F.A.Q</a>
                             </li>
                             <li>
-                                <a href="{{ url('/about-us') }}">About</a>
+                                <a class="link-foot" href="{{ url('/about-us') }}">About</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-2 col-6">
-                        <h5 class="h6">Sosial Media</h5>
+                        <h5 class="h6 link-head">Sosial Media</h5>
                         <div class="social">
                             <a href="{{ $profile['instagram'] }}" target="_blank">
                                 <span><i class="fab fa-instagram"></i></span>
@@ -41,7 +56,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-4">
-                        <h5 class="h6">Partners</h5>
+                        <h5 class="h6 link-head">Partners</h5>
                         <div class="partner">
                             <img src="{{ asset('assets/img/' . $profile['partner1']) }}" alt="partner"
                                 class="img-fluid">
@@ -54,7 +69,7 @@
                                 <a href="/">
                                     <span>
                                         <i class="fab fa-whatsapp"></i>
-                                        {{ $profile['whatsapp'] }}
+                                        <span class="link-foot">{{ $profile['whatsapp'] }}</span>
                                     </span>
                                 </a>
                             </li>
@@ -62,15 +77,15 @@
                                 <a href="/">
                                     <span>
                                         <i class="fas fa-envelope"></i>
-                                        {{ $profile['email1'] }}
+                                        <span class="link-foot" style="text-transform: lowercase"> {{ $profile['email1'] }}</span>
                                     </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="/">
-                                    <span>
+                                    <span >
                                         <i class="fas fa-map-marker-alt"></i>
-                                        {{ $profile['address'] }}
+                                        <span class="link-foot">{{ $profile['address'] }}</span>
                                     </span>
                                 </a>
                             </li>

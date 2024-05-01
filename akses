@@ -1,0 +1,3 @@
+AKSES SSH DB ->
+ssh -N -L 3336:127.0.0.1:3306 -p 64000 triamed1@modena.id.domainesia.com
+pass : 93ng]BG5b.2GDa

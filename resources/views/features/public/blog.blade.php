@@ -14,7 +14,14 @@
                 </div>
                 <div class="col-sm-12 col-md-8 px-5 px-md-0">
                     <div class="content">
-                        <h3 class="h5">{!! $head['title'] ?? '' !!}</h3>
+                        <h3 class="h5" style="
+                        resize: none;
+                        box-sizing: border-box;
+                        border-style: solid;
+                        border-width: 0;
+                        outline: 0;
+                        line-height: 1.4;
+                        text-rendering: optimizeLegibility;font-size:15px" >{!! $head['title'] ?? '' !!}</h3>
                         <p>{!! $head['subtitle'] ?? '' !!}</p>
                     </div>
                 </div>
