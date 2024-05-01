@@ -8,8 +8,9 @@
     <section class="blog-hero">
         <div class="hero">
             <div class="row align-items-center py-md-3 py-5 px-md-0 px-5">
-                <div class="col-sm-12 col-md-4">
-                    <img src="{{ asset('assets/img/' . $banner->image) }}" width="200px" class="blog-hero img-fluid"
+                <div class="col-sm-12 col-md-4" style="
+                text-align: center;">
+                    <img src="{{ asset('assets/img/' . $banner->image) }}" style="width:150px" class="blog-hero img-fluid"
                         alt="blog-hero">
                 </div>
                 <div class="col-sm-12 col-md-8 px-4 px-md-0 mt-md-0 mt-5">
