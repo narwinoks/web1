@@ -21,17 +21,14 @@
             <h3 class="bold h5">Shutterbox means 'sacred' in Greek</h3>
             <div class="content text-center">
                 <p class="p">
-                    We're established to immortalize the most sanctified of yours <br />
-                    What if God's primary intent for your relationship isn't to make you happy, but holy? <br />
+                    Comes from "shutter" & box, which means the shutter in a camera is not just a technical tool, <br />
+                    but also a symbol that contains many deep philosophical meanings about time, life, control and
+                    unpredictability. <br />
                 </p>
                 <p class="p">
-                    What if your relationship isn't as much about you and your partner as it is about you and God? <br />
-                </p>
-                <p class="p">
-                    Starting with the discovery that the goal of a relationship foes beyond personal happiness <br />
-                    We invite you to see how God can use marriage as dicipline and a motivation to love God more and reflect
-                    <br />
-                    more of the character of his creation.
+                    and the "box" viewpoint here is the reflection room where the photographer & videographer are<br />
+                    explore and design approaches to the visual arts in a more conscious and planned way
+                    which conveys a deep message from a moment.<br />
                 </p>
             </div>
         </div>
@@ -55,8 +52,7 @@
             <div class="overlay"></div>
             <div class="content">
                 <h3>Let's connect</h3>
-                <a href="{{ url('pl') }}" class="button"><i class="far fa-check-circle"
-                        aria-disabled="true"></i>
+                <a href="{{ url('pl') }}" class="button"><i class="far fa-check-circle" aria-disabled="true"></i>
                     Access
                     pricelist</a>
             </div>
