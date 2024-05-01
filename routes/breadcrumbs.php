@@ -46,6 +46,10 @@ Breadcrumbs::for('admin.order', function ($trail) {
     $trail->parent('admin.products');
     $trail->push('Order', route('admin.order'));
 });
+Breadcrumbs::for('admin.story', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Story', route('admin.story'));
+});
 Breadcrumbs::for('account.profile', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Profile', route('account.profile'));

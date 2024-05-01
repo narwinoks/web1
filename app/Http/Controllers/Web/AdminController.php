@@ -75,6 +75,9 @@ class AdminController extends Controller
             case 'orders':
                 return $this->getOrder($request);
                 break;
+            case 'story':
+                return $this->getStory($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -175,6 +178,9 @@ class AdminController extends Controller
                 break;
             case 'product':
                 return $this->saveProduct($request);
+                break;
+            case 'story':
+                return $this->saveStory($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -298,6 +304,9 @@ class AdminController extends Controller
                 break;
             case 'bank':
                 return $this->modalBank($request);
+                break;
+            case 'story':
+                return $this->modalStory($request);
                 break;
             default:
                 break;
@@ -424,6 +433,11 @@ class AdminController extends Controller
         try {
             $image = Image::where('id', $request->id)->first();
             $this->deleteImg($image->url);
+            $imgs  = Image::where('parent_id', $request->id)->get();
+            foreach ($imgs as $key => $img) {
+                $this->deleteImg($img->url);
+                $img->delete();
+            }
             $image->delete();
             $result = [
                 'message' => 'Data Berhasil Dihapus !',
@@ -1002,5 +1016,74 @@ class AdminController extends Controller
             ->get();
 
         return view('features.admin.data.order', compact('orders'));
+    }
+    public function story(Request $request)
+    {
+        return view('features.admin.story');
+    }
+    public function modalStory(Request $request)
+    {
+        if ($request->id) {
+            return view('features.admin.modal.edit-story');
+        } else {
+            return view('features.admin.modal.add-story');
+        }
+    }
+    public function saveStory(Request $request)
+    {
+        $rules = [];
+
+        if ($request->type == 'image') {
+            $rules['file'] = 'required|image|max:5120';
+        } elseif ($request->type == 'video') {
+            $rules['file'] = 'required|file|mimes:mp4,mov,avi|max:15360';
+        }
+        $validator = Validator::make($request->all(), $rules, [
+            'file.required' => 'File harus diunggah!',
+            'file.image' => 'File harus berupa gambar (format: jpg, jpeg, png, gif, svg)!',
+            'file.file' => 'File harus berupa video (format: mp4, mov, avi)!',
+            'file.mimes' => 'Format file tidak didukung (hanya jpg, jpeg, png, gif, svg untuk gambar dan mp4, mov, avi untuk video)!',
+            'file.max' => 'Ukuran file terlalu besar. Maksimum 5MB untuk gambar dan 15MB untuk video!',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+        if ($validator->fails()) {
+            $error = [
+                'errors' => $validator->errors()
+            ];
+            return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
+        }
+        if ($request->file('file')) {
+            $data['url'] = $this->uploadImage($request->file, Str::slug($request->type, "-") . "-" . "story" . "-" . Str::random(7));
+        }
+        $data['category'] = 'story';
+        $data['type'] = $request->type;
+        $data['slug'] = 'story' . Str::random(10);
+        $result = Image::updateOrCreate(['id' => $request->id], $data);
+        return $this->respond($result, 200);
+    }
+    public function getStory(Request $request)
+    {
+        $limit = $request->limit;
+        $category = 'story';
+        $offset = $request->offset;
+        $startDate = $request->startDate . " " . "00:00:00";
+        $endDate = $request->endDate . " " . "23:59:59";
+        $images = Image::where('statusenable', true)
+            ->whereNull('parent_id')
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('features.admin.data.story', compact('images'));
     }
 }

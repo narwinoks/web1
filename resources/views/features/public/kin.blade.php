@@ -1,9 +1,6 @@
 @extends('templates.public.main')
 @section('title', 'Shutterbox (Family Portraiture)')
 @section('content')
-    <section class="hero d-none d-md-block">
-        <img src="{{ asset('assets/img/hero-kin.png') }}" class="img-fluid" alt="hero-kin">
-    </section>
     <section class="blog">
         <div class="container-fluid">
             <input type="hidden" value="5" name="limit" id="limit">
@@ -28,7 +25,7 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="row justify-content-center">
-                        <div class="col-4">
+                        <div class="col-md-4 col-12">
                             <div class="mb-1">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="email" class="form-control-sm form-control" id="name"
@@ -86,7 +83,7 @@
             var offset = parseInt($('#offset').val());
             var limit = parseInt($('#limit').val());
             var category = $('#category').val().replace(/\s+/g, '');
-            var key = $('#key').val().replace(/\s+/g, '');
+            var key = "story";
             $.ajax({
                 url: "{{ route('content') }}",
                 type: 'GET',
