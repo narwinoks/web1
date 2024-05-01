@@ -7,11 +7,11 @@
     @endphp
     <section class="blog-hero">
         <div class="hero">
-            <div class="row">
-                <div class="col-4">
-                    <img src="{{ asset('assets/img/' . $banner->image) }}" class="blog-hero" alt="blog-hero">
+            <div class="row align-items-center">
+                <div class="col-sm-12 col-md-4">
+                    <img src="{{ asset('assets/img/' . $banner->image) }}" class="blog-hero img-fluid" alt="blog-hero">
                 </div>
-                <div class="col-8">
+                <div class="col-sm-12 col-md-8 px-5 px-md-0">
                     <div class="content">
                         <h3 class="h5">{!! $head['title'] ?? '' !!}</h3>
                         <p>{!! $head['subtitle'] ?? '' !!}</p>
