@@ -21,16 +21,14 @@
             <h3 class="bold h5">Shutterbox</h3>
             <div class="content text-center">
                 <p class="p">
-                    Comes from "shutter" & box, which means the shutter in a camera is not just a technical tool,
-                     <br />
-                     but also a symbol that contains many deep philosophical meanings about time, life, control and unpredictability.
-
-                     <br />
+                    Comes from "shutter" & box, which means the shutter in a camera is not just a technical tool, <br />
+                    but also a symbol that contains many deep philosophical meanings about time, life, control and
+                    unpredictability. <br />
                 </p>
                 <p class="p">
-                    and the "box" viewpoint here is the reflection room where the photographer & videographer are
+                    and the "box" viewpoint here is the reflection room where the photographer & videographer are<br />
                     explore and design approaches to the visual arts in a more conscious and planned way
-                    which conveys a deep message from a moment. <br />
+                    which conveys a deep message from a moment.<br />
                 </p>
 
             </div>
@@ -55,8 +53,7 @@
             <div class="overlay"></div>
             <div class="content">
                 <h3>Let's connect</h3>
-                <a href="{{ url('pl') }}" class="button"><i class="far fa-check-circle"
-                        aria-disabled="true"></i>
+                <a href="{{ url('pl') }}" class="button"><i class="far fa-check-circle" aria-disabled="true"></i>
                     Access
                     pricelist</a>
             </div>

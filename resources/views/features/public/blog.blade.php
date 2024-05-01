@@ -7,12 +7,12 @@
     @endphp
     <section class="blog-hero">
         <div class="hero">
-            <div class="row align-items-center">
+            <div class="row align-items-center py-md-3 py-5 px-md-0 px-5">
                 <div class="col-sm-12 col-md-4">
                     <img src="{{ asset('assets/img/' . $banner->image) }}" width="200px" class="blog-hero img-fluid"
                         alt="blog-hero">
                 </div>
-                <div class="col-sm-12 col-md-8 px-5 px-md-0">
+                <div class="col-sm-12 col-md-8 px-4 px-md-0 mt-md-0 mt-5">
                     <div class="content">
                         <h3 class="h5" style="
                         resize: none;
@@ -129,6 +129,13 @@
         .blog-hero {
             max-width: 200px !important;
             max-height: auto !important;
+        }
+
+        .blog-hero .hero img {
+            width: 200px !important;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
         }
     </style>
 @endpush
