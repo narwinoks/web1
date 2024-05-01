@@ -36,8 +36,8 @@
     </section>
     <section class="blogs">
         <div class="container-fluid px-3 px-md-5">
-            <div class="text-center text-orange">
-                <p class="h6 py-0 my-0">featured</p>
+            <div class="text-center text-black">
+                <p class="h6 py-0 my-0">Featured</p>
                 <h3 class="h5">BLOG POSTS</h3>
             </div>
             <div class="row mt-3" id="portfolio">
