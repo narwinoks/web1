@@ -87,6 +87,7 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/order', 'order')->name('order');
     Route::get('/data', 'data')->name('data');
     Route::get('/story', 'story')->name('story');
+    Route::get('/category', 'category')->name('category');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');
     Route::post('/save-content', 'saveContent')->name('saveContent');

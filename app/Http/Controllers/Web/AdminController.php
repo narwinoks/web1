@@ -78,6 +78,9 @@ class AdminController extends Controller
             case 'story':
                 return $this->getStory($request);
                 break;
+            case 'category-blog':
+                return $this->getCategory($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -181,6 +184,9 @@ class AdminController extends Controller
                 break;
             case 'story':
                 return $this->saveStory($request);
+                break;
+            case 'category-blog':
+                return $this->saveCategoryBlog($request);
                 break;
             default:
                 return response()->json(['message' => 'not found']);
@@ -307,6 +313,9 @@ class AdminController extends Controller
                 break;
             case 'story':
                 return $this->modalStory($request);
+                break;
+            case 'category-image':
+                return $this->modalCategoryImage($request);
                 break;
             default:
                 break;
@@ -1085,5 +1094,46 @@ class AdminController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
         return view('features.admin.data.story', compact('images'));
+    }
+    public function category(Request $request)
+    {
+
+        return view('features.admin.category');
+    }
+    public function getCategory(Request $request)
+    {
+        $images = Content::where('category', 'category-image')
+            ->whereNotNull('image')
+            ->where('statusenable', true)->get();
+        return view('features.admin.data.category', compact('images'));
+    }
+    public function saveCategoryBlog(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image|max:5120'
+        ], [
+            'file.required' => 'File harus diunggah!',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+        if ($request->file('file')) {
+            $data['image'] = $this->uploadImage($request->file, Str::slug(Str::random(10), "-") . "-" . "story" . "-" . Str::random(7));
+            $this->deleteImg($request->image_old);
+        }
+        $result = Content::updateOrCreate(['id' => $request->id], $data);
+        $result = [
+            'message' => 'Data Berhasil Ditambahkan !',
+            'data' => [],
+            'code' => 200,
+            'errors' => []
+        ];
+        return $this->respond($result, 200);
+    }
+    public function modalCategoryImage(Request $request)
+    {
+        $content = Content::where('statusenable', true)->where('id', $request->id)->first();
+        return view('features.admin.modal.edit-image-category', compact('content'));
     }
 }

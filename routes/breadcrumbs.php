@@ -62,3 +62,7 @@ Breadcrumbs::for('admin.bank', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Bank', route('admin.bank'));
 });
+Breadcrumbs::for('admin.category', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Category', route('admin.category'));
+});

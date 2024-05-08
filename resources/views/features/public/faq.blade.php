@@ -41,3 +41,10 @@
         }
     </script>
 @endpush
+@push('styles')
+    <style>
+        .faq .hero  {
+            padding: 10px 5px;
+        }
+    </style>
+@endpush
