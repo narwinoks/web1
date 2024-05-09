@@ -41,7 +41,7 @@
                           <li><a class="dropdown-item" href="{{ url('studio') }}">Studio Session</a></li>
                           <li><a class="dropdown-item" href="{{ url('wedding') }}">Wedding</a></li>
                           <li><a class="dropdown-item" href="{{ url('prewedding') }}">Prewedding</a></li>
-                          <li><a class="dropdown-item" href="{{ url('engagement') }}">Enggetment</a></li>
+                          <li><a class="dropdown-item" href="{{ url('engagement') }}">Engagement</a></li>
                           <li><a class="dropdown-item" href="{{ url('pengajian') }}">Ceremonial before wedding</a></li>
                           <li><a class="dropdown-item" href="{{ url('kin') }}"">Shutterbox.Kin</a></li>
                       </ul>
