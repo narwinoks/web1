@@ -105,6 +105,11 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/plugin/owlcarousel/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugin/owlcarousel/css/owl.theme.default.min.css') }}">
+    <style>
+        .bg-darks {
+            background: var(--black);
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -222,5 +227,15 @@
                 console.error("Error: " + textStatus, errorThrown);
             })
         }
+    </script>
+    <script type="text/javascript">
+        var nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                nav.classList.remove('fixed-top');
+            } else {
+                nav.classList.add('fixed-top');
+            }
+        });
     </script>
 @endpush

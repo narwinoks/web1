@@ -37,6 +37,10 @@ class MainController extends Controller
     {
         return view('features.public.studio');
     }
+    public function studioSession(Request $request)
+    {
+        return view('features.public.studio-session');
+    }
     public function wedding(Request $request)
     {
         return view('features.public.wedding');
