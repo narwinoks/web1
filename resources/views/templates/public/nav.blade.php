@@ -97,7 +97,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-md-center" id="navbarNavAltMarkup">
-                    <ul class="navbar-nav photo-nav">
+                    <ul class="navbar-nav photo-nav-dark">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="galleryDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -151,7 +151,7 @@
 
     <style>
         @media (max-width: 768px) {
-            .photo-nav {
+            .photo-nav-dark {
                 margin-top: 30px;
                 background-color: #333;
                 color: #fff;
