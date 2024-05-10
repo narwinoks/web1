@@ -75,7 +75,8 @@ class MainController extends Controller
     }
     public function aboutUs(Request $request)
     {
-        return view('features.public.about-us');
+        $profile = json_decode(request()->session()->get('profile'), true);
+        return view('features.public.about-us',compact('profile'));
     }
     public function gallery(Request $request, $slug)
     {

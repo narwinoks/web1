@@ -10,46 +10,43 @@
                     </div>
                     <div class="content mt-5">
                         <p class="paragraph-about-us">
-                            <span>We are photographers based in Bandung - West Java, Indonesia.</span>
+                            <span>We are photographers based in Tasikmalaya - West Java, Indonesia.</span>
                         </p>
                         <p class="paragraph-about-us">
                             <span>.</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span>We love telling stories! and we know that your story is dying to be told. Your life, your
-                                family, your love, and your wedding day is one of the most beautiful stories to be told. You
-                                better believe that we would love to tell it for you creatively, artistically, and true to
-                                who you are.</span>
+                            <span>Every photo is a story, and we are loyal storytellers. From the beginning of the journey
+                                of love to family happiness, we photograph every moment with warmth and honesty. We not only
+                                capture images, but also immortalize the emotions and stories behind them. Let us be the
+                                keepers your memories, preserving every beautiful second in tune
+                                .</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span><span class="fw-bold">SHUTTERBOX.ID (ἱερός)</span> is Greek for "sacred, sanctified".
-                                That's how
-                                we see it on every wedding
-                                ceremony. It takes several ceremonial steps before the day in our culture. Engagement,
-                                recitation to God - whoever you believe in - every step is sacred.</span>
+                            <span><span class="fw-bold">SHUTTERBOX.ID</span>  Comes from <span class="fst-italic"> "shutter"</span>  & <span class="fst-italic">box</span>, which means the
+                                shutter in a camera is not just a technical tool,
+                                but also a symbol that contains many deep philosophical meanings about time, life, control
+                                and unpredictability.
+                                and the "box" viewpoint here is the reflection room where the photographer & videographer
+                                are
+                                explore and design approaches to the visual arts in a more conscious and planned way which
+                                conveys a deep message from a moment.
+                            </span>
+                        </p>
+                        <p class="paragraph-about-us mt-5">
+                            <span>Address: {{ $profile['address'] ?? '' }}.</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span><span class="fw-bold">"Tomorrow's Memories, Today."</span> As you started to have kids,
-                                your hair started to grey, and
-                                the wrinkles showed everywhere. Maybe you will have the bad time, good time; nobody knows.
-                                But here, let us help to memorize once again that back then, there was the time when both of
-                                you were so madly in love, that both of you would conquer the world. Let us help you
-                                remember all the good times.</span>
+                            <span>E-mail: {{ $profile['email1'] ?? '' }}</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span>Address: Komplek Mulya Golf Residence A7, Cisaranten - Bandung.</span>
-                        </p>
-                        <p class="paragraph-about-us">
-                            <span>E-mail: shutterbox.group@gmail.com</span>
-                        </p>
-                        <p class="paragraph-about-us">
-                            <span>Phone (WA): +62 8565-9004-317</span>
+                            <span>Phone (WA): {{ $profile['whatsapp'] ?? '' }}</span>
                         </p>
                         <p class="paragraph-about-us">
                             <span>Instagram: shutterbox.photography</span>
                         </p>
                         <p class="paragraph-about-us">
-                            <span>YouTube: Shutterbox Photograph</span>
+                            <span>YouTube: Shutterbox.project</span>
                         </p>
 
                     </div>
@@ -59,7 +56,7 @@
     </section>
     <section class="maps">
         <iframe class="map" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-            src="https://maps.google.com/maps?width=100%&amp;height=auto&amp;hl=en&amp;q={{ \App\Helpers\Helper::getProfile('address') }}&amp;t=m&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+            src="https://maps.google.com/maps?width=100%&amp;height=auto&amp;hl=en&amp;q={{ $profile['address'] ?? '' }}&amp;t=m&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
         </iframe>
     </section>
 @endsection

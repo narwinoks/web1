@@ -141,8 +141,7 @@
                                 <a href="/">
                                     <span>
                                         <i class="fas fa-envelope"></i>
-                                        <span class="link-foot" style="text-transform: lowercase">
-                                            {{ $profile['email1'] }}</span>
+                                        <span class="link-foot" style="text-transform: lowercase">{{ $profile['email1'] }}</span>
                                     </span>
                                 </a>
                             </li>

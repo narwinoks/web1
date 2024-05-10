@@ -91,7 +91,7 @@
             <div class="container">
                 <a class="navbar-brand text-center" href="/">
                     <img class="logo-sm-home" src="{{ asset('assets/img/logo-no-bg.png') }}" alt="logo-app"
-                        height="40">
+                        height="35">
                 </a>
                 <button class="navbar-toggler bugger-d-none burger" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNav" aria-expanded="false"
@@ -242,13 +242,6 @@
             .nav-item {
                 padding: 0px 0.5rem;
             }
-
-            .nav-link {
-                font-size: 20px !important;
-                color: var(--white);
-                text-decoration: none;
-            }
-
             .nav-link:hover {
                 color: var(--white);
                 text-decoration: underline;
@@ -256,7 +249,7 @@
 
 
             .nav-link {
-                font-size: 20px !important;
+                font-size: 14px !important;
                 color: var(--white);
                 text-decoration: none;
             }
@@ -269,6 +262,6 @@
 
         .logo-sm-home {
             background-color: transparent;
-            height: 40px;
+            height: 35px;
         }
     </style>
