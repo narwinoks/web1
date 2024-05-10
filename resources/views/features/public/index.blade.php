@@ -9,7 +9,6 @@
                 @endphp
                 <div class="item">
                     <img src="{{ asset('assets/img/' . $img) }}" alt="hero">
-                    <div class="overlay"></div>
                 </div>
             @endforeach
         </div>

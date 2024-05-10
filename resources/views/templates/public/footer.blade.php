@@ -47,11 +47,10 @@
         border: 1px solid #29a71a;
         color: #FFF;
         text-align: center;
-        z-index: 99;
         border-radius: 5px;
         font-size: 23px;
         font-weight: bold;
-        z-index: 999;
+        z-index: 90;
     }
 
     .my-float {
