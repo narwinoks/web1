@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="mb-1">
                                     <label for="number" class="form-label">Whatsapp / Phone Number</label>
-                                    <input type="email" class="form-control-sm is-rounded form-control" id="email"
+                                    <input type="text" class="form-control-sm is-rounded form-control" id="email"
                                         placeholder="Whatsapp / Phone Number" name="number">
                                     <span class="error-number text-danger d-none"></span>
                                 </div>
