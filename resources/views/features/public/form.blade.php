@@ -66,34 +66,16 @@
                                         <label for="option" class="form-label">Paket yang saya pilih</label>
                                         <select class="form-select form-select-sm" id="option"
                                             aria-label=".form-select-sm example" name="option">
-                                            <option value="Prewedding" selected>Prewedding</option>
+                                            <option value="Bundling Prewed Wedding" selected>Bundling Prewed Wedding</option>
+                                            <option value="Traditional Ceremony">Traditional Ceremony</option>
+                                            <option value="Engagement">Engagement</option>
+                                            <option value="Prewedding">Prewedding</option>
                                             <option value="Wedding">Wedding</option>
-                                            <option value="2 Days Bulding (Prewedding & Wedding)">2 Days Bundling
-                                                (Prewedding &
-                                                Wedding)</option>
-                                            <option value="2 Days Bundling (Prewedding,Traditional Ceremony & Wedding)">2
-                                                Days
-                                                Bundling (Prewedding,Traditional Ceremony & Wedding)
-                                            </option>
-                                            <option value="2 Days Bundling (Prewedding,Traditional Ceremony & Wedding)">2
-                                                Days
-                                                FULLDAY Bundling (Fullday Prewedding & Fullday Wedding)
-                                            </option>
-                                            <option value="engagement">
-                                                Engagement
-                                            </option>
-                                            <option value="Family Portraiture (Shutterbox.kin)">
-                                                Family Portraiture (Shutterbox.kin)
-                                            </option>
-                                            <option value="Tradional ceremony (Pengajian Siraman)">
-                                                Tradional ceremony (Pengajian Siraman)
-                                            </option>
-                                            <option value="Custome Page">
-                                                Custome Page
-                                            </option>
+                                            <option value="Family / Maternity">Family / Maternity</option>
+                                            <option value="Other"> Other</option>
                                         </select>
                                     </div>
-                                    <div class="mb-1 prewedding-content">
+                                    {{-- <div class="mb-1 prewedding-content">
                                         <label for="type" class="form-label">Prewedding Package </label>
                                         <select class="form-select form-select-sm" id="prewedding-package"
                                             aria-label=".form-select-sm example" name="prewedding_package">
@@ -120,7 +102,7 @@
                                             </option>
                                             <option value="Custom">Custom</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="mb-1 etc" style="display: none">
                                         <label for="tuliskan" class="form-label">Tulis disini </label>
                                         <textarea name="etc" class="form-control-sm form-control" placeholder="event 1, event 2 dst ..." id="etc"
@@ -277,7 +259,7 @@
                     $('.etc').hide();
                     $('.wedding-content').show();
                     $('.prewedding-content').hide();
-                } else if (option == 'Custome Page') {
+                } else if (option == 'Other') {
                     $('.wedding-content').hide();
                     $('.prewedding-content').hide();
                     $('.etc').show();

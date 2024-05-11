@@ -284,7 +284,7 @@ a {
     padding: 15px 0;
     margin: 0 -25px 30px;
     background: #1daa72;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     color: #fff;
     text-transform: uppercase;
@@ -345,16 +345,16 @@ a {
 }
 
 .pricingTable .pricing-content li {
-    font-size: 17px;
+    font-size: 14px;
     color: #8f8f8f;
-    line-height: 55px;
+    line-height: 35px;
 }
 
 .pricingTable .pricingTable-signup {
     display: inline-block;
     padding: 10px 30px;
     background: #1daa72;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     color: #fff;
     overflow: hidden;

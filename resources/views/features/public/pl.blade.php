@@ -17,19 +17,17 @@
     <section class="question">
         <div class="container">
             <div class="row justify-content-center text-center">
-                <h4 class="h6 fw-bolder fst-italic">Dear Creatures,</h4>
-                <p class="h7">
+                <h4 class="fs-5 fw-bolder fst-italic">Dear Creatures,</h4>
+                <p class="fs-6">
                     <span class="fw-normal">For your support and apprecciation so far, Shutterbox is offering you </span>
-                    <span class="fw-bolder">special offer up to IDR 1.500.000,- </span>
+                    <span class="fw-bolder">special offer up to IDR 500.000,- </span>
                 </p>
-                <p class="h7">
-                    <span>
-                        This promotion is valid when you download/screenshot the voucher and send it to our admin before
-                        making
-                        a down payment.
-                    </span>
+                <p class="fs-6 fw-normal">
+                    This promotion is valid when you download/screenshot the voucher and send it to our admin before
+                    making
+                    a down payment.
                 </p>
-                <p class="h7">
+                <p class="h7 fw-normal">
                     <span>
                         (TnC Applied)
                     </span>
@@ -39,7 +37,7 @@
     </section>
     <section class="price">
         <div class="container-fluid">
-            <div class="title text-center mt-5 mb-5">
+            <div class="title text-center mt-2 mb-5">
                 <h4 class="h4">PRICELIST</h4>
             </div>
             <div class="container">
@@ -81,7 +79,7 @@
                         pricelist.</span>
                 </p>
                 <p class="h7 mx-0 px-0 py-0 my-0">
-                    <span>Claim 5% off (up to Rp 1.500.000,-) for your first order.</span>
+                    <span>Claim 5% off (up to Rp 500.000,-) for your first order.</span>
                 </p>
             </div>
             <div class="content mt-4">
