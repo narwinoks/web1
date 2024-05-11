@@ -305,6 +305,10 @@
                 contentType: false,
                 success: function(response) {
                     showAlert(response.message, 'success')
+                    let urlToOpen = "{{ asset('assets/files/Pricelist SHTTRBX2023 .pdf') }}"
+                    setTimeout(function() {
+                        window.open(urlToOpen, "_blank");
+                    }, 2000)
                 },
                 error: function(error) {
                     if (error.status == 400 || error.status == 422) {
