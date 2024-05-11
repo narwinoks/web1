@@ -271,6 +271,7 @@ class MainController extends Controller
             ->when($offset, function ($query) use ($offset) {
                 return $query->offset($offset);
             })
+            ->orderBy('created_at','DESC')
             ->get();
         return view('features.public.data.portfolio', compact('images'));
     }
