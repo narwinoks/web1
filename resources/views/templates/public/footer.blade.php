@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="col-md-8 col-12 text-center">
-                <h6>@ {{ date('Y') }} {{ $profile['name'] }}</h6>
+                <h6>@ {{ date('Y') }} {{ $profile['name'] }}. Powered By PT. ENRE MUDA SEJAHTERA</h6>
             </div>
         </div>
     </div>
