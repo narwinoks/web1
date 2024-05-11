@@ -9,7 +9,6 @@
                 @endphp
                 <div class="item">
                     <img src="{{ asset('assets/img/' . $img) }}" alt="hero">
-                    <div class="overlay"></div>
                 </div>
             @endforeach
         </div>
@@ -36,8 +35,8 @@
     </section>
     <section class="blogs">
         <div class="container-fluid px-3 px-md-5">
-            <div class="text-center text-orange">
-                <p class="h6 py-0 my-0">featured</p>
+            <div class="text-center text-black">
+                <p class="h6 py-0 my-0">Featured</p>
                 <h3 class="h5">BLOG POSTS</h3>
             </div>
             <div class="row mt-3" id="portfolio">
@@ -105,6 +104,11 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/plugin/owlcarousel/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugin/owlcarousel/css/owl.theme.default.min.css') }}">
+    <style>
+        .bg-darks {
+            background: var(--black);
+        }
+    </style>
 @endpush
 
 @push('scripts')
@@ -222,5 +226,15 @@
                 console.error("Error: " + textStatus, errorThrown);
             })
         }
+    </script>
+    <script type="text/javascript">
+        var nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                nav.classList.remove('fixed-top');
+            } else {
+                nav.classList.add('fixed-top');
+            }
+        });
     </script>
 @endpush

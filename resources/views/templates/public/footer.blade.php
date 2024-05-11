@@ -1,17 +1,81 @@
 <style>
-.link-foot{
+    .link-foot {
 
-    font-weight: 500;
-    font-size: 13px;
-    white-space: pre-wrap;
-    color: #b5b5b5;
-}
-.link-head{
-    margin-bottom: 8px;
-    font-weight: 700;
-    color: rgb(238, 238, 238);
-    font-size:14px
-}
+        font-weight: 500;
+        font-size: 13px;
+        white-space: pre-wrap;
+        color: #b5b5b5;
+    }
+
+    .link-head {
+        margin-bottom: 8px;
+        font-weight: 700;
+        color: rgb(238, 238, 238);
+        font-size: 14px
+    }
+
+    .label-container {
+        position: fixed;
+        bottom: 20px;
+        right: 70px;
+        display: table;
+        visibility: hidden;
+    }
+
+    .label-text {
+        color: #FFF;
+        background: rgba(51, 51, 51, 0.5);
+        display: table-cell;
+        vertical-align: middle;
+        padding: 10px;
+        border-radius: 3px;
+    }
+
+    .label-arrow {
+        display: table-cell;
+        vertical-align: middle;
+        color: #333;
+        opacity: 0.5;
+    }
+
+    .float {
+        position: fixed;
+        padding: 6px 9px 8px 9px;
+        bottom: 20px;
+        right: 20px;
+        background-color: #29a71a;
+        border: 1px solid #29a71a;
+        color: #FFF;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 23px;
+        font-weight: bold;
+        z-index: 90;
+    }
+
+    .my-float {
+        margin-top: 0px;
+    }
+
+    .float:hover,
+    .float:focus,
+    .float:active {
+        background-color: #1a7510;
+        color: #ffffff;
+        text-decoration: normal;
+        border: 1px solid #ffffff;
+    }
+
+    a.float+div.label-container {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.5s ease;
+    }
+
+    a.float:hover+div.label-container {
+        visibility: visible;
+        opacity: 1;
+    }
 </style>
 <footer class="footer">
     <div class="container-md">
@@ -77,13 +141,13 @@
                                 <a href="/">
                                     <span>
                                         <i class="fas fa-envelope"></i>
-                                        <span class="link-foot" style="text-transform: lowercase"> {{ $profile['email1'] }}</span>
+                                        <span class="link-foot" style="text-transform: lowercase">{{ $profile['email1'] }}</span>
                                     </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="/">
-                                    <span >
+                                    <span>
                                         <i class="fas fa-map-marker-alt"></i>
                                         <span class="link-foot">{{ $profile['address'] }}</span>
                                     </span>
@@ -99,4 +163,11 @@
         </div>
     </div>
 </footer>
+<a href="https://wa.me/{{ str_replace('-', '', $profile['whatsapp']) }}" target="_blank" class="float">
+    <i class="fab fa-whatsapp my-float"></i>
+</a>
+<div class="label-container">
+    <div class="label-text">Ada yg ingin anda tanyakan?</div>
+    <i class="fas fa-play label-arrow"></i>
+</div>
 @extends('templates.public.scripts')

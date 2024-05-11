@@ -47,6 +47,7 @@
                         <li><a href="{{ route('admin.banner') }}">Banner</a></li>
                         <li><a href="{{ route('admin.pricelist') }}">Pricelist</a></li>
                         <li><a href="{{ route('admin.products') }}">Product</a></li>
+                        <li><a href="{{ route('admin.category') }}">Category Image</a></li>
                     </ul>
                 </li>
             </ul>

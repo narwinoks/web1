@@ -12,7 +12,7 @@
                         <p class="h6"><span>Sebelum mengisi data di bawah ini, silahkan pelajari perjanjian kerjasama di
                                 bawah ini
                             </span></p>
-                        <a href="{{ $profile['file1'] }}" target="_blank">Surat Perjanjian Kerjasama Shutterbox 2024 -
+                        <a href="{{ $profile['file1'] }}" class="text-decoration-underline" target="_blank">Surat Perjanjian Kerjasama Shutterbox 2024 -
                             SPK/001/MMXXIV
                         </a>
                         <p class="h6 mt-4">

@@ -7,3 +7,8 @@
 <link rel="stylesheet" href="{{ asset('assets/plugin/fontawesome-free/css/all.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('assets/plugin/font-awesome/css/font-awesome.css') }}" type="text/css">
 @stack('styles')
+<style>
+    .btn-close-white {
+        color: var(--white)
+    }
+</style>

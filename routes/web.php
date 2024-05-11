@@ -29,6 +29,7 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/blog', 'blog')->name('blog');
     Route::get('/studio', 'studio')->name('studio');
+    Route::get('/studio-session', 'studioSession')->name('studioSession');
     Route::get('/wedding', 'wedding')->name('wedding');
     Route::get('/prewedding', 'prewedding')->name('prewedding');
     Route::get('/engagement', 'engagement')->name('engagement');
@@ -86,6 +87,8 @@ Route::controller(AdminController::class)->name('admin.')->middleware('auth')->p
     Route::get('/bank', 'bank')->name('bank');
     Route::get('/order', 'order')->name('order');
     Route::get('/data', 'data')->name('data');
+    Route::get('/story', 'story')->name('story');
+    Route::get('/category', 'category')->name('category');
 
     Route::post('/update-content', 'updateContent')->name('updateContent');
     Route::post('/save-content', 'saveContent')->name('saveContent');

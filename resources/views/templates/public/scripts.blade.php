@@ -9,4 +9,14 @@
         form.submit();;
     });
 </script>
+<script>
+    $(".burger").click(function() {
+        $(".navbar-content").toggleClass("show");
+    });
+
+    $(".btn-close-white").click(function() {
+        console.log("ss");
+        $(".navbar-content").removeClass("show");
+    });
+</script>
 @stack('scripts')

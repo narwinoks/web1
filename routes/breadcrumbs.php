@@ -46,6 +46,10 @@ Breadcrumbs::for('admin.order', function ($trail) {
     $trail->parent('admin.products');
     $trail->push('Order', route('admin.order'));
 });
+Breadcrumbs::for('admin.story', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Story', route('admin.story'));
+});
 Breadcrumbs::for('account.profile', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Profile', route('account.profile'));
@@ -57,4 +61,8 @@ Breadcrumbs::for('admin.plRequest', function ($trail) {
 Breadcrumbs::for('admin.bank', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Bank', route('admin.bank'));
+});
+Breadcrumbs::for('admin.category', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Category', route('admin.category'));
 });

@@ -37,6 +37,10 @@ class MainController extends Controller
     {
         return view('features.public.studio');
     }
+    public function studioSession(Request $request)
+    {
+        return view('features.public.studio-session');
+    }
     public function wedding(Request $request)
     {
         return view('features.public.wedding');
@@ -71,7 +75,8 @@ class MainController extends Controller
     }
     public function aboutUs(Request $request)
     {
-        return view('features.public.about-us');
+        $profile = json_decode(request()->session()->get('profile'), true);
+        return view('features.public.about-us',compact('profile'));
     }
     public function gallery(Request $request, $slug)
     {
@@ -208,6 +213,9 @@ class MainController extends Controller
             case trim('bank'):
                 return $this->getBankAccount($request);
                 break;
+            case trim('story'):
+                return $this->getStory($request);
+                break;
             default:
                 return response()->json(['message' => 'not found']);
                 break;
@@ -231,6 +239,25 @@ class MainController extends Controller
             })
             ->get();
         return view('features.public.data.gallery', compact('images'));
+    }
+    public function getStory(Request $request)
+    {
+        $limit = $request->limit;
+        $category = 'story';
+        $offset = $request->offset;
+        $images = Image::where('statusenable', true)
+            ->whereNull('parent_id')
+            ->when($limit, function ($query) use ($limit) {
+                return $query->limit($limit);
+            })
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category', $category);
+            })
+            ->when($offset, function ($query) use ($offset) {
+                return $query->offset($offset);
+            })
+            ->get();
+        return view('features.public.data.story', compact('images'));
     }
     public function genRandomImage(Request $request)
     {
