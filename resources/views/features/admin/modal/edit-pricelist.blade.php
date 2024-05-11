@@ -39,7 +39,7 @@
         <div class="mb-1">
             <label for="description" class="form-label">Description</label>
             <textarea class="tinymce" name="content" rows="6" placeholder="Content..">
-                {{ $data['description'] }}
+                {{ $price['content'] }}
             </textarea>
             <span class="error-content text-danger d-none"></span>
         </div>

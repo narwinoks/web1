@@ -180,10 +180,41 @@
                 success: function(data) {
                     $("#modal-content").html(data);
                     $("#modal-pricelist").modal("show");
+                    loadTimyEdit();
                 },
             });
         });
-
+        function loadTimyEdit() {
+            tinymce.init({
+                selector: "textarea.tinymce",
+                theme: "modern",
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                    "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                    "table contextmenu directionality emoticons paste textcolor code template"
+                ],
+                toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+                toolbar2: "| link unlink anchor | image media | forecolor backcolor  | print preview code | fontsizeselect template",
+                image_advtab: true,
+                fontsize_formats: '8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 18pt',
+                content_style: "div, p { font-size: 14px; }",
+                height: "400",
+                relative_urls: false,
+                remove_script_host: false,
+                document_base_url: "#",
+                templates: [{
+                    title: 'PRICELIST',
+                    description: 'TEMPLATE',
+                    content: '<ul class="pricing-content">' +
+                        '<li><b>1</b> Photographer</li>' +
+                        '<li><b>15</b> Workhour & include Hieros</li>' +
+                        '<li>Print 1pc 16Rp w/ minimalist frame</li>' +
+                        '<li><b>1</b>Autofit</li>' +
+                        '<li>All edited & JPG files via Google Drive</li>' +
+                        '</ul>'
+                }]
+            });
+        }
         function loadTimy() {
 
             tinymce.init({
