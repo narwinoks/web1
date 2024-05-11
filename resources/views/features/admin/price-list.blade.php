@@ -180,7 +180,6 @@
                 success: function(data) {
                     $("#modal-content").html(data);
                     $("#modal-pricelist").modal("show");
-                    loadTimy();
                 },
             });
         });
