@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="mb-1">
                                     <label for="number" class="form-label">Whatsapp / Phone Number</label>
-                                    <input type="text" class="form-control-sm is-rounded form-control" id="email"
+                                    <input type="text" class="form-control-sm is-rounded form-control" id="number"
                                         placeholder="Whatsapp / Phone Number" name="number">
                                     <span class="error-number text-danger d-none"></span>
                                 </div>
@@ -306,9 +306,10 @@
                 success: function(response) {
                     showAlert(response.message, 'success')
                     let urlToOpen = "{{ asset('assets/files/Pricelist SHTTRBX2023 .pdf') }}"
-                    setTimeout(function() {
-                        window.open(urlToOpen, "_blank");
-                    }, 1000)
+                    window.location.href = urlToOpen
+                    // setTimeout(function() {
+                    //     window.open(urlToOpen, "_blank");
+                    // }, 1000)
                 },
                 error: function(error) {
                     if (error.status == 400 || error.status == 422) {
