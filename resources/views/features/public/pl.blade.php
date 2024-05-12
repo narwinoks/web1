@@ -92,7 +92,7 @@
                                 <div class="mb-1">
                                     <label for="name" class="form-label">Name</label>
                                     <input type="name" class="form-control-sm is-rounded form-control" id="name"
-                                        placeholder="Dimas Setiawan" name="name">
+                                        placeholder="John Shutter" name="name">
                                     <span class="error-name text-danger d-none"></span>
                                 </div>
                                 <div class="mb-1">
@@ -153,7 +153,7 @@
                                     <label for="estimed" class="form-label">Estimated date & venue for your event
                                     </label>
                                     <textarea id="estimed" class="form-control is-rounded" rows="2"
-                                        placeholder="Ex: 31 Nov 2024 at Sampoerna Strategic, Jakarta." name="estimed"></textarea>
+                                        placeholder="Ex: 31 Nov 2024 at Sampoerna Strategic, Bandung." name="estimed"></textarea>
                                     <span class="error-estimed text-danger d-none"></span>
                                 </div>
                                 <div class="mb-1">
@@ -166,7 +166,7 @@
                                 <div class="mb-1">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control-sm is-rounded form-control" id="email"
-                                        placeholder="Dimas Setiawan" name="email">
+                                        placeholder="example@gmail.com" name="email">
                                     <span class="error-email text-danger d-none"></span>
                                 </div>
                                 <div class="mb-1">
@@ -308,7 +308,7 @@
                     let urlToOpen = "{{ asset('assets/files/Pricelist SHTTRBX2023 .pdf') }}"
                     setTimeout(function() {
                         window.open(urlToOpen, "_blank");
-                    }, 2000)
+                    }, 1000)
                 },
                 error: function(error) {
                     if (error.status == 400 || error.status == 422) {
