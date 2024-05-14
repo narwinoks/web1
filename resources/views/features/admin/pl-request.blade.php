@@ -39,7 +39,8 @@
                     <div id="loading-animation" class="text-center" style="display: none">
                         <img src="{{ asset('assets/img/loading.gif') }}" width="30px">
                     </div>
-                    <div class="row justify-content-center text-center">
+                    <div class="row justify-content-center text-center mt-5">
+                        <button class="btn btn-show" id="show-more">Perlihatan !</button>
                     </div>
                 </div>
             </div>

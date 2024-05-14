@@ -845,6 +845,7 @@ class AdminController extends Controller
             ->when($endDate, function ($query) use ($endDate) {
                 return $query->where('created_at', '<=', $endDate);
             })
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('features.admin.data.pl-request', compact('contents'));
     }
