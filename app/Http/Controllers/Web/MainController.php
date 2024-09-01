@@ -302,7 +302,6 @@ class MainController extends Controller
             ->when($offset, function ($query) use ($offset) {
                 return $query->offset($offset);
             })
-            ->order('created_at','DESC')
             ->where('statusenable', true)
             ->where('category', $category)
             ->orderBy('created_at', 'DESC')
