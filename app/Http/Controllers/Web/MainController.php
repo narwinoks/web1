@@ -515,7 +515,7 @@ class MainController extends Controller
             return $this->error(ServerResponse::BAD_REQUEST, 400, $error);
         }
         $save = $request->only('name', 'review', 'rating');
-        $save['image'] = auth()->user()->profile;
+        $save['image'] = auth()->user()->profile ?? null;
         $data['content'] = json_encode($save, true);
         $category = $this->getFix('review');
         $data['name'] = $request->name . "-" . "review";
