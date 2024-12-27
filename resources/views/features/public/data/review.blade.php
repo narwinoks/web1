@@ -28,7 +28,9 @@
                     <div class="name">
                         {{ $data['name'] ?? '' }}
                     </div>
-                    <div class="name-sub">
+                    <div class="name-sub" style=" font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;">
                         {{ $reviews[$key]->created_at ?? '' }}
                     </div>
                     <div class="text">
