@@ -26,7 +26,7 @@
         </div>
     </section>
     <input type="hidden" value="0" id="offset" name="offset">
-    <input type="hidden" value="10" id="limit" name="limit">
+    <input type="hidden" value="20" id="limit" name="limit">
 @endsection
 @push('scripts')
     <script>

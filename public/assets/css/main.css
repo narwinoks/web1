@@ -1591,3 +1591,9 @@ label {
 .rating-review input:checked ~ label {
     color: #f8d71e;
 }
+
+.review .items .name-sub {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}

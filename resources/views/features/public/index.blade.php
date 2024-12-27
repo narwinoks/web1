@@ -172,6 +172,7 @@
                 type: 'GET',
                 data: {
                     key: 'review',
+                    limit:20
                 },
             }).done(function(data) {
                 $('#review-content').append(data);
