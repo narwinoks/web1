@@ -38,8 +38,8 @@
                                             <div class="mb-1">
                                                 <label for="promo" class="form-label">Promo</label>
                                                 <input type="text" class="form-control input-custom" placeholder="200000"
-                                                    aria-label="promo" aria-describedby="basic-addon1" id="promo"
-                                                    name="promo" value="{{ $product->promo }}">
+                                                    aria-label="promo" aria-describedby="basic-addon1" id="discount"
+                                                    name="discount" value="{{ $product->discount }}">
                                                 <span class="error text-danger">* Harga Promo</span>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                         Image
                                     </header>
                                     <div class="justify-content-center text-center">
-                                        <img id="blah" src="{{ asset('assets/img/no-images.png') }}"
+                                        <img id="blah" src="{{ asset('assets/img/'.($product->image ?$product->image :'no-images.png') ) }}"
                                             alt="your image" class="img-fluid img-product" /><br><br>
                                         <input type='file' id="imgInp" class="file" name="image" />
                                         <span class="error-image text-danger d-none"></span>

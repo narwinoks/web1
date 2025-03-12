@@ -5,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="product-item">
-                        <img src="{{ asset('assets/img/600x400.png') }}" alt="Product Image" class="product-image">
+                        <img src="{{ asset('assets/img/'. ($product->image ??'600x400.png')) }}" alt="Product Image" class="product-image">
                         <div class="product-details">
                             <h6>{{ $product->name }}</h6>
                             <p class="desc">{!! Str::limit($product->description, 60) !!}</p>

@@ -14,6 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -929,7 +930,7 @@ class AdminController extends Controller
         }
         DB::beginTransaction();
         try {
-            $data = $request->only('name', 'price', 'promo', 'stock', 'description', 'tag');
+            $data = $request->only('name', 'price', 'discount', 'stock', 'description', 'tag');
             $data['slug'] = Str::slug($request->name, '-');
             if ($request->file('image')) {
                 $data['image'] = $this->uploadImage($request->image, Str::slug($request->name, "-") . "-" . "thubnail");

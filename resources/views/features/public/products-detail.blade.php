@@ -48,17 +48,17 @@
                                 <div class="m-bot15"> <strong>Price : </strong>
                                     @if ($product->discount)
                                         <span
-                                            class="pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                            class="amount-old pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
                                         <span
-                                            class="amount-old">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
+                                            class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
                                     @else
                                         <span
-                                            class="pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                            class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
                                     @endif
                                 </div>
                                 <div class="form-group">
                                     <label>Quantity</label>
-                                    <input type="text" name="quantity" id="quantity" placeholder="1"
+                                    <input type="text" name="quantity" id="quantity" placeholder="Qty"
                                         class="form-control quantity">
                                     <span class="error-quantity text-danger d-none"></span>
                                 </div>

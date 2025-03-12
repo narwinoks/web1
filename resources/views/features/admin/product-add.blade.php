@@ -36,8 +36,8 @@
                                             <div class="mb-1">
                                                 <label for="promo" class="form-label">Promo</label>
                                                 <input type="text" class="form-control input-custom" placeholder="200000"
-                                                    aria-label="promo" aria-describedby="basic-addon1" id="promo"
-                                                    name="promo">
+                                                    aria-label="promo" aria-describedby="basic-addon1" id="discount"
+                                                    name="discount">
                                                 <span class="error text-danger">* Harga Promo</span>
                                             </div>
                                         </div>
