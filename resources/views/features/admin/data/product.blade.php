@@ -11,11 +11,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $product->name }}</h5>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 price-container">
                         Price
                         @if ($product->discount)
                             <span
-                                class="amount-old pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                class="dicount">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
                             <span
                                 class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
                         @else

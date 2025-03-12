@@ -9,10 +9,10 @@
                         <div class="product-details">
                             <h6>{{ $product->name }}</h6>
                             <p class="desc">{!! Str::limit($product->description, 60) !!}</p>
-                            <div class="info">
+                            <div class="info price-container">
                                 @if ($product->discount)
                                     <span
-                                        class="amount-old pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                        class="discount">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
                                     <span
                                         class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
                                 @else
