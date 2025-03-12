@@ -15,7 +15,7 @@
                         Price
                         @if ($product->discount)
                             <span
-                                class="dicount">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                class="discount">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
                             <span
                                 class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
                         @else
@@ -28,18 +28,4 @@
             </div>
         </div>
     </div>
-    <style>
-        .price-container .discount {
-            color: rgb(244, 81, 30);
-            text-decoration: line-through;
-            font-size: 16px;
-        }
-
-        .price-container .price {
-            color: var(--black);
-            font-family: Lato, sans-serif;
-            font-size: 16px;
-            line-height: 20px;
-        }
-    </style>
 @endforeach
