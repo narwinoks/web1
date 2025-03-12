@@ -11,23 +11,19 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $product->name }}</h5>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         Price
                         @if ($product->discount)
-                        <span
-                            class="amount-old">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
-                        <span
-                            class="pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
-                    @else
-                        <span
-                            class="pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
-                    @endif
+                            <span
+                                class="amount-old pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                            <span
+                                class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
+                        @else
+                            <span
+                                class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                        @endif
                     </div>
-                    <div class="col-md-6">
-                        Promo
-                        <p class="card-text">
-                            {{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount ?? 0) }}</p>
-                    </div>
+
                 </div>
             </div>
         </div>

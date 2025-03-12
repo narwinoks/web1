@@ -10,7 +10,15 @@
                             <h6>{{ $product->name }}</h6>
                             <p class="desc">{!! Str::limit($product->description, 60) !!}</p>
                             <div class="info">
-                                <p class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</p>
+                                @if ($product->discount)
+                                    <span
+                                        class="amount-old pro-price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                    <span
+                                        class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
+                                @else
+                                    <span
+                                        class="price">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</span>
+                                @endif
                                 <p class="quantity">Jumlah: {{ $qunatity }}</p>
                             </div>
                         </div>
