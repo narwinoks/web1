@@ -28,4 +28,18 @@
             </div>
         </div>
     </div>
+    <style>
+        .price-container .discount {
+            color: rgb(244, 81, 30);
+            text-decoration: line-through;
+            font-size: 16px;
+        }
+
+        .price-container .price {
+            color: var(--black);
+            font-family: Lato, sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+        }
+    </style>
 @endforeach
