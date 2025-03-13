@@ -43,9 +43,9 @@
 @if(!isset($is_include))
     @endsection
 @endif
-@if(!$is_include)
+
 @push('scripts')
-@endif
+
     <script>
         function loadMoreData() {
             $('#content').empty()
@@ -70,6 +70,6 @@
         }
         loadMoreData();
     </script>
-@if(!$is_include)
+
 @endpush
-@endif
+
