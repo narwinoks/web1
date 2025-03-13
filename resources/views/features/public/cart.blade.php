@@ -31,11 +31,11 @@
                                             </td>
 
                                             <td>
-                                                <h3 class="h5">
+                                                <h3 class="h5 price-container">
                                                     @if ($product->discount)
-                                                        {{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}
+                                                       <span class="price"> {{ \App\Helpers\Helper::convertPriceToShortFormat($product->discount) }}</span>
                                                         <small
-                                                            class="small text-muted">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</small>
+                                                            class="discount">{{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}</small>
                                                     @else
                                                         {{ \App\Helpers\Helper::convertPriceToShortFormat($product->price) }}
                                                     @endif
@@ -46,8 +46,9 @@
                                                     value="{{ $qty }}" readonly>
                                             </td>
                                             <td>
+                                                <small>Subtotal</small>
                                                 <h5 class="h5">
-                                                    {{ \App\Helpers\Helper::convertPriceToShortFormat($qty * ($product->price - $product->discount)) }}
+                                                    {{ \App\Helpers\Helper::convertPriceToShortFormat($qty * ($product->discount ?? $product->price)) }}
                                                 </h5>
                                             </td>
                                         </tr>
@@ -74,7 +75,7 @@
                                 Total
                             </span>
                             <h2 class="font-bold h5">
-                                {{ \App\Helpers\Helper::convertPriceToShortFormat($qty * ($product->price - $product->discount)) }}
+                                {{ \App\Helpers\Helper::convertPriceToShortFormat($qty * ($product->discount ?? $product->price)) }}
                             </h2>
                             <hr>
                         </div>

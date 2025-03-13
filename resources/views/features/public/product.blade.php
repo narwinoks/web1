@@ -1,6 +1,8 @@
+@if(!$is_include)
 @extends('templates.public.main')
 @section('title', 'For Photographers')
 @section('content')
+@endif
     <section class="products">
         <div class="container">
             <div class="row mt-4">
@@ -38,7 +40,9 @@
             </div>
         </div>
     </section>
-@endsection
+    @if(!$is_include)
+        @endsection
+    @endif
 @push('scripts')
     <script>
         function loadMoreData() {

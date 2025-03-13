@@ -595,7 +595,7 @@ class MainController extends Controller
         $save = $request->only('name', 'email', 'city', 'noted');
         $product = session()->get('product');
         $save['product_id'] = $product->id;
-        $totalPrice = session()->get('qunatity') * ($product->price - $product->discount);
+        $totalPrice = session()->get('qunatity') * ($product->discount?? $product->price );
         $save['price'] = $totalPrice;
         $save['number_order'] = Helper::generateUniqueOrderNumber();
         try {
@@ -660,7 +660,9 @@ class MainController extends Controller
         $banks = Content::where('category', $category)
             ->where('statusenable', true)
             ->get();
-        $order = Order::find($request->order_id);
+        $order = Order::where('id',$request->order_id)
+        ->with('product:id,name')
+        ->first();
         return view('features.public.confirmation', compact('banks', 'order'));
     }
     public function saveConfirm(Request $request)

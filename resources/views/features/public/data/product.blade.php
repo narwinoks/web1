@@ -1,3 +1,4 @@
+<div class="row">
 @foreach ($products as $key => $product)
     @php
         $review = 5;
@@ -68,3 +69,4 @@
         </div>
     </div>
 @endforeach
+</div>

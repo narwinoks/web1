@@ -1,5 +1,10 @@
 @extends('templates.public.main')
 @section('content')
+@php
+
+$whatsapp = \App\Helpers\Helper::getProfile('whatsapp');
+$whatsapp = str_replace('-', '', $whatsapp);
+@endphp
     <section class="confirmation">
         <div class="container">
             <div class="row justify-content-center">
@@ -10,7 +15,7 @@
                             <form id="form-confirmation">
                                 @csrf
                                 <input type="hidden" name="key" value="confirmation" id="key">
-                                <input type="hidden" name="id" value="{{ $order->id }}" id="id">
+                                <input type="hidden" name="id" value="{{ $order?->id }}" id="id">
                                 <div class="mb-1">
                                     <label for="no_order" class="form-label">Nomor Invoice </label>
                                     <input type="text" class="form-control-sm form-control readonly" readonly
@@ -47,13 +52,13 @@
                                 <div class="mb-1">
                                     <label for="name_rek" class="form-label">Nama Pemilik Rekening </label>
                                     <input type="text" class="form-control-sm form-control" id="name_rek"
-                                        name="name_rek" placeholder="Dimas Setiawan">
+                                        name="name_rek" placeholder="Nama">
                                     <span class="error-name_rek text-danger d-none"></span>
                                 </div>
                                 <div class="mb-1">
                                     <label for="price" class="form-label">Total </label>
                                     <input type="text" class="form-control-sm form-control" id="price" name="price"
-                                        placeholder="0" value="{{ $order->price }}">
+                                        placeholder="0" value="{{ ($order->discount ?? $order->price) }}">
                                     <span class="error-price text-danger d-none"></span>
                                 </div>
                                 <div class="mb-1">
@@ -90,6 +95,8 @@
     <script src="{{ asset('assets/js/main/alert.js') }}"></script>
     <script src="{{ asset('assets/js/main/validation.js') }}"></script>
     <script>
+      debugger
+      
         $('#form-confirmation').submit(function(event) {
             $(this).prop('disabled', false);
             $(this).find('.spinner-border').removeClass('d-none');
@@ -105,12 +112,20 @@
                 contentType: false,
                 success: function(response) {
                     showAlert(response.message, 'success');
+                    debugger
+                    let phoneNumber = {{$whatsapp}}; // Ganti dengan nomor tujuan (gunakan format i
+                        let message = encodeURIComponent("Halo, saya telah Order : "+ '{{$order->number_order }}' +" dengan produk digital - *"+ '{{$order->product->name}}' + "*");
+                        let whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+                        // Redirect ke WhatsApp setelah sukses
+                        window.location.href = whatsappUrl;
                 },
                 error: function(error) {
                     if (error.status == 400 || error.status == 422) {
                         printErrorMsg(error);
                     } else {
                         showAlert(error.responseJSON.message || 'Error', 'danger')
+                      
                     }
                 },
                 complete: function(data) {
