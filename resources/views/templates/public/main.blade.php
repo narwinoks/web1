@@ -9,10 +9,11 @@
     @routes
     @include('templates.public.nav')
     @yield('content')
-    
+  
     @if(empty($is_include)) 
-    @include('templates.public.footer')
-@endif
+        @include('templates.public.footer')
+    @endif
+    @extends('templates.public.scripts')
 </body>
 
 </html>

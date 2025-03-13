@@ -172,4 +172,4 @@
     <i class="fas fa-play label-arrow"></i>
 </div>
 @endif
-@extends('templates.public.scripts')
+
