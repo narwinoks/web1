@@ -1,4 +1,4 @@
-@if(!$is_include)
+@if(!isset($is_include))
 @extends('templates.public.main')
 @section('title', 'For Photographers')
 @section('content')
@@ -39,11 +39,13 @@
                 </div>
             </div>
         </div>
-    </section>
-    @if(!$is_include)
-        @endsection
-    @endif
+
+@if(!isset($is_include))
+    @endsection
+@endif
+@if(!$is_include)
 @push('scripts')
+@endif
     <script>
         function loadMoreData() {
             $('#content').empty()
@@ -68,4 +70,6 @@
         }
         loadMoreData();
     </script>
+@if(!$is_include)
 @endpush
+@endif

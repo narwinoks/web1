@@ -1,3 +1,4 @@
+@if(!isset($include))
 <style>
     .link-foot {
 
@@ -170,4 +171,5 @@
     <div class="label-text">Ada yg ingin anda tanyakan?</div>
     <i class="fas fa-play label-arrow"></i>
 </div>
+@endif
 @extends('templates.public.scripts')

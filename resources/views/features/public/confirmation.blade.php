@@ -95,8 +95,6 @@ $whatsapp = str_replace('-', '', $whatsapp);
     <script src="{{ asset('assets/js/main/alert.js') }}"></script>
     <script src="{{ asset('assets/js/main/validation.js') }}"></script>
     <script>
-      debugger
-      
         $('#form-confirmation').submit(function(event) {
             $(this).prop('disabled', false);
             $(this).find('.spinner-border').removeClass('d-none');

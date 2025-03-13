@@ -97,9 +97,9 @@
                 </div>
             </div>
         </div>
-        <div>
+    </section>
+    <section class="producs">
         @include('features.public.product', ['is_include' => true])
-        </div>
     </section>
     <input type="hidden" value="portfolio" name="portfolio" id="portfolio_key">
 @endsection
