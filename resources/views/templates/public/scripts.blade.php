@@ -14,14 +14,14 @@
     });
 </script>
 <script>
+$(document).ready(function() {
     $(".burger").click(function() {
-        debugger
         $(".navbar-content").toggleClass("show");
     });
 
     $(".btn-close-white").click(function() {
-        console.log("ss");
         $(".navbar-content").removeClass("show");
     });
+});
 </script>
 @stack('scripts')
