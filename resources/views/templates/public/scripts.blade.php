@@ -2,6 +2,7 @@
 <script src="{{ asset('assets/plugin/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
 <script src="{{ asset('assets/plugin/bs-notify/bs-notify.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     $("#logout").click(function(event) {
         event.preventDefault();
@@ -11,6 +12,7 @@
 </script>
 <script>
     $(".burger").click(function() {
+        debugger
         $(".navbar-content").toggleClass("show");
     });
 
