@@ -15,11 +15,13 @@
 </script>
 <script>
 $(document).ready(function() {
-    $(".burger").click(function() {
+    $(".burger").off('click').on('click', function() {
+        console.log('clicked burger');
         $(".navbar-content").toggleClass("show");
     });
 
     $(".btn-close-white").click(function() {
+            console.log('clicked btn-close-whi')
         $(".navbar-content").removeClass("show");
     });
 });
